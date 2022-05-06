@@ -1,11 +1,11 @@
 # Setup
-title: Not Pure Poole
-description: A simple, beautiful, and powerful Jekyll theme for blogs
+title: Memento Hora
+description: One Source Multi Use
 url: https://vszhub.github.io
 avatar: /avatar.jpeg
 paginate: 5
 permalink: pretty
-cover_image: /bg.jpeg
+cover_image: /![1582107928903](https://user-images.githubusercontent.com/99321739/167071587-6e82c36c-e8d2-4c2f-947d-8b4bfcccbc7e.png)
 
 # Gems
 plugins:
