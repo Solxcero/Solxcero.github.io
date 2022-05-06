@@ -6,20 +6,20 @@ description: >- "https://solxcero.github.io/"
 url: "" # the base hostname & protocol for your site, e.g. https://example.github.io
 baseurl: "" # the subpath of your site, e.g. /blog
 
-# Navigation
-urls:
-    - text: Home
-      url: /
-    - text: About
-      url: /about
-    - text: Blog
-      url: /blog
-    - text: Gallery
-      url: /gallery
-    - text: Shop
-      url : /shop
-    - text: Contact
-      url : /contact
+# # Navigation
+# urls:
+#     - text: Home
+#       url: /
+#     - text: About
+#       url: /about
+#     - text: Blog
+#       url: /blog
+#     - text: Gallery
+#       url: /gallery
+#     - text: Shop
+#       url : /shop
+#     - text: Contact
+#       url : /contact
 
 
 # Edit Author details (For multi authors check _data/authors.yml)
