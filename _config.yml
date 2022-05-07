@@ -5,7 +5,7 @@ url: https://vszhub.github.io
 avatar: /avatar.jpeg
 paginate: 5
 permalink: pretty
-cover_image: ![DFE23230-7F26-4DB1-B8DD-6805A0BBB2BD](https://user-images.githubusercontent.com/99321739/167274231-2c3ff92e-ff9d-4684-8db1-2133bd758406.jpeg)
+cover_image: /1582107928903.png
 # Gems
 plugins:
   - jekyll-gist
