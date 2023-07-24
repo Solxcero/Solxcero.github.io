@@ -3,7 +3,6 @@ layout: page
 title: About Me
 permalink: /about/
 feature-img: ""
-color: rgb(0,0,0)
 tags: 
 ---
 ## <center> Hi I am Sunyoung Lee </center>
