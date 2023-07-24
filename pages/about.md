@@ -5,7 +5,9 @@ permalink: /about/
 feature-img: "assets/img/feature-img/aboutme_backimg2.jpg"
 tags: 
 ---
-## Hi I am Sunyoung Lee
+## <center> Hi I am Sunyoung Lee </center>
 
-## 👩🏻‍💻 I work as a Digital Twin Data Analyst in the Renewable Energy Plant Industry 
+## <center>  I work as a Digital Twin Data Analyst  </center> 
+## <center>in the Renewable Energy Plant Industry🌱  </center>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;　　　　　　　　　　
  
