@@ -3,6 +3,6 @@ layout: search
 title: Search
 permalink: /search/
 subtitle: ""
-feature-img: ""
+feature-img: "assets/img/feature-img/searchfi.jpeg"
 icon: "fa-search"
 ---
