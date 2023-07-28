@@ -34,8 +34,8 @@ comments:                                   # Your cusdis data-app-id
   utterances:                                           # Enable by filling below information. For more info, go to https://utteranc.es
     repo:"Solxcero/blogcomments"
     issue-term:"url"
-    label:"comments"
     theme:"github-light"
+    label:"comments"
 
 # PAGINATION
 paginate: 5
