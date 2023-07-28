@@ -1,6 +1,12 @@
 ---
 layout: default
 ---
+<style>
+.gsc-main{
+  padding: 0px 220px;
+}
+</style>
+
 <article {% if page.feature-img or page.color %}class="feature-image" {% endif %}>
   <header id="main" style="">
     <div class="title-padder">
@@ -41,7 +47,7 @@ layout: default
 {% if site.comments.utterances.repo and site.comments.utterances.issue-term %} {% include social/utterances.liquid %} {% endif %}
 
 <!--Giscus-->
-{% if site.comments.giscus.data-repo and site.comments.giscus.data-category %} {% include social/giscus.liquid %} {% endif %}
+{% if site.comments.giscus.data-repo and site.comments.giscus.data-category %} <div class="gsc-main">{% include social/giscus.liquid %}</div> {% endif %}
 
 <!-- Cusdis -->
 {% if site.comments.cusdis_app_id or site.cusdis_app_id %}{% include social/cusdis.liquid %}{% endif %}
