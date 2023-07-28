@@ -40,7 +40,7 @@ comments:
   #   label: comments
   giscus:
     data-repo: Solxcero/blogcomments
-    data-repo=id: R_kgDOKAs-eQ
+    data-repo-id: R_kgDOKAs-eQ
     data-category: comments
     data-category-id: DIC_kwDOKAs-ec4CYMR_
     data-mapping: pathname
