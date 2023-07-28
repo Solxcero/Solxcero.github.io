@@ -31,13 +31,26 @@ color_theme: auto                                       # auto, dark or light
 
 # Comments
 comments: 
-  disqus_shortname:
-  cusdis_app_id:                                  # Your cusdis data-app-id
-  utterances:                                           # Enable by filling below information. For more info, go to https://utteranc.es
-    repo: Solxcero/blogcomments
-    issue-term: pathname
-    theme: github-light
-    label: comments
+  # disqus_shortname:
+  # cusdis_app_id:                                  # Your cusdis data-app-id
+  # utterances:                                           # Enable by filling below information. For more info, go to https://utteranc.es
+  #   repo: Solxcero/blogcomments
+  #   issue-term: pathname
+  #   theme: github-light
+  #   label: comments
+  giscus:
+    data-repo: Solxcero/blogcomments
+    data-repo=id: R_kgDOKAs-eQ
+    data-category: comments
+    data-category-id: DIC_kwDOKAs-ec4CYMR_
+    data-mapping: pathname
+    data-strict: 0
+    data-reactions-enabled: 1
+    data-emit-metadata: 0
+    data-input-position: bottom
+    data-theme: preferred_color_scheme
+    data-lang: en
+    crossorigin: anonymous
 
 # PAGINATION
 paginate: 5
