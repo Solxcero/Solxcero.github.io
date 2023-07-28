@@ -34,10 +34,10 @@ comments:
   disqus_shortname:
   cusdis_app_id:                                  # Your cusdis data-app-id
   utterances:                                           # Enable by filling below information. For more info, go to https://utteranc.es
-    repo:"Solxcero/blogcomments"
-    issue-term:"pathname"
-    theme:"github-light"
-    label:"comments"
+    repo:Solxcero/blogcomments
+    issue-term:pathname
+    theme:github-light
+    label:comments
 
 # PAGINATION
 paginate: 5
