@@ -30,15 +30,12 @@ cookie_consent: false                                   # To respect the usage o
 color_theme: auto                                       # auto, dark or light
 
 # Comments
-comments:
-  disqus_shortname:                                     # Your discus shortname for comments
-  cusdis_app_id:                                        # Your cusdis data-app-id
+comments:                                   # Your cusdis data-app-id
   utterances:                                           # Enable by filling below information. For more info, go to https://utteranc.es
     repo:"Solxcero/blogcomments"
     issue-term:"pathname"
     label:"comments"
     theme:"github-light"
-    crossorigin:"anonymous"                  
 
 # PAGINATION
 paginate: 5
