@@ -1,1 +1,1 @@
-Hi this is me
+See My Blog [click](https://solxcero.github.io/)
