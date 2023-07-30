@@ -5,8 +5,8 @@ url: "https://Solxcero.github.io"
 # THEME-SPECIFIC CONFIGURATION
 title: Ahora                                    # site's title
 description: "Siempre"      # used by search engines
-avatar: assets/img/dino.png                         # Empty for no avatar in navbar
-favicon: assets/egg.ico                           # Icon displayed in the tab
+avatar: assets/img/tiger.png                         # Empty for no avatar in navbar
+favicon: assets/tigerpaw.ico                           # Icon displayed in the tab
 
 # Header and footer text
 header_text: 🔥👀🔥  # Change Blog header text
