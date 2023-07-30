@@ -2,7 +2,7 @@
 layout: page
 title: About Me
 permalink: /about/
-feature-img: "assets/img/feature-img/back.png"
+feature-img: ""
 tags: 
 ---
 ## <center> Hi I am Sunyoung Lee </center>
