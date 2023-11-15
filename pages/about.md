@@ -5,9 +5,30 @@ permalink: /about/
 feature-img: ""
 tags: 
 ---
-## <center> Hi I am Sunyoung Lee </center>
+# <center>👋 Hi I am Sunyoung Lee </center>
 
-### <center>  I work as a Digital Twin Data Analyst  </center> 
-### <center>in the Renewable Energy Plant Industry🌱  </center>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;　　　　　　　　　　
+## 🌟 Introduction
+Have a Nice Day !
+
+
+## 📬 Contact Information
+- 📧 Email: [Your Email Address]
+- 🔗 LinkedIn: [Your LinkedIn Profile URL]
+- 🐙 GitHub: [Your GitHub Profile URL]
+
+## 🚀 Experience and Education
+- **[Company/School Name]** - [Position/Major] (Year to Year)
+  - [Brief Description or Key Responsibilities]
+- **[Another Company/School Name]** - [Position/Major] (Year to Year)
+  - [Brief Description or Key Responsibilities]
+
+## 💻 Skills and Expertise
+- **Programming Languages:** Python, JavaScript, C++
+- **Frameworks and Tools:** React, Django, Docker
+
+## 🌐 Projects
+- **[Project Name]** -
+- **[Another Project Name]** -
+
+
  
