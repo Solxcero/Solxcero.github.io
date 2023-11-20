@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Offshore Wind farms in South Korea                              # Title of the page
+title: Offshore Wind farms in South Korea 한국어 테스트                             # Title of the page
 hide_title: false                                  # Hide the title when displaying the post, but shown in lists of posts
 feature-img: ""            # Add a feature-image to the post
 thumbnail: false  # Add a thumbnail image on blog view
