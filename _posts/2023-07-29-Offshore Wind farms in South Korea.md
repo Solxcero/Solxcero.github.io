@@ -4,7 +4,7 @@ title: Offshore Wind farms in South Korea 한국어 테스트                   
 hide_title: false                                  # Hide the title when displaying the post, but shown in lists of posts
 feature-img: ""            # Add a feature-image to the post
 thumbnail: false  # Add a thumbnail image on blog view
-color: rgb(0,153,255)   
+color: rgb(80,140,22)   
 categories : [Energy]         #rgb(80,140,22)                        # Add the specified color as feature image, and change link colors in post
 bootstrap: true                                   # Add bootstrap to the page
 excerpt_separator: <!--more--> 
