@@ -168,7 +168,7 @@ header {
   padding-right: 0.75rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-  margin-right: 0px;
+  margin-right: 10%;
   font-size: 1rem;
   border-left: 2px solid #e0d9e7;
 
@@ -177,10 +177,11 @@ header {
   //   width: 240px;
   //   display: block;
   // }
-  // @media (min-width: 85em){
-  //   width: 300px;
-  //   display: block;
-  // }
+  @media (min-width: 85em){
+    width: 200px;
+    display: block;
+    margin-right: 2%;
+  }
   @media (min-width: 95em){
     width: 250px;
     display: block;
