@@ -27,6 +27,9 @@ $break: 768px;
 $sm-break: 576px;
 $x-sm-break: 320px;
 
+body::-webkit-scrollbar {
+  display: none;
+}
 
 /* THEME COLOR SCHEMES */
 html, html[data-theme="light"] {
