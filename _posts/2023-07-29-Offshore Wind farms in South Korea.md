@@ -2,7 +2,7 @@
 layout: post
 title: Offshore Wind farms in South Korea                        
 hide_title: false                                 
-color: rgb(000,102,255)   
+# color: rgb(000,102,255)   
 categories : [Energy]         
 bootstrap: true                                  
 excerpt_separator: <!--more--> 
