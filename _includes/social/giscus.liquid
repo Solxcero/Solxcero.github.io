@@ -11,5 +11,44 @@
         data-theme="{{ site.comments.giscus.data-theme }}"
         data-lang="{{ site.comments.giscus.data-lang }}"
         crossorigin="anonymous"
-        async>
+        async id="giscus-script">
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 테마 토글 버튼과 Giscus 스크립트 태그 찾기
+  const themeToggle = document.querySelector('#theme-toggle');
+  const giscusScript = document.querySelector('#giscus-script');
+  const defaultTheme = giscusScript.getAttribute('data-theme');
+  const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
+
+  // 테마 토글 버튼에 이벤트 리스너 추가
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+      // 현재 테마 확인 및 토글
+      const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', newTheme);
+      
+      // Giscus 테마 변경
+      changeGiscusTheme(newTheme);
+    });
+  }
+
+  // 페이지 로드 시 저장된 테마 또는 기본 테마로 Giscus 테마 설정
+  const savedTheme = localStorage.getItem('theme') || document.body.classList.contains('dark') ? 'dark' : 'light';
+  changeGiscusTheme(savedTheme);
+});
+
+function changeGiscusTheme(theme) {
+  const iframe = document.querySelector('iframe.giscus-frame');
+  if (!iframe) return;
+  iframe.contentWindow.postMessage({
+    giscus: {
+      setConfig: {
+        theme: theme === 'dark' ? 'dark' : 'light', // Giscus에서 지원하는 테마 이름으로 변경
+      },
+    },
+  }, 'https://giscus.app');
+}
 </script>
