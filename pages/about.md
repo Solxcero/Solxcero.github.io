@@ -8,4 +8,5 @@ tags:
 # <center>👋 Hi I am Sunyoung Lee </center>
 
 ## 🌟 Introduction
-Have a Nice Day !
+{% include aligner.html images="character.png" %}
+Have a Nice Day !  
