@@ -1,7 +1,7 @@
 ---
 layout: post
 title: project1
-feature-img: ""
+# feature-img: ""
 img: "assets/img/portfolio/sponge.JPEG"
 date: 27 September 2015
 tags: [NLP, DataScience]
