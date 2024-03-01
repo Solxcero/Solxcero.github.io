@@ -9,4 +9,10 @@ tags:
 
 ## 🌟 Introduction
 {% include aligner.html images="character.png" %}
-Have a Nice Day !  
+
+
+```python
+name = 'Sunyoung Lee'  
+eMail = 'rumbini98@gamil.com' 
+MyCharacter = 'Make It Possible'
+```
