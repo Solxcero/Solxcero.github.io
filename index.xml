@@ -13,7 +13,7 @@
       <link>/post/test/</link>
       <pubDate>Tue, 02 Apr 2024 12:53:40 +0900</pubDate>
       <guid>/post/test/</guid>
-      <description>this is my page</description>
+      <description>this is my page&#xA;name = &amp;#39;SUNYOUNG LEE&amp;#39; wish = &amp;#39;Freedom from Money&amp;#39; </description>
     </item>
   </channel>
 </rss>
