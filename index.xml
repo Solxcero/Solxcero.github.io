@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ahora</title>
-    <link>/</link>
+    <link>//localhost:1313/</link>
     <description>Recent content on Ahora</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 02 Apr 2024 12:53:40 +0900</lastBuildDate>
-    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Test</title>
-      <link>/post/test/</link>
+      <link>//localhost:1313/post/test/</link>
       <pubDate>Tue, 02 Apr 2024 12:53:40 +0900</pubDate>
-      <guid>/post/test/</guid>
+      <guid>//localhost:1313/post/test/</guid>
       <description>this is my page&#xA;name = &amp;#39;Sunyong Lee&amp;#39; workPlace = &amp;#39;DXlabz&amp;#39; wish = &amp;#39;Fire&amp;#39; </description>
     </item>
   </channel>
