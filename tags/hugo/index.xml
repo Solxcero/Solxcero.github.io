@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on Ahora</title>
+    <link>/tags/hugo/</link>
+    <description>Recent content in Hugo on Ahora</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 Apr 2024 10:41:44 +0900</lastBuildDate>
+    <atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog</title>
+      <link>/post/blog/</link>
+      <pubDate>Wed, 03 Apr 2024 10:41:44 +0900</pubDate>
+      <guid>/post/blog/</guid>
+      <description>Hugo 블로그. 깃허브 블로그 테마 유목민이던 내가 드디어 맘에 드는 테마를 발견했는데, 기존에 사용하던 Jekyll가 아닌 Hugo 기반이다.&#xA;Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 때 참고하기 위해 포스팅을 하려고 한다.&#xA;Hugo 설치 (Windows 기준)&#xA;hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo 프로젝트 파일을 담을 폴더를 생성 (C:/Hugo) C:/Hugo/bin 디렉토리 생성 후 설치 파일 압축 해제 하여 넣기 C:/Hugo/bin 환경변수에 추가 -&amp;gt; cmd에 hugo version 입력하여 Path 추가 되었는지 확인 Hugo Local 실행 1.</description>
+    </item>
+  </channel>
+</rss>
