@@ -322,7 +322,7 @@ Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 �
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo server -D
 </span></span></code></pre></div><p><code>localhost:1313</code> 혹은 <code>127.0.01:1313</code> 으로 접속해 확인</p>
 <h2 id="build-단계">Build 단계</h2>
-<p><strong>1. Github Repo 생성</strong>
+<p><strong>1. Github Repo 생성</strong><br>
 &lt;프로젝트이름&gt;의 저장소 하나와, &lt;깃허브ID.github.io&gt; 저장소 하나 생성<br>
 나의 경우 <code>blog</code> 와 <code>Solxcero.github.io</code></p>
 <p><strong>2. 프로젝트 폴더 remote</strong><br>
@@ -330,7 +330,7 @@ Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 �
 <code>C:/Hugo/blog</code> 프로젝트 경로에서</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git init
 </span></span><span style="display:flex;"><span>$ git remote add origin &lt;프로젝트 Repo url&gt;
-</span></span></code></pre></div><p><strong>3. gihub page 폴더 submodule</strong>
+</span></span></code></pre></div><p><strong>3. gihub page 폴더 submodule</strong><br>
 프로젝트 폴더 remote 후 생성 된 <code>public</code> 폴더 안에 github.io repo를 연결</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git submodule add -b main &lt;github.io repository url&gt; public
 </span></span></code></pre></div><p><strong>4. 빌드</strong></p>
