@@ -227,12 +227,6 @@ hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo �
       
       <a
         class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
-        href="/about/"
-        >About</a
-      >
-      
-      <a
-        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
         href="/categories/"
         >Category</a
       >
@@ -302,24 +296,24 @@ Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 �
 </ol>
 <h2 id="hugo-local-실행">Hugo Local 실행</h2>
 <p><strong>1. 프로젝트 폴더 만들기</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo new site blog
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># blog는 프로젝트 이름</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># blog 폴더 안에 Hugo 기본 구조 생성된 것 확인 </span>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo new site blog
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># blog는 프로젝트 이름</span>
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># blog 폴더 안에 Hugo 기본 구조 생성된 것 확인 </span>
 </span></span></code></pre></div><p><strong>2. 원하는 Hugo 테마 선택</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git clone https://github.com/nanxiaobei/hugo-paper.git themes/paper
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 나는 hugo-paper 테마 선택</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 프로젝트의 하위 폴더인 themes 폴더 안에  paper 라는 이름으로 clone    </span>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git clone https://github.com/nanxiaobei/hugo-paper.git themes/paper
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 나는 hugo-paper 테마 선택</span>
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 프로젝트의 하위 폴더인 themes 폴더 안에  paper 라는 이름으로 clone    </span>
 </span></span></code></pre></div><p><strong>3. hugo.toml 파일 수정</strong><br>
 해당 테마 공식 깃허브에 가면 hugo.toml(config 파일)을 어떻게 사용하면 되는지 나와 있음.<br>
 모든 Hugo Project에서 중요한 것은 사용할 테마 이름을 지정하는 것.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>theme = &#34;paper&#34;
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>theme = &#34;paper&#34;
 </span></span></code></pre></div><p>즉, hugo는 여러 테마를 다운받아서 원하는 테마로 바꾸면서 사용할 수 있는데, 이때 config 파일인 hugo.toml에 어떤 테마를 사용할 것인지 지정을 해주는 단계</p>
 <p><strong>4. 글 작성</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo new &lt;게시글제목&gt;.md
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo new &lt;게시글제목&gt;.md
 </span></span></code></pre></div><p>프로젝트 경로의 <code>contents</code> 폴더 안에 포스팅 생성 확인<br>
 <code>post/test.md</code> -&gt; post라는 범주 안에 test 게시글 작성</p>
 <p><strong>5. 로컬서버로 미리보기</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo server -D
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo server -D
 </span></span></code></pre></div><p><code>localhost:1313</code> 혹은 <code>127.0.01:1313</code> 으로 접속해 확인</p>
 <h2 id="build-단계">Build 단계</h2>
 <p><strong>1. Github Repo 생성</strong><br>
@@ -328,57 +322,57 @@ Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 �
 <p><strong>2. 프로젝트 폴더 remote</strong><br>
 ! 프로젝트 폴더 안에  <code>public</code> 폴더가 있다면 삭제 필수 !<br>
 <code>C:/Hugo/blog</code> 프로젝트 경로에서</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git init
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git init
 </span></span><span style="display:flex;"><span>$ git remote add origin &lt;프로젝트 Repo url&gt;
 </span></span></code></pre></div><p><strong>3. gihub page 폴더 submodule</strong><br>
 프로젝트 폴더 remote 후 생성 된 <code>public</code> 폴더 안에 github.io repo를 연결</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git submodule add -b main &lt;github.io repository url&gt; public
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git submodule add -b main &lt;github.io repository url&gt; public
 </span></span></code></pre></div><p><strong>4. 빌드</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo -t paper
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo -t paper
 </span></span></code></pre></div><p><code>public</code> 폴더 안에 내가 선택한 테마의 빌드 결과 확인 가능</p>
 <p><strong>5. 커밋하기</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd public
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ <span style="color:#24909d">cd</span> public
 </span></span><span style="display:flex;"><span>$ git add .
-</span></span><span style="display:flex;"><span>$ git commit -m <span style="color:#e6db74">&#34;&lt;커밋 메세지&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>$ git commit -m <span style="color:#ed9d13">&#34;&lt;커밋 메세지&gt;&#34;</span>
 </span></span><span style="display:flex;"><span>$ git push origin main
-</span></span><span style="display:flex;"><span>$ cd ..
+</span></span><span style="display:flex;"><span>$ <span style="color:#24909d">cd</span> ..
 </span></span><span style="display:flex;"><span>$ git add .
-</span></span><span style="display:flex;"><span>$ git commit -m <span style="color:#e6db74">&#34;&lt;커밋 메세지&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>$ git commit -m <span style="color:#ed9d13">&#34;&lt;커밋 메세지&gt;&#34;</span>
 </span></span><span style="display:flex;"><span>$ git push origin main
 </span></span></code></pre></div><h2 id="쉘스크립트-만들기">쉘스크립트 만들기</h2>
 <p>Jekyll와 달리 Hugo는 <code>public</code> 과 <code>프로젝트</code>를 각각 빌드해야하므로 과정이 조금 귀찮다.
 프로젝트 폴더 안에 <code>deploy.sh</code> 이름의 쉘스크립트를 만들어서 빌드 과정을 자동화할 수 있음</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e"># If a command fails then the deploy stops</span>
-</span></span><span style="display:flex;"><span>set -e
-</span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#34;\033[0;32mDeploying updates to GitHub...\033[0m\n&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build the project.</span>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold">#!/bin/sh
+</span></span></span><span style="display:flex;"><span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># If a command fails then the deploy stops</span>
+</span></span><span style="display:flex;"><span><span style="color:#24909d">set</span> -e
+</span></span><span style="display:flex;"><span><span style="color:#24909d">printf</span> <span style="color:#ed9d13">&#34;\033[0;32mDeploying updates to GitHub...\033[0m\n&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># Build the project.</span>
 </span></span><span style="display:flex;"><span>hugo -t paper
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Go To Public folder</span>
-</span></span><span style="display:flex;"><span>cd public
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add changes to git.</span>
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># Go To Public folder</span>
+</span></span><span style="display:flex;"><span><span style="color:#24909d">cd</span> public
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># Add changes to git.</span>
 </span></span><span style="display:flex;"><span>git add .
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Commit changes.</span>
-</span></span><span style="display:flex;"><span>msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rebuilding site </span><span style="color:#66d9ef">$(</span>date<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span>$*<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
-</span></span><span style="display:flex;"><span>	msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$*<span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
-</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;</span>$msg<span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Push source and build repos.</span>
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># Commit changes.</span>
+</span></span><span style="display:flex;"><span><span style="color:#40ffff">msg</span>=<span style="color:#ed9d13">&#34;rebuilding site </span><span style="color:#6ab825;font-weight:bold">$(</span>date<span style="color:#6ab825;font-weight:bold">)</span><span style="color:#ed9d13">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">if</span> [ -n <span style="color:#ed9d13">&#34;</span><span style="color:#40ffff">$*</span><span style="color:#ed9d13">&#34;</span> ]; <span style="color:#6ab825;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#40ffff">msg</span>=<span style="color:#ed9d13">&#34;</span><span style="color:#40ffff">$*</span><span style="color:#ed9d13">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">fi</span>
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#ed9d13">&#34;</span><span style="color:#40ffff">$msg</span><span style="color:#ed9d13">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># Push source and build repos.</span>
 </span></span><span style="display:flex;"><span>git push origin main
-</span></span><span style="display:flex;"><span>cd ..
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># anyblogname 업데이트</span>
+</span></span><span style="display:flex;"><span><span style="color:#24909d">cd</span> ..
+</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># anyblogname 업데이트</span>
 </span></span><span style="display:flex;"><span>git add .
-</span></span><span style="display:flex;"><span>msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rebuilding site `date`&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $# -eq <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">then</span> msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
-</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;</span>$msg<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#40ffff">msg</span>=<span style="color:#ed9d13">&#34;rebuilding site `date`&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">if</span> [ <span style="color:#40ffff">$#</span> -eq <span style="color:#3677a9">1</span> ]
+</span></span><span style="display:flex;"><span>  <span style="color:#6ab825;font-weight:bold">then</span> <span style="color:#40ffff">msg</span>=<span style="color:#ed9d13">&#34;</span><span style="color:#40ffff">$1</span><span style="color:#ed9d13">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">fi</span>
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#ed9d13">&#34;</span><span style="color:#40ffff">$msg</span><span style="color:#ed9d13">&#34;</span>
 </span></span><span style="display:flex;"><span>git push origin main
 </span></span></code></pre></div><p>테마 이름만 본인이 사용하는 이름으로 수정하면 됨.<br>
 Windows는 쉘스크립트를 실행할 수 없으므로 <code>gitbash</code>를 사용하면 됨.
 프로젝트 폴더 경로에서 다음 명령어 실행</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./deploy.sh <span style="color:#e6db74">&#34;commit message&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./deploy.sh <span style="color:#ed9d13">&#34;commit message&#34;</span>
 </span></span></code></pre></div></section>
 
   
