@@ -10,9 +10,9 @@
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IF문의 오버헤드</title>
-      <link>/post/conditionalcheckoverhead/</link>
+      <link>/post/ifoverhead/</link>
       <pubDate>Sat, 06 Jul 2024 22:00:55 +0900</pubDate>
-      <guid>/post/conditionalcheckoverhead/</guid>
+      <guid>/post/ifoverhead/</guid>
       <description>백준 BOJ거리 문제를 풀다가 BOJ 거리 문제는 DP 알고리즘 문제로 B,O,J 블록을 순서대로 점프하면서 최소한의 에너지로 종료지점에 도착해야하는 문제이다. 문제링크&#xA;아래는 내가 짠 코드이다.&#xA;import sys input = sys.stdin.readline N = int(input()) blocks = str(input().strip()) jump_order = {&amp;#39;B&amp;#39;:&amp;#39;O&amp;#39;,&amp;#39;O&amp;#39;:&amp;#39;J&amp;#39;,&amp;#39;J&amp;#39;:&amp;#39;B&amp;#39;} max_energy = 999*999 + 1 # 소요된 에너지를 저장 -&amp;gt; 최솟값 업데이트를 위해 최댓값으로 저장 dp = [max_energy] * N dp[0] = 0 # 처음 위치에서 에너지 0 -&amp;gt; 즉, dp[i] 는 i칸에 가기 위한 에너지의 최솟값 for i in range(N): if dp[i] == max_energy: continue for j in range(i+1,N): if blocks[j] == jump_order[blocks[i]]: dp[j] = min(dp[j],(j-i)*(j-i)+dp[i]) # print(dp) print(dp[-1] if dp[-1] !</description>
     </item>
     <item>
