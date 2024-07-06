@@ -319,7 +319,7 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
 </span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">continue</span>
 </span></span></code></pre></div><p>이 부분은 블록을 점프할 때, 블록 값이 <code>max_energy</code> 라면 애초에 점프할 수 없는 블록이기에 &ldquo;아래의 반복문 연산을 하지 않아도 된다&rdquo; 라는 제한 조건을 걸어 둔 것이다.
 &ldquo;코드 두 줄로 불필요한 연산을 줄였으니 분명 시간을 단축시켰겠지?!&rdquo;  라는 설렘을 가지고 해당 조건문을 없애고 다시 코드를 제출해 봤다.</p>
-<p><img src="/static/images/12026.png" alt="코드제출결과화면"></p>
+<p><img src="/images/12026.png" alt="코드제출결과화면"></p>
 <p>놀랍게도(?) 위에가 조건문이 없는 코드이다. 물론 미세한 시간 차이이긴 하지만, 그럼에도 내 예상을 빗나간 결과라 상당히 의아했다. 불필요한 연산을 하는게 더 빠르다..? 이걸 어떻게 이해해야하지..?<br>
 혼자 고민하다가 그냥 GPT 에 물어봤다. 놀랍도록 발전한 세상에 감사합니다..</p>
 <blockquote>
@@ -388,9 +388,9 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
 </span></span></code></pre></div><p><code>with_condition</code>  함수와 <code>without_condition</code> 함수를 만들어서 실행시간을 측정해보았다.<br>
 이때 BOJ 블록은 그냥 랜덤으로 생성하되 일정 시간이 걸려야 하므로 블록길이 N을 크게 주었다.</p>
 <p>기대되는 실행 결과는~~~</p>
-<p><img src="/static/images/12026_1.png" alt="결과1">
+<p><img src="/images/12026_1.png" alt="결과1">
 잉? 뭐야 조건문 있는게 더 빠르잖아~~~ 다시다시</p>
-<p><img src="/static/images/12026_2.png" alt="결과2">
+<p><img src="/images/12026_2.png" alt="결과2">
 뭐야뭐야~~~ 이번엔 조건문 없는게 더 빠르네??</p>
 <p>그렇다면 결과의 차이를 만드는 녀석은 내가 랜덤으로 생성한 BOJ 배열 이다..!</p>
 <h2 id="그래서-제가-직접-해보았습니다-2">그래서 제가 직접 해보았습니다 2</h2>
@@ -398,12 +398,12 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
 <h4 id="조건문이-있는게-도움이-되는-경우">조건문이 있는게 도움이 되는 경우</h4>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>blocks = <span style="color:#ed9d13">&#39;BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJBOJ&#39;</span>
 </span></span></code></pre></div><p>BOJ가 연속적이지 않은 경우이다.
-<img src="/static/images/12026_3.png" alt="결과3">
+<img src="/images/12026_3.png" alt="결과3">
 처음 B에서 다음 O가 나올 때까지 <code>dp[i] == max_energy</code> 조건에 걸려 반복문 연산을 다 건너뛰기 때문에 if 문이 있는 코드가 더 빠르게 통과한다.</p>
 <h4 id="조건문이-없는게-나은-경우">조건문이 없는게 나은 경우</h4>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>blocks = <span style="color:#ed9d13">&#39;BOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJJ&#39;</span>
 </span></span></code></pre></div><p>BOJ가 연속적인 패턴으로 등장하는 경우이다.
-<img src="/static/images/12026_4.png" alt="결과4">
+<img src="/images/12026_4.png" alt="결과4">
 블록의 매 순서가 IF문에 해당하지 않아 거의 모든 순서에서 반복문을 실행해야 한다.  따라서 IF 문의 역할이 미미하다.</p>
 <h2 id="결론-1">결론</h2>
 <p>내가 목표했던 최적화는 입력되는 데이터 와 실행 환경에 따라 달라질 수 있다는 것을 배웠다.</p>
