@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 03 Apr 2024 10:41:44 +0900</lastBuildDate>
     <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Git</title>
-      <link>/categories/git/</link>
+      <title>Blog</title>
+      <link>/categories/blog/</link>
       <pubDate>Wed, 03 Apr 2024 10:41:44 +0900</pubDate>
-      <guid>/categories/git/</guid>
+      <guid>/categories/blog/</guid>
       <description></description>
     </item>
   </channel>
