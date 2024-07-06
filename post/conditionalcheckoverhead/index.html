@@ -39,7 +39,7 @@
   style="--bg: #fff"
   lang="en-us"
 >
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   
   <link rel="stylesheet" href="/css/custom.css">
 </head>
@@ -74,14 +74,14 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
   
   
   
-  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
 
   
   
   
   
   
-  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
+  <link rel="preload" as="image" href="/theme.png" />
 
   
   
@@ -93,7 +93,7 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
 
   
   
-  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
+  <link rel="preload" as="image" href="/github.svg" />
   
   
 
@@ -101,7 +101,7 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
   
   <script
     defer
-    src="//localhost:1313/highlight.min.js"
+    src="/highlight.min.js"
     onload="hljs.initHighlightingOnLoad();"
   ></script>
   
@@ -111,13 +111,44 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
   
 
   
-  <link rel="icon" href="//localhost:1313/favicon.ico" />
-  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.124.0">
 
   
+  
+  
+  
+  
+  <meta itemprop="name" content="IF문의 오버헤드">
+<meta itemprop="description" content="백준 BOJ거리 문제를 풀다가 BOJ 거리 문제는 DP 알고리즘 문제로 B,O,J 블록을 순서대로 점프하면서 최소한의 에너지로 종료지점에 도착해야하는 문제이다. 문제링크
+아래는 내가 짠 코드이다.
+import sys input = sys.stdin.readline N = int(input()) blocks = str(input().strip()) jump_order = {&#39;B&#39;:&#39;O&#39;,&#39;O&#39;:&#39;J&#39;,&#39;J&#39;:&#39;B&#39;} max_energy = 999*999 &#43; 1 # 소요된 에너지를 저장 -&gt; 최솟값 업데이트를 위해 최댓값으로 저장 dp = [max_energy] * N dp[0] = 0 # 처음 위치에서 에너지 0 -&gt; 즉, dp[i] 는 i칸에 가기 위한 에너지의 최솟값 for i in range(N): if dp[i] == max_energy: continue for j in range(i&#43;1,N): if blocks[j] == jump_order[blocks[i]]: dp[j] = min(dp[j],(j-i)*(j-i)&#43;dp[i]) # print(dp) print(dp[-1] if dp[-1] !"><meta itemprop="datePublished" content="2024-07-06T22:00:55+09:00" />
+<meta itemprop="dateModified" content="2024-07-06T22:00:55+09:00" />
+<meta itemprop="wordCount" content="711">
+<meta itemprop="keywords" content="" />
+  
+  <meta property="og:title" content="IF문의 오버헤드" />
+<meta property="og:description" content="백준 BOJ거리 문제를 풀다가 BOJ 거리 문제는 DP 알고리즘 문제로 B,O,J 블록을 순서대로 점프하면서 최소한의 에너지로 종료지점에 도착해야하는 문제이다. 문제링크
+아래는 내가 짠 코드이다.
+import sys input = sys.stdin.readline N = int(input()) blocks = str(input().strip()) jump_order = {&#39;B&#39;:&#39;O&#39;,&#39;O&#39;:&#39;J&#39;,&#39;J&#39;:&#39;B&#39;} max_energy = 999*999 &#43; 1 # 소요된 에너지를 저장 -&gt; 최솟값 업데이트를 위해 최댓값으로 저장 dp = [max_energy] * N dp[0] = 0 # 처음 위치에서 에너지 0 -&gt; 즉, dp[i] 는 i칸에 가기 위한 에너지의 최솟값 for i in range(N): if dp[i] == max_energy: continue for j in range(i&#43;1,N): if blocks[j] == jump_order[blocks[i]]: dp[j] = min(dp[j],(j-i)*(j-i)&#43;dp[i]) # print(dp) print(dp[-1] if dp[-1] !" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/conditionalcheckoverhead/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-07-06T22:00:55+09:00" />
+<meta property="article:modified_time" content="2024-07-06T22:00:55+09:00" />
+
+  
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="IF문의 오버헤드"/>
+<meta name="twitter:description" content="백준 BOJ거리 문제를 풀다가 BOJ 거리 문제는 DP 알고리즘 문제로 B,O,J 블록을 순서대로 점프하면서 최소한의 에너지로 종료지점에 도착해야하는 문제이다. 문제링크
+아래는 내가 짠 코드이다.
+import sys input = sys.stdin.readline N = int(input()) blocks = str(input().strip()) jump_order = {&#39;B&#39;:&#39;O&#39;,&#39;O&#39;:&#39;J&#39;,&#39;J&#39;:&#39;B&#39;} max_energy = 999*999 &#43; 1 # 소요된 에너지를 저장 -&gt; 최솟값 업데이트를 위해 최댓값으로 저장 dp = [max_energy] * N dp[0] = 0 # 처음 위치에서 에너지 0 -&gt; 즉, dp[i] 는 i칸에 가기 위한 에너지의 최솟값 for i in range(N): if dp[i] == max_energy: continue for j in range(i&#43;1,N): if blocks[j] == jump_order[blocks[i]]: dp[j] = min(dp[j],(j-i)*(j-i)&#43;dp[i]) # print(dp) print(dp[-1] if dp[-1] !"/>
+
+  
+  
+  
+  <link rel="canonical" href="/post/conditionalcheckoverhead/" />
   
   
 </head>
@@ -127,7 +158,7 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
-      href="//localhost:1313/"
+      href="/"
       >Ahora</a
     >
     <div
@@ -390,7 +421,7 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
     
     <a
       class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-      href="//localhost:1313/post/blog/"
+      href="/post/blog/"
       ><span>Hugo로 GitBlog 만들기</span><span class="ml-1.5">→</span></a
     >
     
@@ -418,7 +449,7 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
 >
   <div class="mr-auto">
     &copy; 2024
-    <a class="link" href="//localhost:1313/">Ahora</a>
+    <a class="link" href="/">Ahora</a>
   </div>
   <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
     >Powered by Hugo️️</a

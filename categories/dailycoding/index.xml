@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Ahora</title>
-    <link>/post/</link>
-    <description>Recent content in Posts on Ahora</description>
+    <title>DailyCoding on Ahora</title>
+    <link>/categories/dailycoding/</link>
+    <description>Recent content in DailyCoding on Ahora</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 06 Jul 2024 22:00:55 +0900</lastBuildDate>
-    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/categories/dailycoding/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IF문의 오버헤드</title>
       <link>/post/conditionalcheckoverhead/</link>
       <pubDate>Sat, 06 Jul 2024 22:00:55 +0900</pubDate>
       <guid>/post/conditionalcheckoverhead/</guid>
       <description>백준 BOJ거리 문제를 풀다가 BOJ 거리 문제는 DP 알고리즘 문제로 B,O,J 블록을 순서대로 점프하면서 최소한의 에너지로 종료지점에 도착해야하는 문제이다. 문제링크&#xA;아래는 내가 짠 코드이다.&#xA;import sys input = sys.stdin.readline N = int(input()) blocks = str(input().strip()) jump_order = {&amp;#39;B&amp;#39;:&amp;#39;O&amp;#39;,&amp;#39;O&amp;#39;:&amp;#39;J&amp;#39;,&amp;#39;J&amp;#39;:&amp;#39;B&amp;#39;} max_energy = 999*999 + 1 # 소요된 에너지를 저장 -&amp;gt; 최솟값 업데이트를 위해 최댓값으로 저장 dp = [max_energy] * N dp[0] = 0 # 처음 위치에서 에너지 0 -&amp;gt; 즉, dp[i] 는 i칸에 가기 위한 에너지의 최솟값 for i in range(N): if dp[i] == max_energy: continue for j in range(i+1,N): if blocks[j] == jump_order[blocks[i]]: dp[j] = min(dp[j],(j-i)*(j-i)+dp[i]) # print(dp) print(dp[-1] if dp[-1] !</description>
-    </item>
-    <item>
-      <title>Hugo로 GitBlog 만들기</title>
-      <link>/post/blog/</link>
-      <pubDate>Wed, 03 Apr 2024 10:41:44 +0900</pubDate>
-      <guid>/post/blog/</guid>
-      <description>Hugo 블로그. 깃허브 블로그 테마 유목민이던 내가 드디어 맘에 드는 테마를 발견했는데, 기존에 사용하던 Jekyll가 아닌 Hugo 기반이다.&#xA;Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 때 참고하기 위해 포스팅을 하려고 한다. Hugo Documentation&#xA;Hugo 설치 (Windows 기준)&#xA;hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo 프로젝트 파일을 담을 폴더를 생성 (C:/Hugo) C:/Hugo/bin 디렉토리 생성 후 설치 파일 압축 해제 하여 넣기 C:/Hugo/bin 환경변수에 추가 -&amp;gt; cmd에 hugo version 입력하여 Path 추가 되었는지 확인 Hugo Local 실행 1.</description>
     </item>
   </channel>
 </rss>
