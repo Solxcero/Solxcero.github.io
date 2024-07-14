@@ -1,0 +1,353 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #fff"
+  lang="en-us"
+>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+  <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>투자 덕질 : Style Investment(1) - Ahora</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  
+  <meta name="description" content="Style Investment 내 아이돌 최애의 90%는 그 그룹의 메인보컬이다.
+메인보컬을 좋아하면 행복한 덕질을 보장할 수 있다. 음원으로도 그 멤버의 목소리를 가장 잘 들을 수 있고, 무대 영상에서도 춤추며 열창하는 프로다운 모습을 볼 수 있다.
+나의 영원한 최애 종현옵빠 이 처럼 투자도 내가 원하는 스타일로 전략을 짤 수 있다. 내가 선호하는 투자 스타일이 있다면 그에 해당하는 종목들만 가지고 내 포트폴리오를 구성하거나, 나와 비슷한 취향의 사람들이 만들어 놓은 ETF에 투자하면 된다.
+대표적으로는 대형주/중소형주 , 가치주/성장주 , 배당, 퀄리티, 모멘텀 과 같은 스타일이 있다." />
+  <meta name="author" content="Sunyoung Lee" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
+
+  
+  
+  
+  
+  
+  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
+
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://github.com/Solxcero/Solxcero.github.io/assets/99321739/4ccb5f75-725b-4360-b1d6-6b1c99072d56" />
+  
+  
+
+  
+  
+  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
+  
+  
+
+  
+  
+  <script
+    defer
+    src="//localhost:1313/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  
+  
+
+  
+  <link rel="icon" href="//localhost:1313/favicon.ico" />
+  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.124.0">
+
+  
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="//localhost:1313/"
+      >Ahora</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#fff'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/categories/"
+        >Categories</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/tags/"
+        >Tag</a
+      >
+      
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/Solxcero"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 pb-16 pt-12 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-16">
+    <h1 class="!my-0 pb-2.5">투자 덕질 : Style Investment(1)</h1>
+
+    
+    <div class="text-sm antialiased opacity-60">
+      
+      <time>Jul 13, 2024</time>
+      
+      
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h2 id="style-investment">Style Investment</h2>
+<p>내 아이돌 최애의 90%는 그 그룹의 메인보컬이다.<br>
+메인보컬을 좋아하면 행복한 덕질을 보장할 수 있다. 음원으로도 그 멤버의 목소리를 가장 잘 들을 수 있고, 무대 영상에서도 춤추며 열창하는 프로다운 모습을 볼 수 있다.</p>
+<p align="center">
+<img src="/images/Investment/jh.jpg" alt="영원한내최애" width="400" >
+<em> 나의 영원한 최애 종현옵빠 </em>
+</p>
+<p>이 처럼 투자도 내가 원하는 스타일로 전략을 짤 수 있다. 내가 선호하는 투자 스타일이 있다면 그에 해당하는 종목들만 가지고 내 포트폴리오를 구성하거나, 나와 비슷한 취향의 사람들이 만들어 놓은 ETF에 투자하면 된다.</p>
+<p>대표적으로는 대형주/중소형주 , 가치주/성장주 , 배당, 퀄리티, 모멘텀 과 같은 스타일이 있다.<br>
+대표적인 ETF로는 iShares S&amp;P 500 Value ETF , Vanguard Growth ETF 가 있다.</p>
+<h2 id="sp-us-style-indices-methodology">S&amp;P U.S. Style Indices Methodology</h2>
+<p>예전에 &lsquo;포트폴리오 구축&rsquo;을 주제로 팀프로젝트를 한 적이 있는데, 그 때
+<span style="text-decoration:none; border-bottom:2px solid red;">
+<a href="https://github.com/Solxcero/ubion-3rd/blob/main/Project1/methodology-sp-us-style.pdf" style="text-decoration:none; color:inherit;"  target="_blank">
+S&amp;P U.S. Style Indices Methodology
+</a>
+</span>
+문서를 참고하여 파이썬으로 가치/성장 스타일 투자를 구현한 경험이 있다.<br>
+이 방법론의 핵심은 각 종목에 <code>가치점수(Value Score)</code> 와 <code>성장점수(Growth Score)</code>을 부여하는 것이다.<br>
+모든 종목에는 가치주의 성격과 성장주의 성격이 혼합되어 있고, 둘 중 어느 쪽에 더 치우쳐져있는지를 판단하겠다는 아이디어라고 보면 된다.</p>
+<p>이 글에서는 문서에서 설명해주는 가치요소 와 성장요소 의 개념을 설명하고 코드 구현은 다음 게시글에 이어서 하도록 하겠다.</p>
+<h3 id="value-factors--growth-factors">Value Factors &amp; Growth Factors</h3>
+<p><strong>Growth Factors</strong></p>
+<ul>
+<li>Three-Year Net Change in Earnings per Share(Excluding Extra Items) over Current Price</li>
+<li>Three-Year Sales per Share Growth Rate</li>
+<li>Momentum (12 Months % Price Change)</li>
+</ul>
+<p><strong>Value Factors</strong></p>
+<ul>
+<li>Book Value to Price Ratio</li>
+<li>Earnings To Price Ratio</li>
+<li>Sales to Price Ratio</li>
+</ul>
+</section>
+
+  
+  
+
+  
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="//localhost:1313/post/styleinvestment2/"
+      ><span class="mr-1.5">←</span><span>투자 덕질 : Style Investment(2)</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="//localhost:1313/post/ifoverhead/"
+      ><span>IF문의 오버헤드</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2024
+    <a class="link" href="//localhost:1313/">Ahora</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >✎ Paper</a
+  >
+</footer>
+
+  </body>
+</html>
