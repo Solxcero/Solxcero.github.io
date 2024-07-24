@@ -42,6 +42,17 @@
 <head>
   
   <link rel="stylesheet" href="/css/custom.css">
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    }
+  };
+</script>
+    
 </head>
 
   <head>
@@ -107,6 +118,18 @@ hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo �
   ></script>
   
 
+  
+  
+  
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    }
+  };
+</script>
   
   
   
@@ -319,7 +342,7 @@ Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 �
 <code>post/test.md</code> -&gt; post라는 범주 안에 test 게시글 작성</p>
 <p><strong>5. 로컬서버로 미리보기</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo server -D
-</span></span></code></pre></div><p><code>localhost:1313</code> 혹은 <code>127.0.01:1313</code> 으로 접속해 확인</p>
+</span></span></code></pre></div><p><code>localhost:1313</code> 혹은 <code>127.0.0.1:1313</code> 으로 접속해 확인</p>
 <h2 id="build-단계">Build 단계</h2>
 <p><strong>1. Github Repo 생성</strong><br>
 &lt;프로젝트이름&gt;의 저장소 하나와, &lt;깃허브ID.github.io&gt; 저장소 하나 생성<br>
