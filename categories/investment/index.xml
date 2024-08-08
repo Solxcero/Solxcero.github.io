@@ -2,18 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Investment on Ahora</title>
-    <link>/categories/investment/</link>
+    <link>//localhost:1313/categories/investment/</link>
     <description>Recent content in Investment on Ahora</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Jul 2024 09:21:19 +0900</lastBuildDate>
-    <atom:link href="/categories/investment/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Jul 2024 09:21:19 +0900</lastBuildDate>
+    <atom:link href="//localhost:1313/categories/investment/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>투자 덕질 : Style Investment(2)</title>
+      <link>//localhost:1313/post/styleinvestment2/</link>
+      <pubDate>Sun, 14 Jul 2024 09:21:19 +0900</pubDate>
+      <guid>//localhost:1313/post/styleinvestment2/</guid>
+      <description>이전 글 &gt; 투자 덕질 : Style Investment(1) 구현가자 결론 투자에도 덕질이 있다면, 스타일 투자라고 부르면 되지 않을까?&#xA;물론 좋아하는 아이돌이 사고쳐서 나락가는 경우도 있고&amp;hellip; 갑자기 탈퇴를 해버린다거나.. 덕질이 그리 순탄하지 않을 수도 있다.&#xA;투자도 그렇지 않은가? &amp;ldquo;이건 된다&amp;rdquo; 라고 들어갔다가 된통 당하고 나온 경험.. 나만 있는 건 아니겠지?&#xA;덕질에 도가 튼 사람들은 아티스트의 안광만 봐도 안다는데 ㅋㅋㅋ 아마 무수히 많은 경험과 시간이 그 경지를 만들어주지 않나 싶다.&#xA;투자에도 그러한 선경지명이 생길 수 있도록 많은 경험을 해봐야 할 것 같다.</description>
+    </item>
     <item>
       <title>투자덕질</title>
-      <link>/post/styleinvestment1/</link>
+      <link>//localhost:1313/post/styleinvestment1/</link>
       <pubDate>Sat, 13 Jul 2024 09:21:19 +0900</pubDate>
-      <guid>/post/styleinvestment1/</guid>
-      <description>투자에도 덕질이 있다면 그건 인덱스 투자가 아닐까? 내 아이돌 최애의 90%는 그 그룹의 메인보컬이다.&#xA;메인보컬을 좋아하면 행복한 덕질을 보장할 수 있다. 음원으로도 그 멤버의 목소리를 가장 잘 들을 수 있고, 무대 영상에서도 춤추며 열창하는 프로다운 모습을 볼 수 있다.&#xA;이 처럼 투자도 내가 원하는 스타일로 전략을 짤 수 있다. 내가 선호하는 투자 스타일이 있다면 그에 해당하는 종목들만 가지고 내 포트폴리오를 구성하거나, 나와 비슷한 취향의 사람들이 만들어 놓은 ETF에 투자하면 된다.</description>
+      <guid>//localhost:1313/post/styleinvestment1/</guid>
+      <description>투자에도 덕질이 있다면 그건 인덱스 투자가 아닐까? 내 아이돌 최애의 90%는 그 그룹의 메인보컬이다.&#xA;메인보컬을 좋아하면 행복한 덕질을 보장할 수 있다. 음원으로도 그 멤버의 목소리를 가장 잘 들을 수 있고, 무대 영상에서도 춤추며 열창하는 프로다운 모습을 볼 수 있다.&#xA;나의 영원한 최애 종현옵빠 이 처럼 투자도 내가 원하는 스타일로 전략을 짤 수 있다. 내가 선호하는 투자 스타일이 있다면 그에 해당하는 종목들만 가지고 내 포트폴리오를 구성하거나, 나와 비슷한 취향의 사람들이 만들어 놓은 ETF에 투자하면 된다.</description>
     </item>
   </channel>
 </rss>
