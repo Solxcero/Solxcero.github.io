@@ -23,6 +23,13 @@
       <description>백준 BOJ거리 문제를 풀다가 BOJ 거리 문제는 DP 알고리즘 문제로 B,O,J 블록을 순서대로 점프하면서 최소한의 에너지로 종료지점에 도착해야하는 문제이다. 문제링크&#xA;아래는 내가 짠 코드이다.&#xA;import sys input = sys.stdin.readline N = int(input()) blocks = str(input().strip()) jump_order = {&amp;#39;B&amp;#39;:&amp;#39;O&amp;#39;,&amp;#39;O&amp;#39;:&amp;#39;J&amp;#39;,&amp;#39;J&amp;#39;:&amp;#39;B&amp;#39;} max_energy = 999*999 + 1 # 소요된 에너지를 저장 -&amp;gt; 최솟값 업데이트를 위해 최댓값으로 저장 dp = [max_energy] * N dp[0] = 0 # 처음 위치에서 에너지 0 -&amp;gt; 즉, dp[i] 는 i칸에 가기 위한 에너지의 최솟값 for i in range(N): if dp[i] == max_energy: continue for j in range(i+1,N): if blocks[j] == jump_order[blocks[i]]: dp[j] = min(dp[j],(j-i)*(j-i)+dp[i]) # print(dp) print(dp[-1] if dp[-1] !</description>
     </item>
     <item>
+      <title>포스팅 이미지 팝업으로 보기</title>
+      <link>/post/imagebox/</link>
+      <pubDate>Fri, 03 May 2024 10:41:44 +0900</pubDate>
+      <guid>/post/imagebox/</guid>
+      <description>네이버나 티스토리 블로그의 주요 기능 중에 하나가 이미지를 클릭하면 이미지가 팝업으로 뜨는 효과이다.&#xA;Hugo 의 경우 이미지를 넣을 때 html의 a 태그를 사용하여 새로운 링크로 이미지를 띄울 수 있긴한데, 나는 팝업 효과를 원했다.&#xA;그래서 내가 직접 기능을 추가해보려고 한다.&#xA;사실 아직 Hugo 구조를 잘 몰라서..ㅋㅎㅎㅎ GPT의 도움을 받았다.&#xA;1. head.html에 Lightbox Library 추가하기 Ligthbox가 이미지를 띄워주는 기능인가 보다.&#xA;작업 파일의 경로는 layouts &amp;gt; partials &amp;gt; head.html의 &amp;lt;head&amp;gt; 태그 안에 아래 코드를 넣어주면 된다.</description>
+    </item>
+    <item>
       <title>About</title>
       <link>/about/</link>
       <pubDate>Wed, 03 Apr 2024 13:02:33 +0900</pubDate>
