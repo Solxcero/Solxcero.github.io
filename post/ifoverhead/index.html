@@ -63,6 +63,8 @@
     });
 </script>
     
+
+
 </head>
 
   <head>
@@ -72,6 +74,10 @@
     name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no"
   />
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
 
   
   <title>IF문의 오버헤드 - Ahora</title>
@@ -326,7 +332,8 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
     
   </header>
 
-  <section><h2 id="백준-boj거리-문제를-풀다가">백준 BOJ거리 문제를 풀다가</h2>
+  <section>
+    <h2 id="백준-boj거리-문제를-풀다가">백준 BOJ거리 문제를 풀다가</h2>
 <p>BOJ 거리 문제는 DP 알고리즘 문제로 B,O,J 블록을 순서대로 점프하면서 최소한의 에너지로 종료지점에 도착해야하는 문제이다. <a href="https://www.acmicpc.net/problem/12026">문제링크</a></p>
 <p>아래는 내가 짠 코드이다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">sys</span>
@@ -450,7 +457,9 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
 블록의 매 순서가 IF문에 해당하지 않아 거의 모든 순서에서 반복문을 실행해야 한다.  따라서 IF 문의 역할이 미미하다.</p>
 <h2 id="결론-1">결론</h2>
 <p>내가 목표했던 최적화는 입력되는 데이터 와 실행 환경에 따라 달라질 수 있다는 것을 배웠다.</p>
-</section>
+
+  </section> 
+  
 
   
   
