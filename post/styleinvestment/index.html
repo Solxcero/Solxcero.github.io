@@ -42,6 +42,29 @@
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   
   <link rel="stylesheet" href="/css/custom.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+    
+
+
 </head>
 
   <head>
@@ -53,7 +76,11 @@
   />
 
   
-  <title>투자 덕질 : Style Investment(1) - Ahora</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+
+  
+  <title>스타일 지수 #1 - Ahora</title>
 
   
   <meta name="theme-color" />
@@ -62,10 +89,11 @@
   
   
   
-  <meta name="description" content="Style Investment 내 아이돌 최애의 90%는 그 그룹의 메인보컬이다.
-메인보컬을 좋아하면 행복한 덕질을 보장할 수 있다. 음원으로도 그 멤버의 목소리를 가장 잘 들을 수 있고, 무대 영상에서도 춤추며 열창하는 프로다운 모습을 볼 수 있다.
-나의 영원한 최애 종현옵빠 이 처럼 투자도 내가 원하는 스타일로 전략을 짤 수 있다. 내가 선호하는 투자 스타일이 있다면 그에 해당하는 종목들만 가지고 내 포트폴리오를 구성하거나, 나와 비슷한 취향의 사람들이 만들어 놓은 ETF에 투자하면 된다.
-대표적으로는 대형주/중소형주 , 가치주/성장주 , 배당, 퀄리티, 모멘텀 과 같은 스타일이 있다." />
+  <meta name="description" content="S&amp;P U.S. Style Indices Methodology 예전에 &lsquo;포트폴리오 구축&rsquo;을 주제로 팀프로젝트를 한 적이 있는데, 그 때 S&amp;P U.S. Style Indices Methodology 문서를 참고하여 파이썬으로 가치/성장 스타일 투자를 구현한 경험이 있다.
+이 방법론의 핵심은
+모든 종목에는 가치주의 성격과 성장주의 성격이 혼합되어 있고, 둘 중 어느 쪽에 더 치우쳐져있는지를 가치점수(Value Score) 와 성장점수(Growth Score)판단하겠다는 아이디어
+라고 보면 된다.
+성장이 뭐죠? 가치는요? 성장주의 핵심은 미래의 성장 가능성을 높게 평가하고, 주가 상승을 통해 수익을 실현하는 것" />
   <meta name="author" content="Sunyoung Lee" />
   
 
@@ -107,6 +135,28 @@
   ></script>
   
 
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
   
   
   
@@ -239,12 +289,12 @@
 
 <article>
   <header class="mb-16">
-    <h1 class="!my-0 pb-2.5">투자 덕질 : Style Investment(1)</h1>
+    <h1 class="!my-0 pb-2.5">스타일 지수 #1</h1>
 
     
     <div class="text-sm antialiased opacity-60">
       
-      <time>Jul 14, 2024</time>
+      <time>Jul 13, 2024</time>
       
       
       
@@ -253,50 +303,69 @@
     
   </header>
 
-  <section><h2 id="style-investment">Style Investment</h2>
-<p>내 아이돌 최애의 90%는 그 그룹의 메인보컬이다.<br>
-메인보컬을 좋아하면 행복한 덕질을 보장할 수 있다. 음원으로도 그 멤버의 목소리를 가장 잘 들을 수 있고, 무대 영상에서도 춤추며 열창하는 프로다운 모습을 볼 수 있다.</p>
-<p align="center">
-<img src="/images/jh.jpg" alt="영원한내최애" width="400" >
-<em> 나의 영원한 최애 종현옵빠 </em>
-</p>
-<p>이 처럼 투자도 내가 원하는 스타일로 전략을 짤 수 있다. 내가 선호하는 투자 스타일이 있다면 그에 해당하는 종목들만 가지고 내 포트폴리오를 구성하거나, 나와 비슷한 취향의 사람들이 만들어 놓은 ETF에 투자하면 된다.</p>
-<p>대표적으로는 대형주/중소형주 , 가치주/성장주 , 배당, 퀄리티, 모멘텀 과 같은 스타일이 있다.<br>
-대표적인 ETF로는 iShares S&amp;P 500 Value ETF , Vanguard Growth ETF 가 있다.</p>
-<h2 id="sp-us-style-indices-methodology">S&amp;P U.S. Style Indices Methodology</h2>
+  <section>
+    <h2 id="sp-us-style-indices-methodology">S&amp;P U.S. Style Indices Methodology</h2>
 <p>예전에 &lsquo;포트폴리오 구축&rsquo;을 주제로 팀프로젝트를 한 적이 있는데, 그 때
-<span style="text-decoration:none; border-bottom:2px solid red;">
+<span style="text-decoration:none; border-bottom:3px solid red; font-weight:bold;">
 <a href="https://github.com/Solxcero/ubion-3rd/blob/main/Project1/methodology-sp-us-style.pdf" style="text-decoration:none; color:inherit;"  target="_blank">
 S&amp;P U.S. Style Indices Methodology
 </a>
 </span>
 문서를 참고하여 파이썬으로 가치/성장 스타일 투자를 구현한 경험이 있다.<br>
-이 방법론의 핵심은 각 종목에 <code>가치점수(Value Score)</code> 와 <code>성장점수(Growth Score)</code>을 부여하는 것이다.<br>
-모든 종목에는 가치주의 성격과 성장주의 성격이 혼합되어 있고, 둘 중 어느 쪽에 더 치우쳐져있는지를 판단하겠다는 아이디어라고 보면 된다.<br>
-글이 길어지면 재미 없으니 바로 구현해보도록 하자</p>
+이 방법론의 핵심은</p>
+<blockquote>
+<p><strong>모든 종목에는 가치주의 성격과 성장주의 성격이 혼합되어 있고, 둘 중 어느 쪽에 더 치우쳐져있는지를 가치점수(Value Score) 와 성장점수(Growth Score)판단하겠다는 아이디어</strong></p>
+</blockquote>
+<p>라고 보면 된다.</p>
+<h3 id="성장이-뭐죠-가치는요">성장이 뭐죠? 가치는요?</h3>
+<p><strong>성장주</strong>의 핵심은 미래의 성장 가능성을 높게 평가하고, 주가 상승을 통해 수익을 실현하는 것</p>
+<p><strong>가치주</strong>의 핵심은 시장의 일시적인 왜곡이나 기업의 잠재력이 반영되지 않는 저평가된 주식을 찾아내어, 주가가 본래의 가치로 회귀할 때 까지 보유함으로써 수익을 실현하는 것</p>
+<p>이렇게 대답하는게 가장 깔끔해 보인다. 😤</p>
 <h3 id="value-factors--growth-factors">Value Factors &amp; Growth Factors</h3>
-<p><strong>Growth Factors</strong></p>
+<p>위에서 설명했듯이, 주식의 가치주적 요소와 성장주적인 요소를 점수로 평가 해야하므로 이를 위한 가치 평가 지표, 성장 평가 지표가 있어야 한다.<br>
+아래는 문서에서 제시한 지표이다.</p>
+<h4 id="growth-factors"><strong>Growth Factors</strong></h4>
 <ul>
-<li>Three-Year Net Change in Earnings per Share(Excluding Extra Items) over Current Price</li>
-<li>Three-Year Sales per Share Growth Rate</li>
-<li>Momentum (12 Months % Price Change)</li>
+<li>
+<p><strong>Three-Year Net Change in Earnings per Share(Excluding Extra Items) over Current Price</strong><br>
+최근 3년 동안의 주당 순이익(EPS)의 변화를 현재 주가와 비교하는 것이다.<br>
+해당 지표 값이 높을수록 회사의 성장 잠재력이 높다고 평가할 수 있다.<br>
+피터린치가 만든 PEG의 역수이다.</p>
+</li>
+<li>
+<p><strong>Three-Year Sales per Share Growth Rate</strong><br>
+최근 3년 동안의 주당 매출 성장률을 의미한다.<br>
+회사의 매출이 주당 기준으로 얼마나 증가했는지 판단할 수 있으며, 해당 값이 높을수록 회사가 빠르게 성장하고 있음을 시사한다.</p>
+</li>
+<li>
+<p><strong>Momentum (12 Months % Price Change)</strong><br>
+최근 12개월 동안의 주가 변동률을 나타낸다.
+투자자들이 주식의 최근 성과를 평가할 때 주로 사용하며 높은 모멘텀은 주가가 상승 추세에 있음을 보여준다.</p>
+</li>
 </ul>
-<p><strong>Value Factors</strong></p>
+<h4 id="value-factors"><strong>Value Factors</strong></h4>
 <ul>
-<li>Book Value to Price Ratio</li>
-<li>Earnings To Price Ratio</li>
-<li>Sales to Price Ratio</li>
+<li>
+<p><strong>Book Value to Price Ratio</strong><br>
+회사의 장부 가치(Book Value)를 현재 주가로 나눈 비율이다.
+이때 장부 가치는 회사의 순자산(자산-부채)으로 계산되며, 이 비율이 높을수록 주식이 저평가 되어있을 가능성이 높다.<br>
+PBR의 역수이다.</p>
+</li>
+<li>
+<p><strong>Earnings To Price Ratio</strong><br>
+회사의 주당 순이익(EPS)을 현재 주가로 나눈 비율이다.<br>
+주가 대시 순이익 비율(P/E 비율의 역수)로 이 비율이 높을수록 주식이 저평가 되었음을 의미한다. <br>
+PER의 역수이다.</p>
+</li>
+<li>
+<p><strong>Sales to Price Ratio</strong><br>
+회사의 주당 매출을 현재 주가로 나눈 비율이다.
+주가 대비 매출 비율로, 이 비율이 높을수록 주식이 저평가되었을 가능성이 있다.</p>
+</li>
 </ul>
-<h2 id="결론">결론</h2>
-<p>투자에도 덕질이 있다면, 스타일 투자라고 부르면 되지 않을까?<br>
-물론 좋아하는 아이돌이 사고쳐서 나락가는 경우도 있고&hellip; 갑자기 탈퇴를 해버린다거나.. 덕질이 그리 순탄하지 않을 수도 있다.<br>
-투자도 그렇지 않은가?  &ldquo;이건 된다&rdquo; 라고 들어갔다가 된통 당하고 나온 경험.. 나만 있는 건 아니겠지?</p>
-<p>그래서 결론은 SHINee 는 되는 주식입니다. 메인보컬을 좋아하는 사람으로써 멤버 전원이 노래를 개잘하는데 춤도 미친 엄청난 그룹입니다. 망할 일 없습니다. 다들 샤이니월드 하십쇼💚</p>
-<p align="center">
-<img src="/images/shinee.jpg" alt="영원한내최애" width="500" height="300">
-<em> 학창 시절 나의 우상이자 영원한 나의 아이돌 빛나는 샤이니  </em>
-</p>
-</section>
+
+  </section> 
+  
 
   
   
@@ -306,6 +375,12 @@ S&amp;P U.S. Style Indices Methodology
   
   
   <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="//localhost:1313/post/arrayini/"
+      ><span class="mr-1.5">←</span><span>배열 생성</span></a
+    >
     
     
     <a
@@ -351,6 +426,29 @@ S&amp;P U.S. Style Indices Methodology
     >✎ Paper</a
   >
 </footer>
+
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+    
 
   </body>
 </html>
