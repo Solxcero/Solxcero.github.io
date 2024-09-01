@@ -383,6 +383,7 @@
 
      
      <script>
+        
         function debounce(func, wait) {
             let timeout;
             return function() {
@@ -391,10 +392,16 @@
                 timeout = setTimeout(() => func.apply(context, args), wait);
             };
         }
+
         document.addEventListener('DOMContentLoaded', function() {
+            var toc = document.querySelector('.toc');
             var tocLinks = document.querySelectorAll('.toc a');
             var sections = [];
 
+            
+            var contentStart = document.querySelector('article').offsetTop;
+
+            
             tocLinks.forEach(function(link) {
                 var href = link.getAttribute('href');
                 if (href && href.startsWith("#")) {
@@ -408,6 +415,14 @@
             function onScroll() {
                 var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
 
+                
+                if (scrollPosition >= contentStart - 100) {
+                    toc.classList.add('toc-visible');
+                } else {
+                    toc.classList.remove('toc-visible');
+                }
+
+                
                 sections.forEach(function(current) {
                     var sectionTop = current.section.offsetTop - 10; 
                     var sectionHeight = current.section.offsetHeight;
@@ -424,7 +439,7 @@
             
             onScroll();
 
-            window.addEventListener('scroll', onScroll);
+            window.addEventListener('scroll', debounce(onScroll, 100));
             
             
             tocLinks.forEach(function(link) {
@@ -436,6 +451,7 @@
                 });
             });
         });
+
 
   </script>
   

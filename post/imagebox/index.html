@@ -335,7 +335,6 @@ head.html에 Lightbox Library 추가하기 Ligthbox가 이미지를 띄워주는
 </div>
 
   <article>
-
     <header class="mb-16">
       <h1 class="!my-0 pb-2.5">포스팅 이미지 팝업으로 보기</h1>
 
@@ -476,6 +475,7 @@ Hugo 의 경우 이미지를 넣을 때 html의 a 태그를 사용하여 새로�
 
      
      <script>
+        
         function debounce(func, wait) {
             let timeout;
             return function() {
@@ -484,10 +484,16 @@ Hugo 의 경우 이미지를 넣을 때 html의 a 태그를 사용하여 새로�
                 timeout = setTimeout(() => func.apply(context, args), wait);
             };
         }
+
         document.addEventListener('DOMContentLoaded', function() {
+            var toc = document.querySelector('.toc');
             var tocLinks = document.querySelectorAll('.toc a');
             var sections = [];
 
+            
+            var contentStart = document.querySelector('article').offsetTop;
+
+            
             tocLinks.forEach(function(link) {
                 var href = link.getAttribute('href');
                 if (href && href.startsWith("#")) {
@@ -501,6 +507,14 @@ Hugo 의 경우 이미지를 넣을 때 html의 a 태그를 사용하여 새로�
             function onScroll() {
                 var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
 
+                
+                if (scrollPosition >= contentStart - 100) {
+                    toc.classList.add('toc-visible');
+                } else {
+                    toc.classList.remove('toc-visible');
+                }
+
+                
                 sections.forEach(function(current) {
                     var sectionTop = current.section.offsetTop - 10; 
                     var sectionHeight = current.section.offsetHeight;
@@ -517,7 +531,7 @@ Hugo 의 경우 이미지를 넣을 때 html의 a 태그를 사용하여 새로�
             
             onScroll();
 
-            window.addEventListener('scroll', onScroll);
+            window.addEventListener('scroll', debounce(onScroll, 100));
             
             
             tocLinks.forEach(function(link) {
@@ -529,6 +543,7 @@ Hugo 의 경우 이미지를 넣을 때 html의 a 태그를 사용하여 새로�
                 });
             });
         });
+
 
   </script>
   

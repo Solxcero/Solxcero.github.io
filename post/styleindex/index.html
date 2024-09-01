@@ -338,7 +338,6 @@
 </div>
 
   <article>
-
     <header class="mb-16">
       <h1 class="!my-0 pb-2.5">Style 배분 전략</h1>
 
@@ -792,6 +791,7 @@ PER의 역수이다.
 
      
      <script>
+        
         function debounce(func, wait) {
             let timeout;
             return function() {
@@ -800,10 +800,16 @@ PER의 역수이다.
                 timeout = setTimeout(() => func.apply(context, args), wait);
             };
         }
+
         document.addEventListener('DOMContentLoaded', function() {
+            var toc = document.querySelector('.toc');
             var tocLinks = document.querySelectorAll('.toc a');
             var sections = [];
 
+            
+            var contentStart = document.querySelector('article').offsetTop;
+
+            
             tocLinks.forEach(function(link) {
                 var href = link.getAttribute('href');
                 if (href && href.startsWith("#")) {
@@ -817,6 +823,14 @@ PER의 역수이다.
             function onScroll() {
                 var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
 
+                
+                if (scrollPosition >= contentStart - 100) {
+                    toc.classList.add('toc-visible');
+                } else {
+                    toc.classList.remove('toc-visible');
+                }
+
+                
                 sections.forEach(function(current) {
                     var sectionTop = current.section.offsetTop - 10; 
                     var sectionHeight = current.section.offsetHeight;
@@ -833,7 +847,7 @@ PER의 역수이다.
             
             onScroll();
 
-            window.addEventListener('scroll', onScroll);
+            window.addEventListener('scroll', debounce(onScroll, 100));
             
             
             tocLinks.forEach(function(link) {
@@ -845,6 +859,7 @@ PER의 역수이다.
                 });
             });
         });
+
 
   </script>
   

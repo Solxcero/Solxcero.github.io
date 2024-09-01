@@ -292,7 +292,6 @@ Index로 만들어보기 이제 종목들을 합쳐서 각 그룹의 인덱스�
 </div>
 
   <article>
-
     <header class="mb-16">
       <h1 class="!my-0 pb-2.5">Style Index 만들기</h1>
 
@@ -412,6 +411,7 @@ Index로 만들어보기 이제 종목들을 합쳐서 각 그룹의 인덱스�
 
      
      <script>
+        
         function debounce(func, wait) {
             let timeout;
             return function() {
@@ -420,10 +420,16 @@ Index로 만들어보기 이제 종목들을 합쳐서 각 그룹의 인덱스�
                 timeout = setTimeout(() => func.apply(context, args), wait);
             };
         }
+
         document.addEventListener('DOMContentLoaded', function() {
+            var toc = document.querySelector('.toc');
             var tocLinks = document.querySelectorAll('.toc a');
             var sections = [];
 
+            
+            var contentStart = document.querySelector('article').offsetTop;
+
+            
             tocLinks.forEach(function(link) {
                 var href = link.getAttribute('href');
                 if (href && href.startsWith("#")) {
@@ -437,6 +443,14 @@ Index로 만들어보기 이제 종목들을 합쳐서 각 그룹의 인덱스�
             function onScroll() {
                 var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
 
+                
+                if (scrollPosition >= contentStart - 100) {
+                    toc.classList.add('toc-visible');
+                } else {
+                    toc.classList.remove('toc-visible');
+                }
+
+                
                 sections.forEach(function(current) {
                     var sectionTop = current.section.offsetTop - 10; 
                     var sectionHeight = current.section.offsetHeight;
@@ -453,7 +467,7 @@ Index로 만들어보기 이제 종목들을 합쳐서 각 그룹의 인덱스�
             
             onScroll();
 
-            window.addEventListener('scroll', onScroll);
+            window.addEventListener('scroll', debounce(onScroll, 100));
             
             
             tocLinks.forEach(function(link) {
@@ -465,6 +479,7 @@ Index로 만들어보기 이제 종목들을 합쳐서 각 그룹의 인덱스�
                 });
             });
         });
+
 
   </script>
   

@@ -334,7 +334,6 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
 </div>
 
   <article>
-
     <header class="mb-16">
       <h1 class="!my-0 pb-2.5">IF문의 오버헤드</h1>
 
@@ -562,6 +561,7 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
 
      
      <script>
+        
         function debounce(func, wait) {
             let timeout;
             return function() {
@@ -570,10 +570,16 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
                 timeout = setTimeout(() => func.apply(context, args), wait);
             };
         }
+
         document.addEventListener('DOMContentLoaded', function() {
+            var toc = document.querySelector('.toc');
             var tocLinks = document.querySelectorAll('.toc a');
             var sections = [];
 
+            
+            var contentStart = document.querySelector('article').offsetTop;
+
+            
             tocLinks.forEach(function(link) {
                 var href = link.getAttribute('href');
                 if (href && href.startsWith("#")) {
@@ -587,6 +593,14 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
             function onScroll() {
                 var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
 
+                
+                if (scrollPosition >= contentStart - 100) {
+                    toc.classList.add('toc-visible');
+                } else {
+                    toc.classList.remove('toc-visible');
+                }
+
+                
                 sections.forEach(function(current) {
                     var sectionTop = current.section.offsetTop - 10; 
                     var sectionHeight = current.section.offsetHeight;
@@ -603,7 +617,7 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
             
             onScroll();
 
-            window.addEventListener('scroll', onScroll);
+            window.addEventListener('scroll', debounce(onScroll, 100));
             
             
             tocLinks.forEach(function(link) {
@@ -615,6 +629,7 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
                 });
             });
         });
+
 
   </script>
   

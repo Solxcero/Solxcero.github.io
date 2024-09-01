@@ -329,7 +329,6 @@ hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo �
 </div>
 
   <article>
-
     <header class="mb-16">
       <h1 class="!my-0 pb-2.5">Hugo로 GitBlog 만들기</h1>
 
@@ -518,6 +517,7 @@ Windows는 쉘스크립트를 실행할 수 없으므로 <code>gitbash</code>를
 
      
      <script>
+        
         function debounce(func, wait) {
             let timeout;
             return function() {
@@ -526,10 +526,16 @@ Windows는 쉘스크립트를 실행할 수 없으므로 <code>gitbash</code>를
                 timeout = setTimeout(() => func.apply(context, args), wait);
             };
         }
+
         document.addEventListener('DOMContentLoaded', function() {
+            var toc = document.querySelector('.toc');
             var tocLinks = document.querySelectorAll('.toc a');
             var sections = [];
 
+            
+            var contentStart = document.querySelector('article').offsetTop;
+
+            
             tocLinks.forEach(function(link) {
                 var href = link.getAttribute('href');
                 if (href && href.startsWith("#")) {
@@ -543,6 +549,14 @@ Windows는 쉘스크립트를 실행할 수 없으므로 <code>gitbash</code>를
             function onScroll() {
                 var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
 
+                
+                if (scrollPosition >= contentStart - 100) {
+                    toc.classList.add('toc-visible');
+                } else {
+                    toc.classList.remove('toc-visible');
+                }
+
+                
                 sections.forEach(function(current) {
                     var sectionTop = current.section.offsetTop - 10; 
                     var sectionHeight = current.section.offsetHeight;
@@ -559,7 +573,7 @@ Windows는 쉘스크립트를 실행할 수 없으므로 <code>gitbash</code>를
             
             onScroll();
 
-            window.addEventListener('scroll', onScroll);
+            window.addEventListener('scroll', debounce(onScroll, 100));
             
             
             tocLinks.forEach(function(link) {
@@ -571,6 +585,7 @@ Windows는 쉘스크립트를 실행할 수 없으므로 <code>gitbash</code>를
                 });
             });
         });
+
 
   </script>
   
