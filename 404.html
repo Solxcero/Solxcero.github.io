@@ -346,23 +346,17 @@
 
      
      <script>
-        
-        function debounce(func, wait) {
-            let timeout;
-            return function() {
-                const context = this, args = arguments;
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(context, args), wait);
-            };
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
-            var toc = document.querySelector('.toc');
+            
             var tocLinks = document.querySelectorAll('.toc a');
             var sections = [];
 
             
-            var contentStart = document.querySelector('article').offsetTop;
+            var options = {
+                root: null, 
+                rootMargin: '0px 0px -50% 0px', 
+                threshold: 0 
+            };
 
             
             tocLinks.forEach(function(link) {
@@ -375,41 +369,37 @@
                 }
             });
 
-            function onScroll() {
-                var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+            
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    var targetSection = entry.target;
+                    var link = sections.find(function(s) {
+                        return s.section === targetSection;
+                    }).link;
 
-                
-                if (scrollPosition >= contentStart - 100) {
-                    toc.classList.add('toc-visible');
-                } else {
-                    toc.classList.remove('toc-visible');
-                }
-
-                
-                sections.forEach(function(current) {
-                    var sectionTop = current.section.offsetTop - 10; 
-                    var sectionHeight = current.section.offsetHeight;
-
-                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    if (entry.isIntersecting) {
+                        
                         tocLinks.forEach(function(link) {
                             link.classList.remove('toc-active');
                         });
-                        current.link.classList.add('toc-active');
+                        link.classList.add('toc-active');
                     }
                 });
-            }
+            }, options);
 
             
-            onScroll();
+            sections.forEach(function(section) {
+                observer.observe(section.section);
+            });
 
-            window.addEventListener('scroll', debounce(onScroll, 100));
-            
             
             tocLinks.forEach(function(link) {
                 link.addEventListener('click', function(event) {
+                    
                     tocLinks.forEach(function(link) {
                         link.classList.remove('toc-active');
                     });
+                    
                     link.classList.add('toc-active');
                 });
             });
