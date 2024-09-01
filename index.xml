@@ -27,7 +27,7 @@
       <link>/post/imagebox/</link>
       <pubDate>Fri, 03 May 2024 10:41:44 +0900</pubDate>
       <guid>/post/imagebox/</guid>
-      <description>네이버나 티스토리 블로그의 주요 기능 중에 하나가 이미지를 클릭하면 이미지가 팝업으로 뜨는 효과이다.&#xA;Hugo 의 경우 이미지를 넣을 때 html의 a 태그를 사용하여 새로운 링크로 이미지를 띄울 수 있긴한데, 나는 팝업 효과를 원했다.&#xA;그래서 내가 직접 기능을 추가해보려고 한다.&#xA;사실 아직 Hugo 구조를 잘 몰라서..ㅋㅎㅎㅎ GPT의 도움을 받았다.&#xA;1. head.html에 Lightbox Library 추가하기 Ligthbox가 이미지를 띄워주는 기능인가 보다.&#xA;작업 파일의 경로는 layouts &amp;gt; partials &amp;gt; head.html의 &amp;lt;head&amp;gt; 태그 안에 아래 코드를 넣어주면 된다.</description>
+      <description>네이버나 티스토리 블로그의 주요 기능 중에 하나가 이미지를 클릭하면 이미지가 팝업으로 뜨는 효과이다.&#xA;Hugo 의 경우 이미지를 넣을 때 html의 a 태그를 사용하여 새로운 링크로 이미지를 띄울 수 있긴한데, 나는 팝업 효과를 원했다.&#xA;그래서 내가 직접 기능을 추가해보려고 한다.&#xA;사실 아직 Hugo 구조를 잘 몰라서..ㅋㅎㅎㅎ GPT의 도움을 받았다.&#xA;head.html에 Lightbox Library 추가하기 Ligthbox가 이미지를 띄워주는 기능인가 보다.&#xA;작업 파일의 경로는 layouts &amp;gt; partials &amp;gt; head.html의 &amp;lt;head&amp;gt; 태그 안에 아래 코드를 넣어주면 된다.</description>
     </item>
     <item>
       <title>About</title>
