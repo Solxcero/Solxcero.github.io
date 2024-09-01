@@ -92,7 +92,7 @@
   <meta name="description" content="백준 BOJ거리 문제를 풀다가 BOJ 거리 문제는 DP 알고리즘 문제로 B,O,J 블록을 순서대로 점프하면서 최소한의 에너지로 종료지점에 도착해야하는 문제이다. 문제링크
 아래는 내가 짠 코드이다.
 import sys input = sys.stdin.readline N = int(input()) blocks = str(input().strip()) jump_order = {&#39;B&#39;:&#39;O&#39;,&#39;O&#39;:&#39;J&#39;,&#39;J&#39;:&#39;B&#39;} max_energy = 999*999 &#43; 1 # 소요된 에너지를 저장 -&gt; 최솟값 업데이트를 위해 최댓값으로 저장 dp = [max_energy] * N dp[0] = 0 # 처음 위치에서 에너지 0 -&gt; 즉, dp[i] 는 i칸에 가기 위한 에너지의 최솟값 for i in range(N): if dp[i] == max_energy: continue for j in range(i&#43;1,N): if blocks[j] == jump_order[blocks[i]]: dp[j] = min(dp[j],(j-i)*(j-i)&#43;dp[i]) # print(dp) print(dp[-1] if dp[-1] !" />
-  <meta name="author" content="Sunyoung Lee" />
+  <meta name="author" content="덕후의 즐거운 인생" />
   
 
   
@@ -309,25 +309,48 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
       class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 pb-16 pt-12 dark:prose-invert"
     >
       
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
+    <p style="font-weight: bolder;">Table of Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#백준-boj거리-문제를-풀다가">백준 BOJ거리 문제를 풀다가</a></li>
+    <li><a href="#나는-분명-효율적인-코드를-짰는데">나는 분명 효율적인 코드를 짰는데..?</a>
+      <ul>
+        <li><a href="#성능-차이의-이유">성능 차이의 이유</a></li>
+        <li><a href="#결론">결론</a></li>
+      </ul>
+    </li>
+    <li><a href="#그래서-제가-직접-해보았습니다">그래서 제가 직접 해보았습니다.</a></li>
+    <li><a href="#그래서-제가-직접-해보았습니다-2">그래서 제가 직접 해보았습니다 2</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#결론-1">결론</a></li>
+  </ul>
+</nav>
+  </aside>
 
-<article>
-  <header class="mb-16">
-    <h1 class="!my-0 pb-2.5">IF문의 오버헤드</h1>
+  <article>
 
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">IF문의 오버헤드</h1>
+
+      
+      <div class="text-sm antialiased opacity-60">
+        
+        <time>Jul 6, 2024</time>
+        
+        
+        
+        
+      </div>
+      
+    </header>
     
-    <div class="text-sm antialiased opacity-60">
-      
-      <time>Jul 6, 2024</time>
-      
-      
-      
-      
-    </div>
-    
-  </header>
-
-  <section>
-    <h2 id="백준-boj거리-문제를-풀다가">백준 BOJ거리 문제를 풀다가</h2>
+    <section>
+      <h2 id="백준-boj거리-문제를-풀다가">백준 BOJ거리 문제를 풀다가</h2>
 <p>BOJ 거리 문제는 DP 알고리즘 문제로 B,O,J 블록을 순서대로 점프하면서 최소한의 에너지로 종료지점에 도착해야하는 문제이다. <a href="https://www.acmicpc.net/problem/12026">문제링크</a></p>
 <p>아래는 내가 짠 코드이다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">sys</span>
@@ -452,47 +475,46 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
 <h2 id="결론-1">결론</h2>
 <p>내가 목표했던 최적화는 입력되는 데이터 와 실행 환경에 따라 달라질 수 있다는 것을 배웠다.</p>
 
-  </section> 
-  
+    </section> 
 
-  
-  
-
-  
-  
-  
-  
-  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
-    
-    <a
-      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-      href="/post/styleindex/"
-      ><span class="mr-1.5">←</span><span>Style 배분 전략</span></a
-    >
     
     
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-      href="/post/imagebox/"
-      ><span>포스팅 이미지 팝업으로 보기</span><span class="ml-1.5">→</span></a
-    >
+
     
-  </nav>
-  
-  
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+      
+      <a
+        class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="/post/styleindex/"
+        ><span class="mr-1.5">←</span><span>Style 배분 전략</span></a
+      >
+      
+      
+      <a
+        class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="/post/imagebox/"
+        ><span>포스팅 이미지 팝업으로 보기</span><span class="ml-1.5">→</span></a
+      >
+      
+    </nav>
+    
+    
 
-  
-  
+    
+    
 
-  
-  
+    
+    
 
-  
+    
 
 
-  
-</article>
-
+    
+  </article>
+</div>
 
     </main>
 
@@ -537,6 +559,65 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
     });
 </script>
     
+
+     
+     <script>
+        function debounce(func, wait) {
+            let timeout;
+            return function() {
+                const context = this, args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), wait);
+            };
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var tocLinks = document.querySelectorAll('.toc a');
+            var sections = [];
+
+            tocLinks.forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href && href.startsWith("#")) {
+                    var targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        sections.push({ link: link, section: targetSection });
+                    }
+                }
+            });
+
+            function onScroll() {
+                var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+                sections.forEach(function(current) {
+                    var sectionTop = current.section.offsetTop - 10; 
+                    var sectionHeight = current.section.offsetHeight;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        tocLinks.forEach(function(link) {
+                            link.classList.remove('toc-active');
+                        });
+                        current.link.classList.add('toc-active');
+                    }
+                });
+            }
+
+            
+            onScroll();
+
+            window.addEventListener('scroll', onScroll);
+            
+            
+            tocLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    tocLinks.forEach(function(link) {
+                        link.classList.remove('toc-active');
+                    });
+                    link.classList.add('toc-active');
+                });
+            });
+        });
+
+  </script>
+  
 
   </body>
 </html>

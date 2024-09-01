@@ -90,7 +90,7 @@
   
   
   <meta name="description" content="Hi Have a Nice Day 🫶🏻 My Version History " />
-  <meta name="author" content="Sunyoung Lee" />
+  <meta name="author" content="덕후의 즐거운 인생" />
   
 
   
@@ -301,42 +301,56 @@
       class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 pb-16 pt-12 dark:prose-invert"
     >
       
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
+    <p style="font-weight: bolder;">Table of Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#hi-have-a-nice-day-">Hi Have a Nice Day 🫶🏻</a></li>
+        <li><a href="#my-version-history">My Version History</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
 
-<article>
-  <header class="mb-16">
-    <h1 class="!my-0 pb-2.5">About</h1>
+  <article>
 
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">About</h1>
+
+      
+    </header>
     
-  </header>
-
-  <section>
-    <h3 id="hi-have-a-nice-day-">Hi Have a Nice Day 🫶🏻</h3>
+    <section>
+      <h3 id="hi-have-a-nice-day-">Hi Have a Nice Day 🫶🏻</h3>
 <h3 id="my-version-history">My Version History</h3>
 
-  </section> 
-  
+    </section> 
 
-  
-  
+    
+    
 
-  
-  
-  
-  
-  
+    
+    
+    
+    
+    
 
-  
-  
+    
+    
 
-  
-  
+    
+    
 
-  
+    
 
 
-  
-</article>
-
+    
+  </article>
+</div>
 
     </main>
 
@@ -381,6 +395,65 @@
     });
 </script>
     
+
+     
+     <script>
+        function debounce(func, wait) {
+            let timeout;
+            return function() {
+                const context = this, args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), wait);
+            };
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var tocLinks = document.querySelectorAll('.toc a');
+            var sections = [];
+
+            tocLinks.forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href && href.startsWith("#")) {
+                    var targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        sections.push({ link: link, section: targetSection });
+                    }
+                }
+            });
+
+            function onScroll() {
+                var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+                sections.forEach(function(current) {
+                    var sectionTop = current.section.offsetTop - 10; 
+                    var sectionHeight = current.section.offsetHeight;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        tocLinks.forEach(function(link) {
+                            link.classList.remove('toc-active');
+                        });
+                        current.link.classList.add('toc-active');
+                    }
+                });
+            }
+
+            
+            onScroll();
+
+            window.addEventListener('scroll', onScroll);
+            
+            
+            tocLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    tocLinks.forEach(function(link) {
+                        link.classList.remove('toc-active');
+                    });
+                    link.classList.add('toc-active');
+                });
+            });
+        });
+
+  </script>
+  
 
   </body>
 </html>

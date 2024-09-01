@@ -94,7 +94,7 @@
 모든 종목에는 가치주의 성격과 성장주의 성격이 혼합되어 있고, 둘 중 어느 쪽에 더 치우쳐져있는지를 가치점수(Value Score) 와 성장점수(Growth Score)판단하겠다는 아이디어
 라고 보면 된다.
 소스코드 : &nbsp;&nbsp;|&nbsp;프로젝트 Repo : 성장이 뭐죠? 가치는요? 성장주의 핵심은 미래의 성장 가능성을 높게 평가하고, 주가 상승을 통해 수익을 실현하는 것" />
-  <meta name="author" content="Sunyoung Lee" />
+  <meta name="author" content="덕후의 즐거운 인생" />
   
 
   
@@ -180,7 +180,7 @@
 라고 보면 된다.
 소스코드 : &nbsp;&nbsp;|&nbsp;프로젝트 Repo : 성장이 뭐죠? 가치는요? 성장주의 핵심은 미래의 성장 가능성을 높게 평가하고, 주가 상승을 통해 수익을 실현하는 것"><meta itemprop="datePublished" content="2024-07-13T09:21:19+09:00" />
 <meta itemprop="dateModified" content="2024-07-13T09:21:19+09:00" />
-<meta itemprop="wordCount" content="1447">
+<meta itemprop="wordCount" content="1507">
 <meta itemprop="keywords" content="" />
   
   <meta property="og:title" content="Style 배분 전략" />
@@ -317,25 +317,45 @@
       class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 pb-16 pt-12 dark:prose-invert"
     >
       
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
+    <p style="font-weight: bolder;">Table of Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#sp-us-style-indices-methodology">S&amp;P U.S. Style Indices Methodology</a></li>
+    <li><a href="#성장이-뭐죠-가치는요">성장이 뭐죠? 가치는요?</a>
+      <ul>
+        <li><a href="#growth-factors">Growth Factors</a></li>
+        <li><a href="#value-factors">Value Factors</a></li>
+        <li><a href="#최종-순위-구하기">최종 순위 구하기</a></li>
+        <li><a href="#neutral-그룹-분류하기">Neutral 그룹 분류하기</a></li>
+        <li><a href="#index로-만들어보기">Index로 만들어보기</a></li>
+      </ul>
+    </li>
+    <li><a href="#마무리-근데-이제-샤이니를-곁들인">마무리&hellip; 근데 이제 샤이니를 곁들인&hellip;</a></li>
+  </ul>
+</nav>
+  </aside>
 
-<article>
-  <header class="mb-16">
-    <h1 class="!my-0 pb-2.5">Style 배분 전략</h1>
+  <article>
 
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">Style 배분 전략</h1>
+
+      
+      <div class="text-sm antialiased opacity-60">
+        
+        <time>Jul 13, 2024</time>
+        
+        
+        
+        
+      </div>
+      
+    </header>
     
-    <div class="text-sm antialiased opacity-60">
-      
-      <time>Jul 13, 2024</time>
-      
-      
-      
-      
-    </div>
-    
-  </header>
-
-  <section>
-    <h2 id="sp-us-style-indices-methodology">S&amp;P U.S. Style Indices Methodology</h2>
+    <section>
+      <h2 id="sp-us-style-indices-methodology">S&amp;P U.S. Style Indices Methodology</h2>
 <p>예전에 &lsquo;포트폴리오 구축&rsquo;을 주제로 팀프로젝트를 한 적이 있는데, 그 때
 <span style="text-decoration:none; border-bottom:3px solid red; font-weight:bold;">
 <a href="https://github.com/Solxcero/ubion-3rd/blob/main/Project1/methodology-sp-us-style.pdf" style="text-decoration:none; color:inherit;"  target="_blank">
@@ -370,7 +390,7 @@ S&amp;P U.S. Style Indices Methodology
 <li><strong>winsorize</strong> : 데이터의 이상치를 처리하는 방법으로 상한 하한을 각 양끝의 0.05 로 설정하는 방법이다. 즉, 전체 범위의 0.05 ~ 0.95 에만 데이터가 존재하게 하는 방법이다. 이 방법을 쓰면 이상치 데이터를 제거하지 않아도 된다. 실제 금융데이터의 이상치 처리에서 많이 쓰이는 기법이라고 한다.</li>
 <li><strong>z정규화</strong> : 각 수치들의 범위가 다 다르기 때문에 객관적인 비교를 위해 정규화를 진행한다.</li>
 </ol>
-<h3 id="span-styletext-decorationnone-colorred-font-weightboldgrowth-factorsspan"><span style="text-decoration:none; color:red; font-weight:bold;">Growth Factors</span></h3>
+<h3 id="growth-factors">Growth Factors</h3>
 <ul>
 <li>
 <p><span style="text-decoration:none; border-bottom:3px solid red; font-weight:bold;">Three-Year Net Change in Earnings per Share(Excluding Extra Items) over Current Price</span><br>
@@ -427,7 +447,7 @@ S&amp;P U.S. Style Indices Methodology
     <img src="/images/Investment/style_growth.png" alt="Your Alt Text" >
   </a>
 </p> 
-<h3 id="span-styletext-decorationnone-colorblue-font-weightboldvalue-factorsspan"><span style="text-decoration:none; color:blue; font-weight:bold;">Value Factors</span></h3>
+<h3 id="value-factors">Value Factors</h3>
 <p>먼저 PER과 PBR의 역수를 구하고 시작하겠다. 역수를 구하는 이유는, PER과 PBR의 경우 그 값이 작을수록 저평가되었다고 판단하기 때문에 역수를 취함으로써 점수처럼 값이 커질 수록 저평가되었음을 판단하기 위해서이다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>fm = stock.get_market_fundamental(<span style="color:#ed9d13">&#39;20240603&#39;</span>,market=<span style="color:#ed9d13">&#34;KOSPI&#34;</span>)
 </span></span><span style="display:flex;"><span>fm[<span style="color:#ed9d13">&#39;E/P&#39;</span>] = (<span style="color:#3677a9">1</span>/fm[<span style="color:#ed9d13">&#39;PER&#39;</span>]) <span style="color:#999;font-style:italic"># 역수 취하기</span>
@@ -669,12 +689,19 @@ PER의 역수이다.
 </span></span><span style="display:flex;"><span>nw[<span style="color:#ed9d13">&#39;W(G,X)&#39;</span>] = nw[<span style="color:#ed9d13">&#39;D(V,X)&#39;</span>]/(nw[<span style="color:#ed9d13">&#39;D(G,X)&#39;</span>]+nw[<span style="color:#ed9d13">&#39;D(V,X)&#39;</span>])
 </span></span></code></pre></div><p>이렇게 구한 다음 W(V,X) &gt; W(G,X) 라면 Value 그룹, W(V,X) &lt; W(G,X) 라면 Growth 그룹으로 분류한다.</p>
 <p align="center">
-  <a href="/images/Investment/n_result.png" data-lightbox="image-set">
-    <img src="/images/Investment/n_result.png" alt="Your Alt Text",style="height:300px;" >
+  <a href="/images/Investment/n_result.png" data-lightbox="image-set" >
+    <img src="/images/Investment/n_result.png" alt="Your Alt Text" style="width: 500px !important; height: auto !important;">
   </a>
 </p>
-<p>티커 002350 만 가치그룹으로 분류되고 나머지는 전부 성장그룹으로 분류된 것을 알 수 있다.</p>
-<h3 id="마무리-근데-이제-샤이니를-곁들인">마무리&hellip; 근데 이제 샤이니를 곁들인&hellip;</h3>
+<p>티커 002350 만 가치그룹으로 분류되고 나머지는 전부 성장그룹으로 분류된 것을 알 수 있다.
+삼성전자는 성장주로 분류된 것도 확인할 수 있다.</p>
+<h3 id="index로-만들어보기">Index로 만들어보기</h3>
+<p>이제 종목들을 합쳐서 각 그룹의 인덱스를 만들어볼 차례이다.<br>
+간단하게는 그룹별로 모든 종목을 다 합쳐서 만드는 방법이 있지만,
+우선 종목들을 대형성장주, 대형가치주, 중소형성장주, 중소형가치주 로 분류를 한 뒤, 시장 MDD 30을 기준으로 그 이하인 종목들만 필터링 하는 작업을 한다.
+대형주는 시가총액 기준 상위 100개, 그 나머지는 중소형주로 분류했다.
+(내용 수정 중 &hellip;)</p>
+<h2 id="마무리-근데-이제-샤이니를-곁들인">마무리&hellip; 근데 이제 샤이니를 곁들인&hellip;</h2>
 <p>주가 정보는 매일 빠르게 변화하며 시장의 움직임을 보여주는 데이터이다. 이번 작업을 통해 금융시장의 움직임을 성장점수, 가치점수, 성장그룹, 가치그룹이라는 지표로 압축해 볼 수 있었다.
 과거 프로젝트를 진행할 당시에도 이 같은 창의적인 접근이 매우 흥미로웠었기에 이번에 날짜와 그래프를 업데이트하여 다시 구현해보았다.
 결국 지표라는 것은 대표성을 띄는 것이 중요하다고 생각한다. 지표명과 그 지표에 속해있는 요소들의 특성이 일치한다면 잘 만든 지표라고 할 수 있을 거다.</p>
@@ -690,41 +717,40 @@ PER의 역수이다.
   <em> 영원한 나의 우상, 동경하는 샤이니</em>
 </p>
 
-  </section> 
-  
+    </section> 
 
-  
-  
-
-  
-  
-  
-  
-  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
     
     
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-      href="/post/ifoverhead/"
-      ><span>IF문의 오버헤드</span><span class="ml-1.5">→</span></a
-    >
+
     
-  </nav>
-  
-  
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+      
+      
+      <a
+        class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="/post/ifoverhead/"
+        ><span>IF문의 오버헤드</span><span class="ml-1.5">→</span></a
+      >
+      
+    </nav>
+    
+    
 
-  
-  
+    
+    
 
-  
-  
+    
+    
 
-  
+    
 
 
-  
-</article>
-
+    
+  </article>
+</div>
 
     </main>
 
@@ -769,6 +795,65 @@ PER의 역수이다.
     });
 </script>
     
+
+     
+     <script>
+        function debounce(func, wait) {
+            let timeout;
+            return function() {
+                const context = this, args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), wait);
+            };
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var tocLinks = document.querySelectorAll('.toc a');
+            var sections = [];
+
+            tocLinks.forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href && href.startsWith("#")) {
+                    var targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        sections.push({ link: link, section: targetSection });
+                    }
+                }
+            });
+
+            function onScroll() {
+                var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+                sections.forEach(function(current) {
+                    var sectionTop = current.section.offsetTop - 10; 
+                    var sectionHeight = current.section.offsetHeight;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        tocLinks.forEach(function(link) {
+                            link.classList.remove('toc-active');
+                        });
+                        current.link.classList.add('toc-active');
+                    }
+                });
+            }
+
+            
+            onScroll();
+
+            window.addEventListener('scroll', onScroll);
+            
+            
+            tocLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    tocLinks.forEach(function(link) {
+                        link.classList.remove('toc-active');
+                    });
+                    link.classList.add('toc-active');
+                });
+            });
+        });
+
+  </script>
+  
 
   </body>
 </html>

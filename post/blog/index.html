@@ -93,7 +93,7 @@
 Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 때 참고하기 위해 포스팅을 하려고 한다. Hugo Documentation
 Hugo 설치 (Windows 기준)
 hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo 프로젝트 파일을 담을 폴더를 생성 (C:/Hugo) C:/Hugo/bin 디렉토리 생성 후 설치 파일 압축 해제 하여 넣기 C:/Hugo/bin 환경변수에 추가 -&gt; cmd에 hugo version 입력하여 Path 추가 되었는지 확인 Hugo Local 실행 1." />
-  <meta name="author" content="Sunyoung Lee" />
+  <meta name="author" content="덕후의 즐거운 인생" />
   
 
   
@@ -313,25 +313,39 @@ hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo �
       class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 pb-16 pt-12 dark:prose-invert"
     >
       
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
+    <p style="font-weight: bolder;">Table of Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#hugo-블로그">Hugo 블로그.</a></li>
+    <li><a href="#hugo-설치">Hugo 설치</a></li>
+    <li><a href="#hugo-local-실행">Hugo Local 실행</a></li>
+    <li><a href="#build-단계">Build 단계</a></li>
+    <li><a href="#쉘스크립트-만들기">쉘스크립트 만들기</a></li>
+  </ul>
+</nav>
+  </aside>
 
-<article>
-  <header class="mb-16">
-    <h1 class="!my-0 pb-2.5">Hugo로 GitBlog 만들기</h1>
+  <article>
 
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">Hugo로 GitBlog 만들기</h1>
+
+      
+      <div class="text-sm antialiased opacity-60">
+        
+        <time>Apr 3, 2024</time>
+        
+        
+        
+        
+      </div>
+      
+    </header>
     
-    <div class="text-sm antialiased opacity-60">
-      
-      <time>Apr 3, 2024</time>
-      
-      
-      
-      
-    </div>
-    
-  </header>
-
-  <section>
-    <h2 id="hugo-블로그">Hugo 블로그.</h2>
+    <section>
+      <h2 id="hugo-블로그">Hugo 블로그.</h2>
 <p>깃허브 블로그 테마 유목민이던 내가 드디어 맘에 드는 테마를 발견했는데, 기존에 사용하던 Jekyll가 아닌 Hugo 기반이다.<br>
 Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 때 참고하기 위해 포스팅을 하려고 한다.
 <a href="https://gohugo.io/documentation/">Hugo Documentation</a></p>
@@ -423,41 +437,40 @@ Windows는 쉘스크립트를 실행할 수 없으므로 <code>gitbash</code>를
 프로젝트 폴더 경로에서 다음 명령어 실행</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./deploy.sh <span style="color:#ed9d13">&#34;commit message&#34;</span>
 </span></span></code></pre></div>
-  </section> 
-  
+    </section> 
 
-  
-  
-
-  
-  
-  
-  
-  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
-    
-    <a
-      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-      href="/post/imagebox/"
-      ><span class="mr-1.5">←</span><span>포스팅 이미지 팝업으로 보기</span></a
-    >
     
     
-  </nav>
-  
-  
 
-  
-  
+    
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+      
+      <a
+        class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="/post/imagebox/"
+        ><span class="mr-1.5">←</span><span>포스팅 이미지 팝업으로 보기</span></a
+      >
+      
+      
+    </nav>
+    
+    
 
-  
-  
+    
+    
 
-  
+    
+    
+
+    
 
 
-  
-</article>
-
+    
+  </article>
+</div>
 
     </main>
 
@@ -502,6 +515,65 @@ Windows는 쉘스크립트를 실행할 수 없으므로 <code>gitbash</code>를
     });
 </script>
     
+
+     
+     <script>
+        function debounce(func, wait) {
+            let timeout;
+            return function() {
+                const context = this, args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), wait);
+            };
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var tocLinks = document.querySelectorAll('.toc a');
+            var sections = [];
+
+            tocLinks.forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href && href.startsWith("#")) {
+                    var targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        sections.push({ link: link, section: targetSection });
+                    }
+                }
+            });
+
+            function onScroll() {
+                var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+                sections.forEach(function(current) {
+                    var sectionTop = current.section.offsetTop - 10; 
+                    var sectionHeight = current.section.offsetHeight;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        tocLinks.forEach(function(link) {
+                            link.classList.remove('toc-active');
+                        });
+                        current.link.classList.add('toc-active');
+                    }
+                });
+            }
+
+            
+            onScroll();
+
+            window.addEventListener('scroll', onScroll);
+            
+            
+            tocLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    tocLinks.forEach(function(link) {
+                        link.classList.remove('toc-active');
+                    });
+                    link.classList.add('toc-active');
+                });
+            });
+        });
+
+  </script>
+  
 
   </body>
 </html>
