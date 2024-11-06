@@ -80,7 +80,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
 
   
-  <title>Style Index 만들기 - Ahora</title>
+  <title>Money Today ETF 대회 참가 - Ahora</title>
 
   
   <meta name="theme-color" />
@@ -89,10 +89,16 @@
   
   
   
-  <meta name="description" content="이전 글과 이어서
-Index로 만들어보기 이제 종목들을 합쳐서 각 그룹의 인덱스를 만들어볼 차례이다.
-간단하게는 그룹별로 모든 종목을 다 합쳐서 만드는 방법이 있지만, 우선 종목들을 대형성장주, 대형가치주, 중소형성장주, 중소형가치주 로 분류를 한 뒤, 시장 MDD 30을 기준으로 그 이하인 종목들만 필터링 하는 작업을 한다. 대형주는 시가총액 기준 상위 100개, 그 나머지는 중소형주로 분류했다. (내용 수정 중 &hellip;)
-마무리&hellip; 근데 이제 샤이니를 곁들인&hellip; 주가 정보는 매일 빠르게 변화하며 시장의 움직임을 보여주는 데이터이다. 이번 작업을 통해 금융시장의 움직임을 성장점수, 가치점수, 성장그룹, 가치그룹이라는 지표로 압축해 볼 수 있었다." />
+  <meta name="description" content="이번에 머니투데이터에서 ETF 대회 1회를 개최했다.
+참가해보기로 했다. 참가 부문은 5개로 아래와 같다.
+밸류업	한국증시 저평가 요인 해소를 통한 밸류업 가치에 부합하는 기업을 중심으로 투자
+국내 주식형 ETF로 제한
+연금형	은퇴 후 노후대비를 위한 장기투자 목적
+월배당 ETF 상품, 채권형 상품 등 연금계좌에 적합한 포트폴리오로 구성해 투자
+국내, 해외 제한 없음
+국내형	국내 주식, 채권, 대체자산 등 국내 투자자산을 대상으로만 한 투자
+글로벌
+해외 주식, 채권, 대체자산 등 글로벌 자산 중심으로 투자" />
   <meta name="author" content="덕후의 즐거운 인생" />
   
 
@@ -282,18 +288,13 @@ Index로 만들어보기 이제 종목들을 합쳐서 각 그룹의 인덱스�
 <div class="content-wrapper">
   <aside class="toc" id="toc">
     
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#index로-만들어보기">Index로 만들어보기</a></li>
-    <li><a href="#마무리-근데-이제-샤이니를-곁들인">마무리&hellip; 근데 이제 샤이니를 곁들인&hellip;</a></li>
-  </ul>
-</nav>
+    <nav id="TableOfContents"></nav>
   </aside>
 </div>
 
   <article>
     <header class="mb-16">
-      <h1 class="!my-0 pb-2.5">Style Index 만들기</h1>
+      <h1 class="!my-0 pb-2.5">Money Today ETF 대회 참가</h1>
 
       
       <div class="text-sm antialiased opacity-60">
@@ -308,28 +309,38 @@ Index로 만들어보기 이제 종목들을 합쳐서 각 그룹의 인덱스�
     </header>
     
     <section>
-      <p>이전 글과 이어서</p>
-<h2 id="index로-만들어보기">Index로 만들어보기</h2>
-<p>이제 종목들을 합쳐서 각 그룹의 인덱스를 만들어볼 차례이다.<br>
-간단하게는 그룹별로 모든 종목을 다 합쳐서 만드는 방법이 있지만,
-우선 종목들을 대형성장주, 대형가치주, 중소형성장주, 중소형가치주 로 분류를 한 뒤, 시장 MDD 30을 기준으로 그 이하인 종목들만 필터링 하는 작업을 한다.
-대형주는 시가총액 기준 상위 100개, 그 나머지는 중소형주로 분류했다.
-(내용 수정 중 &hellip;)</p>
-<h2 id="마무리-근데-이제-샤이니를-곁들인">마무리&hellip; 근데 이제 샤이니를 곁들인&hellip;</h2>
-<p>주가 정보는 매일 빠르게 변화하며 시장의 움직임을 보여주는 데이터이다. 이번 작업을 통해 금융시장의 움직임을 성장점수, 가치점수, 성장그룹, 가치그룹이라는 지표로 압축해 볼 수 있었다.
-과거 프로젝트를 진행할 당시에도 이 같은 창의적인 접근이 매우 흥미로웠었기에 이번에 날짜와 그래프를 업데이트하여 다시 구현해보았다.
-결국 지표라는 것은 대표성을 띄는 것이 중요하다고 생각한다. 지표명과 그 지표에 속해있는 요소들의 특성이 일치한다면 잘 만든 지표라고 할 수 있을 거다.</p>
-<p>뜬금없긴 하지만 스타일 지수 작업을 하다보니 샤이니 덕질하던 때가 생각이 났다.<br>
-멤버 전원이 노래실력+춤실력+외모 조건을 충족한 샤이니&hellip;<br>
-샤이니라는 지표가 있고 멤버들이 그 안의 요소라고 생각하면 이건 절대 망하지 않는 투자이다. 🤭<br>
-실제로 나는 샤이니 데뷔 후 15년 동안 정말 행복한 덕질을 했고 여전히 덕질 이어가는 중이다.!!</p>
-<p>다들 샤이니월드 했으면 좋겠다.</p>
-<p align="center">
-  <a href="/images/Investment/shinee.jpg" data-lightbox="image-set">
-    <img src="/images/Investment/shinee.jpg" alt="Your Alt Text" >
-  </a>
-  <em> 영원한 나의 우상, 동경하는 샤이니</em>
-</p>
+      <p>이번에 머니투데이터에서 ETF 대회 1회를 개최했다.<br>
+참가해보기로 했다.
+참가 부문은 5개로 아래와 같다.</p>
+<ol>
+<li>
+<p>밸류업	 <br>
+한국증시 저평가 요인 해소를 통한 밸류업 가치에 부합하는 기업을 중심으로 투자<br>
+국내 주식형 ETF로 제한</p>
+</li>
+<li>
+<p>연금형	 <br>
+은퇴 후 노후대비를 위한 장기투자 목적<br>
+월배당 ETF 상품, 채권형 상품 등 연금계좌에 적합한 포트폴리오로 구성해 투자<br>
+국내, 해외 제한 없음</p>
+</li>
+<li>
+<p>국내형	<br>
+국내 주식, 채권, 대체자산 등 국내 투자자산을 대상으로만 한 투자</p>
+</li>
+<li>
+<p>글로벌<br>
+해외 주식, 채권, 대체자산 등 글로벌 자산 중심으로 투자<br>
+해외자산 ETF로 제한</p>
+</li>
+<li>
+<p>자율<br>
+투자 목적 설정 후 그에 맞는 포트폴리오 제시 및 운용<br>
+투자자산 제한없음</p>
+</li>
+</ol>
+<p>난 <code>밸류업</code> 부문에 신청했다.<br>
+국내 주식이 아무래도 분석이 용이할 것이라 판단했다.</p>
 
     </section> 
 
@@ -342,17 +353,11 @@ Index로 만들어보기 이제 종목들을 합쳐서 각 그룹의 인덱스�
     
     <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
       
-      <a
-        class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-        href="//localhost:1313/post/valueup/"
-        ><span class="mr-1.5">←</span><span>Money Today ETF 대회 참가</span></a
-      >
-      
       
       <a
         class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-        href="//localhost:1313/post/styleindex/"
-        ><span>Style 배분 전략</span><span class="ml-1.5">→</span></a
+        href="//localhost:1313/post/styleindex2/"
+        ><span>Style Index 만들기</span><span class="ml-1.5">→</span></a
       >
       
     </nav>
