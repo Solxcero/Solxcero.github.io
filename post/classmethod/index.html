@@ -78,7 +78,6 @@
   
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
-
   
   <title>드디어 @classmethod를 써본다 - Ahora</title>
 
@@ -212,6 +211,8 @@
   <link rel="canonical" href="/post/classmethod/" />
   
   
+  <link rel="stylesheet" href="/css/highlight.css">
+  <link rel="stylesheet" href="/css/custom.css">
 </head>
 
   <body class="text-black duration-200 ease-out dark:text-white">
@@ -356,60 +357,60 @@
 <p>즉 미분기 A~F가 id 번호를 공유해서 사용해야되는 상황이었다.</p>
 <p>하나의 클래스에서 생성된 모든 객체가 특정 값을 공유한다? 이거슨 클래스 메서드잖아?
 바아로오 적용</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># pulvbr.py</span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">PulvPhysic</span>:
-</span></span><span style="display:flex;"><span>    bias_counter = <span style="color:#3677a9">0</span> 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># pulvbr.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PulvPhysic</span>:
+</span></span><span style="display:flex;"><span>    bias_counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> 
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#ffa500">@classmethod</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">initialize_counter</span>(cls, start_value):
-</span></span><span style="display:flex;"><span>        cls.bias_counter = start_value
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">initialize_counter</span>(cls, start_value):
+</span></span><span style="display:flex;"><span>        cls<span style="color:#f92672">.</span>bias_counter <span style="color:#f92672">=</span> start_value
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">update_bias</span>(self):
-</span></span><span style="display:flex;"><span>        <span style="color:#999;font-style:italic"># 그외 생략</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#24909d">type</span>(self).bias_counter += <span style="color:#3677a9">1</span>
-</span></span><span style="display:flex;"><span>        bias_id = <span style="color:#24909d">type</span>(self).bias_counter
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">update_bias</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 그외 생략</span>
+</span></span><span style="display:flex;"><span>        type(self)<span style="color:#f92672">.</span>bias_counter <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        bias_id <span style="color:#f92672">=</span> type(self)<span style="color:#f92672">.</span>bias_counter
 </span></span></code></pre></div><p>bias_counter라는 변수를 생성하여 모든 PulvPhysic 객체에서 해당 변수를 공유할 수 있도록 하였다.
 <code>@classmethod</code> 로 bias_counter를 초기화 하는 함수를 만들었다. <code>cls</code>를 사용하여 클래스 변수에 접근하여 초기화 하며 이 메서드는 인스턴스가 아니라 클래스 차원에서 직접 호출한다.</p>
 <p>실질적으로 bias_counter를 증가시키는 update_bias 함수가 있다.
 update_bias 함수가 각 객체에서 호출되면 bias_counter는 해당 클래스 내에서 증가하여 그 값을 모든 객체가 공유하게 된다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># MyServer.py</span>
-</span></span><span style="display:flex;"><span>initial_pulv_bias_value = DB_Process(db_connector,<span style="color:#ed9d13">&#39;A&#39;</span>).get_last_bias()
-</span></span><span style="display:flex;"><span>PulvPhysic.initialize_counter(initial_pulv_bias_value)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># MyServer.py</span>
+</span></span><span style="display:flex;"><span>initial_pulv_bias_value <span style="color:#f92672">=</span> DB_Process(db_connector,<span style="color:#e6db74">&#39;A&#39;</span>)<span style="color:#f92672">.</span>get_last_bias()
+</span></span><span style="display:flex;"><span>PulvPhysic<span style="color:#f92672">.</span>initialize_counter(initial_pulv_bias_value)
 </span></span></code></pre></div><p>요렇게 사용을 하면 된다.
 초기화할 bias_id를 DB 연산 모듈에 작성해둔 <code>get_last_bias()</code> 로 가져온 뒤 해당 값을 PulvPhysic의 bias_counter 초기 값으로 넘긴다.
 이렇게 하면 MultiThread로 생성된 각 Pulv 객체들이 update_bias 를 호출할 때 마다 bias_id를 업데이트한다.</p>
 <p>아이 재미따~~</p>
 <p>추가로 <code>type(self)</code> 에 대해서는 잘 몰랐었는데 이번에 작업하면서 제대로 이해할 수 있었다.<br>
 내가 만들어본 예제이다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Example</span>:
-</span></span><span style="display:flex;"><span>    counter = <span style="color:#3677a9">0</span>  <span style="color:#999;font-style:italic"># 클래스 변수</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Example</span>:
+</span></span><span style="display:flex;"><span>    counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  <span style="color:#75715e"># 클래스 변수</span>
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#ffa500">@classmethod</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">initialize_counter</span>(cls, start_value):
-</span></span><span style="display:flex;"><span>        cls.counter = start_value
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">initialize_counter</span>(cls, start_value):
+</span></span><span style="display:flex;"><span>        cls<span style="color:#f92672">.</span>counter <span style="color:#f92672">=</span> start_value
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">increment_counter</span>(self):
-</span></span><span style="display:flex;"><span>        <span style="color:#24909d">type</span>(self).counter += <span style="color:#3677a9">1</span>      <span style="color:#999;font-style:italic"># 클래스 변수 증가</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">increment_counter</span>(self):
+</span></span><span style="display:flex;"><span>        type(self)<span style="color:#f92672">.</span>counter <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>      <span style="color:#75715e"># 클래스 변수 증가</span>
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">increment_counter_alternative</span>(self):
-</span></span><span style="display:flex;"><span>        self.counter += <span style="color:#3677a9">1</span>           <span style="color:#999;font-style:italic"># 인스턴스 변수 증가         </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">increment_counter_alternative</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>counter <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>           <span style="color:#75715e"># 인스턴스 변수 증가         </span>
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>Example.initialize_counter(<span style="color:#3677a9">2</span>)       
-</span></span><span style="display:flex;"><span>ex = Example()
-</span></span><span style="display:flex;"><span>ex2 = Example()
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(ex.counter, ex2.counter) <span style="color:#999;font-style:italic"># 2 2</span>
+</span></span><span style="display:flex;"><span>Example<span style="color:#f92672">.</span>initialize_counter(<span style="color:#ae81ff">2</span>)       
+</span></span><span style="display:flex;"><span>ex <span style="color:#f92672">=</span> Example()
+</span></span><span style="display:flex;"><span>ex2 <span style="color:#f92672">=</span> Example()
+</span></span><span style="display:flex;"><span>print(ex<span style="color:#f92672">.</span>counter, ex2<span style="color:#f92672">.</span>counter) <span style="color:#75715e"># 2 2</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ex.increment_counter()
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(ex.counter) <span style="color:#999;font-style:italic"># 3</span>
+</span></span><span style="display:flex;"><span>ex<span style="color:#f92672">.</span>increment_counter()
+</span></span><span style="display:flex;"><span>print(ex<span style="color:#f92672">.</span>counter) <span style="color:#75715e"># 3</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ex2.increment_counter()
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(ex2.counter) <span style="color:#999;font-style:italic"># 4</span>
+</span></span><span style="display:flex;"><span>ex2<span style="color:#f92672">.</span>increment_counter()
+</span></span><span style="display:flex;"><span>print(ex2<span style="color:#f92672">.</span>counter) <span style="color:#75715e"># 4</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ex.increment_counter_alternative()
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(ex.counter) <span style="color:#999;font-style:italic"># 5</span>
+</span></span><span style="display:flex;"><span>ex<span style="color:#f92672">.</span>increment_counter_alternative()
+</span></span><span style="display:flex;"><span>print(ex<span style="color:#f92672">.</span>counter) <span style="color:#75715e"># 5</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ex2.increment_counter_alternative()
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(ex2.counter) <span style="color:#999;font-style:italic"># 5</span>
+</span></span><span style="display:flex;"><span>ex2<span style="color:#f92672">.</span>increment_counter_alternative()
+</span></span><span style="display:flex;"><span>print(ex2<span style="color:#f92672">.</span>counter) <span style="color:#75715e"># 5</span>
 </span></span></code></pre></div><p><code>type(self).counter</code> 는 <code>Example.counter</code> 와 동일하다는 것을 알 수 있다.</p>
 
     </section> 
@@ -451,21 +452,31 @@ update_bias 함수가 각 객체에서 호출되면 bias_counter는 해당 클�
     <footer
   class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
 >
-  <div class="mr-auto">
-    &copy; 2024
-    <a class="link" href="/">Ahora</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >✎ Paper</a
-  >
+<div class="mr-auto">
+  &copy; 2024
+  <a class="link" href="/">Ahora</a>
+</div>
+<a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+>Powered by Hugo️️</a
+>️
+<a
+class="link"
+href="https://github.com/nanxiaobei/hugo-paper"
+rel="noopener"
+target="_blank"
+>✎ Paper</a
+>
 </footer>
+
+<script src="/js/highlight.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    document.querySelectorAll("pre code").forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
 
     
     

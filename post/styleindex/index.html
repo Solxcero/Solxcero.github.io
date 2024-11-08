@@ -78,7 +78,6 @@
   
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
-
   
   <title>Style 배분 전략 - Ahora</title>
 
@@ -208,6 +207,8 @@
   <link rel="canonical" href="/post/styleindex/" />
   
   
+  <link rel="stylesheet" href="/css/highlight.css">
+  <link rel="stylesheet" href="/css/custom.css">
 </head>
 
   <body class="text-black duration-200 ease-out dark:text-white">
@@ -396,35 +397,35 @@ S&amp;P U.S. Style Indices Methodology
 최근 3년 동안의 주당 순이익(EPS)의 변화를 현재 주가와 비교하는 것이다.<br>
 해당 지표 값이 높을수록 회사의 성장 잠재력이 높다고 평가할 수 있다.<br>
 피터린치가 만든 PEG의 역수이다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 3년 EPS 증가율 구하기</span>
-</span></span><span style="display:flex;"><span>df_21 = pd.DataFrame(stock.get_market_fundamental(<span style="color:#ed9d13">&#39;2021-06-01&#39;</span>,market=<span style="color:#ed9d13">&#34;KOSPI&#34;</span>)[<span style="color:#ed9d13">&#39;EPS&#39;</span>])
-</span></span><span style="display:flex;"><span>df_21.rename(columns={<span style="color:#ed9d13">&#39;EPS&#39;</span>:<span style="color:#ed9d13">&#39;EPS_21&#39;</span>},inplace=<span style="color:#6ab825;font-weight:bold">True</span>)
-</span></span><span style="display:flex;"><span>df_24 = pd.DataFrame(stock.get_market_fundamental(<span style="color:#ed9d13">&#39;2024-06-03&#39;</span>,market=<span style="color:#ed9d13">&#34;KOSPI&#34;</span>)[<span style="color:#ed9d13">&#39;EPS&#39;</span>])
-</span></span><span style="display:flex;"><span>df_24.rename(columns={<span style="color:#ed9d13">&#39;EPS&#39;</span>:<span style="color:#ed9d13">&#39;EPS_24&#39;</span>},inplace=<span style="color:#6ab825;font-weight:bold">True</span>)
-</span></span><span style="display:flex;"><span>eps = pd.merge(df_21,df_24,left_index=<span style="color:#6ab825;font-weight:bold">True</span>,right_index=<span style="color:#6ab825;font-weight:bold">True</span>,how=<span style="color:#ed9d13">&#39;inner&#39;</span>)
-</span></span><span style="display:flex;"><span>eps[<span style="color:#ed9d13">&#39;NetChange&#39;</span>] = eps[<span style="color:#ed9d13">&#39;EPS_24&#39;</span>]-eps[<span style="color:#ed9d13">&#39;EPS_21&#39;</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 3년 EPS 증가율 구하기</span>
+</span></span><span style="display:flex;"><span>df_21 <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(stock<span style="color:#f92672">.</span>get_market_fundamental(<span style="color:#e6db74">&#39;2021-06-01&#39;</span>,market<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;KOSPI&#34;</span>)[<span style="color:#e6db74">&#39;EPS&#39;</span>])
+</span></span><span style="display:flex;"><span>df_21<span style="color:#f92672">.</span>rename(columns<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;EPS&#39;</span>:<span style="color:#e6db74">&#39;EPS_21&#39;</span>},inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>df_24 <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(stock<span style="color:#f92672">.</span>get_market_fundamental(<span style="color:#e6db74">&#39;2024-06-03&#39;</span>,market<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;KOSPI&#34;</span>)[<span style="color:#e6db74">&#39;EPS&#39;</span>])
+</span></span><span style="display:flex;"><span>df_24<span style="color:#f92672">.</span>rename(columns<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;EPS&#39;</span>:<span style="color:#e6db74">&#39;EPS_24&#39;</span>},inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>eps <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>merge(df_21,df_24,left_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,right_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,how<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;inner&#39;</span>)
+</span></span><span style="display:flex;"><span>eps[<span style="color:#e6db74">&#39;NetChange&#39;</span>] <span style="color:#f92672">=</span> eps[<span style="color:#e6db74">&#39;EPS_24&#39;</span>]<span style="color:#f92672">-</span>eps[<span style="color:#e6db74">&#39;EPS_21&#39;</span>]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 3년 EPS 증가율 대비 주가 (대략 PEG 개념)</span>
-</span></span><span style="display:flex;"><span>eps = pd.merge(eps,close24,left_index=<span style="color:#6ab825;font-weight:bold">True</span>,right_index=<span style="color:#6ab825;font-weight:bold">True</span>,how=<span style="color:#ed9d13">&#39;inner&#39;</span>)
-</span></span><span style="display:flex;"><span>eps[<span style="color:#ed9d13">&#39;approxPEG&#39;</span>] = (eps[<span style="color:#ed9d13">&#39;NetChange&#39;</span>]/eps[<span style="color:#ed9d13">&#39;24&#39;</span>])
-</span></span><span style="display:flex;"><span>eps[<span style="color:#ed9d13">&#39;win_P&#39;</span>] = winsorize(eps[<span style="color:#ed9d13">&#39;approxPEG&#39;</span>],limits=[<span style="color:#3677a9">0.05</span>,<span style="color:#3677a9">0.05</span>])
-</span></span><span style="display:flex;"><span>eps.loc[eps[<span style="color:#ed9d13">&#39;NetChange&#39;</span>]==<span style="color:#3677a9">0</span>,<span style="color:#ed9d13">&#39;win_P&#39;</span>] = <span style="color:#3677a9">0</span> <span style="color:#999;font-style:italic"># 정규화하기 전에 필요</span>
-</span></span><span style="display:flex;"><span>eps[<span style="color:#ed9d13">&#39;stn_P&#39;</span>] = ss.zscore(eps[<span style="color:#ed9d13">&#39;win_P&#39;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3년 EPS 증가율 대비 주가 (대략 PEG 개념)</span>
+</span></span><span style="display:flex;"><span>eps <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>merge(eps,close24,left_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,right_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,how<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;inner&#39;</span>)
+</span></span><span style="display:flex;"><span>eps[<span style="color:#e6db74">&#39;approxPEG&#39;</span>] <span style="color:#f92672">=</span> (eps[<span style="color:#e6db74">&#39;NetChange&#39;</span>]<span style="color:#f92672">/</span>eps[<span style="color:#e6db74">&#39;24&#39;</span>])
+</span></span><span style="display:flex;"><span>eps[<span style="color:#e6db74">&#39;win_P&#39;</span>] <span style="color:#f92672">=</span> winsorize(eps[<span style="color:#e6db74">&#39;approxPEG&#39;</span>],limits<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.05</span>,<span style="color:#ae81ff">0.05</span>])
+</span></span><span style="display:flex;"><span>eps<span style="color:#f92672">.</span>loc[eps[<span style="color:#e6db74">&#39;NetChange&#39;</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>,<span style="color:#e6db74">&#39;win_P&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e"># 정규화하기 전에 필요</span>
+</span></span><span style="display:flex;"><span>eps[<span style="color:#e6db74">&#39;stn_P&#39;</span>] <span style="color:#f92672">=</span> ss<span style="color:#f92672">.</span>zscore(eps[<span style="color:#e6db74">&#39;win_P&#39;</span>])
 </span></span></code></pre></div></li>
 <li>
 <p><span style="text-decoration:none; border-bottom:3px solid red; font-weight:bold;">Momentum (12 Months % Price Change)</span><br>
 최근 12개월 동안의 주가 변동률을 나타낸다.
 투자자들이 주식의 최근 성과를 평가할 때 주로 사용하며 높은 모멘텀은 주가가 상승 추세에 있음을 보여준다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 상장된 기업의 종가만 사용</span>
-</span></span><span style="display:flex;"><span>close24 = pd.DataFrame({<span style="color:#ed9d13">&#39;24&#39;</span>:stock.get_market_ohlcv(<span style="color:#ed9d13">&#39;20240603&#39;</span>,market=<span style="color:#ed9d13">&#34;KOSPI&#34;</span>)[<span style="color:#ed9d13">&#39;종가&#39;</span>]})
-</span></span><span style="display:flex;"><span>close21 = pd.DataFrame({<span style="color:#ed9d13">&#39;23&#39;</span>:stock.get_market_ohlcv(<span style="color:#ed9d13">&#39;20230601&#39;</span>,market=<span style="color:#ed9d13">&#34;KOSPI&#34;</span>)[<span style="color:#ed9d13">&#39;종가&#39;</span>]})
-</span></span><span style="display:flex;"><span>ks = pd.merge(close21,close24,left_index=<span style="color:#6ab825;font-weight:bold">True</span>,right_index=<span style="color:#6ab825;font-weight:bold">True</span>,how=<span style="color:#ed9d13">&#39;inner&#39;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 상장된 기업의 종가만 사용</span>
+</span></span><span style="display:flex;"><span>close24 <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame({<span style="color:#e6db74">&#39;24&#39;</span>:stock<span style="color:#f92672">.</span>get_market_ohlcv(<span style="color:#e6db74">&#39;20240603&#39;</span>,market<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;KOSPI&#34;</span>)[<span style="color:#e6db74">&#39;종가&#39;</span>]})
+</span></span><span style="display:flex;"><span>close21 <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame({<span style="color:#e6db74">&#39;23&#39;</span>:stock<span style="color:#f92672">.</span>get_market_ohlcv(<span style="color:#e6db74">&#39;20230601&#39;</span>,market<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;KOSPI&#34;</span>)[<span style="color:#e6db74">&#39;종가&#39;</span>]})
+</span></span><span style="display:flex;"><span>ks <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>merge(close21,close24,left_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,right_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,how<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;inner&#39;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 모멘텀 계산  </span>
-</span></span><span style="display:flex;"><span>ks[<span style="color:#ed9d13">&#39;Momentum&#39;</span>] =((ks[<span style="color:#ed9d13">&#39;24&#39;</span>]-ks[<span style="color:#ed9d13">&#39;23&#39;</span>])/ks[<span style="color:#ed9d13">&#39;23&#39;</span>])*<span style="color:#3677a9">100</span>
-</span></span><span style="display:flex;"><span>ks.rename(columns={<span style="color:#ed9d13">&#39;23&#39;</span>:<span style="color:#ed9d13">&#39;매수가&#39;</span>,<span style="color:#ed9d13">&#39;24&#39;</span>:<span style="color:#ed9d13">&#39;매도가&#39;</span>},inplace=<span style="color:#6ab825;font-weight:bold">True</span>)
-</span></span><span style="display:flex;"><span>ks[<span style="color:#ed9d13">&#39;win_MM&#39;</span>] = winsorize(ks[<span style="color:#ed9d13">&#39;Momentum&#39;</span>],limits=[<span style="color:#3677a9">0.05</span>,<span style="color:#3677a9">0.05</span>])
-</span></span><span style="display:flex;"><span>ks[<span style="color:#ed9d13">&#39;stn_MM&#39;</span>] = ss.zscore(ks[<span style="color:#ed9d13">&#39;win_MM&#39;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 모멘텀 계산  </span>
+</span></span><span style="display:flex;"><span>ks[<span style="color:#e6db74">&#39;Momentum&#39;</span>] <span style="color:#f92672">=</span>((ks[<span style="color:#e6db74">&#39;24&#39;</span>]<span style="color:#f92672">-</span>ks[<span style="color:#e6db74">&#39;23&#39;</span>])<span style="color:#f92672">/</span>ks[<span style="color:#e6db74">&#39;23&#39;</span>])<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>ks<span style="color:#f92672">.</span>rename(columns<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;23&#39;</span>:<span style="color:#e6db74">&#39;매수가&#39;</span>,<span style="color:#e6db74">&#39;24&#39;</span>:<span style="color:#e6db74">&#39;매도가&#39;</span>},inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>ks[<span style="color:#e6db74">&#39;win_MM&#39;</span>] <span style="color:#f92672">=</span> winsorize(ks[<span style="color:#e6db74">&#39;Momentum&#39;</span>],limits<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.05</span>,<span style="color:#ae81ff">0.05</span>])
+</span></span><span style="display:flex;"><span>ks[<span style="color:#e6db74">&#39;stn_MM&#39;</span>] <span style="color:#f92672">=</span> ss<span style="color:#f92672">.</span>zscore(ks[<span style="color:#e6db74">&#39;win_MM&#39;</span>])
 </span></span></code></pre></div></li>
 <li>
 <p><span style="text-decoration:none; border-bottom:3px solid red; font-weight:bold;">Three-Year Sales per Share Growth Rate</span>
@@ -436,10 +437,10 @@ S&amp;P U.S. Style Indices Methodology
 </li>
 </ul>
 <h4 id="growth-result">Growth Result</h4>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 성장점수(GS) 만들기</span>
-</span></span><span style="display:flex;"><span>growth_S = pd.merge(ks[<span style="color:#ed9d13">&#39;stn_MM&#39;</span>],eps[<span style="color:#ed9d13">&#39;stn_P&#39;</span>],left_index=<span style="color:#6ab825;font-weight:bold">True</span>,right_index=<span style="color:#6ab825;font-weight:bold">True</span>,how=<span style="color:#ed9d13">&#39;inner&#39;</span>)
-</span></span><span style="display:flex;"><span>growth_S[<span style="color:#ed9d13">&#39;GS&#39;</span>] = (growth_S.iloc[:,<span style="color:#3677a9">0</span>] + growth_S.iloc[:,<span style="color:#3677a9">1</span>])/<span style="color:#3677a9">2</span>
-</span></span><span style="display:flex;"><span>growth_S.sort_values(<span style="color:#ed9d13">&#39;GS&#39;</span>,ascending=<span style="color:#6ab825;font-weight:bold">False</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 성장점수(GS) 만들기</span>
+</span></span><span style="display:flex;"><span>growth_S <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>merge(ks[<span style="color:#e6db74">&#39;stn_MM&#39;</span>],eps[<span style="color:#e6db74">&#39;stn_P&#39;</span>],left_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,right_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,how<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;inner&#39;</span>)
+</span></span><span style="display:flex;"><span>growth_S[<span style="color:#e6db74">&#39;GS&#39;</span>] <span style="color:#f92672">=</span> (growth_S<span style="color:#f92672">.</span>iloc[:,<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> growth_S<span style="color:#f92672">.</span>iloc[:,<span style="color:#ae81ff">1</span>])<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>growth_S<span style="color:#f92672">.</span>sort_values(<span style="color:#e6db74">&#39;GS&#39;</span>,ascending<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
 </span></span></code></pre></div><p>모멘텀과 EPS/P을 평균내어 최종 <code>GS(Growth Score)</code> 을 계산한다.</p>
 <p align="center">
   <a href="/images/Investment/style_growth.png" data-lightbox="image-set">
@@ -448,28 +449,28 @@ S&amp;P U.S. Style Indices Methodology
 </p> 
 <h3 id="value-factors">Value Factors</h3>
 <p>먼저 PER과 PBR의 역수를 구하고 시작하겠다. 역수를 구하는 이유는, PER과 PBR의 경우 그 값이 작을수록 저평가되었다고 판단하기 때문에 역수를 취함으로써 점수처럼 값이 커질 수록 저평가되었음을 판단하기 위해서이다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>fm = stock.get_market_fundamental(<span style="color:#ed9d13">&#39;20240603&#39;</span>,market=<span style="color:#ed9d13">&#34;KOSPI&#34;</span>)
-</span></span><span style="display:flex;"><span>fm[<span style="color:#ed9d13">&#39;E/P&#39;</span>] = (<span style="color:#3677a9">1</span>/fm[<span style="color:#ed9d13">&#39;PER&#39;</span>]) <span style="color:#999;font-style:italic"># 역수 취하기</span>
-</span></span><span style="display:flex;"><span>fm[<span style="color:#ed9d13">&#39;B/P&#39;</span>] = (<span style="color:#3677a9">1</span>/fm[<span style="color:#ed9d13">&#39;PBR&#39;</span>])
-</span></span><span style="display:flex;"><span>fm = fm.query(<span style="color:#ed9d13">&#39;PER != 0&#39;</span>).sort_values(<span style="color:#ed9d13">&#39;PER&#39;</span>) <span style="color:#999;font-style:italic"># 결측값 제거</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>fm <span style="color:#f92672">=</span> stock<span style="color:#f92672">.</span>get_market_fundamental(<span style="color:#e6db74">&#39;20240603&#39;</span>,market<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;KOSPI&#34;</span>)
+</span></span><span style="display:flex;"><span>fm[<span style="color:#e6db74">&#39;E/P&#39;</span>] <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>fm[<span style="color:#e6db74">&#39;PER&#39;</span>]) <span style="color:#75715e"># 역수 취하기</span>
+</span></span><span style="display:flex;"><span>fm[<span style="color:#e6db74">&#39;B/P&#39;</span>] <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>fm[<span style="color:#e6db74">&#39;PBR&#39;</span>])
+</span></span><span style="display:flex;"><span>fm <span style="color:#f92672">=</span> fm<span style="color:#f92672">.</span>query(<span style="color:#e6db74">&#39;PER != 0&#39;</span>)<span style="color:#f92672">.</span>sort_values(<span style="color:#e6db74">&#39;PER&#39;</span>) <span style="color:#75715e"># 결측값 제거</span>
 </span></span></code></pre></div><ul>
 <li><span style="text-decoration:none; border-bottom:3px solid blue; font-weight:bold;">Book Value to Price Ratio</span><br>
 회사의 장부 가치(Book Value)를 현재 주가로 나눈 비율이다.
 이때 장부 가치는 회사의 순자산(자산-부채)으로 계산되며, 이 비율이 높을수록 주식이 저평가 되어있을 가능성이 높다.<br>
 PBR의 역수이다.
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># B/P 구하기</span>
-</span></span><span style="display:flex;"><span>bp  = pd.DataFrame({<span style="color:#ed9d13">&#39;B/P&#39;</span>:fm[<span style="color:#ed9d13">&#39;B/P&#39;</span>].sort_values(ascending=<span style="color:#6ab825;font-weight:bold">False</span>)})
-</span></span><span style="display:flex;"><span>bp[<span style="color:#ed9d13">&#39;winB/P&#39;</span>] = winsorize(bp[<span style="color:#ed9d13">&#39;B/P&#39;</span>],limits=[<span style="color:#3677a9">0.05</span>,<span style="color:#3677a9">0.05</span>])
-</span></span><span style="display:flex;"><span>bp[<span style="color:#ed9d13">&#39;stB/P&#39;</span>] = ss.zscore(bp[<span style="color:#ed9d13">&#39;winB/P&#39;</span>])
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># B/P 구하기</span>
+</span></span><span style="display:flex;"><span>bp  <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame({<span style="color:#e6db74">&#39;B/P&#39;</span>:fm[<span style="color:#e6db74">&#39;B/P&#39;</span>]<span style="color:#f92672">.</span>sort_values(ascending<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)})
+</span></span><span style="display:flex;"><span>bp[<span style="color:#e6db74">&#39;winB/P&#39;</span>] <span style="color:#f92672">=</span> winsorize(bp[<span style="color:#e6db74">&#39;B/P&#39;</span>],limits<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.05</span>,<span style="color:#ae81ff">0.05</span>])
+</span></span><span style="display:flex;"><span>bp[<span style="color:#e6db74">&#39;stB/P&#39;</span>] <span style="color:#f92672">=</span> ss<span style="color:#f92672">.</span>zscore(bp[<span style="color:#e6db74">&#39;winB/P&#39;</span>])
 </span></span></code></pre></div></li>
 <li><span style="text-decoration:none; border-bottom:3px solid blue; font-weight:bold;">Earnings To Price Ratio</span><br>
 회사의 주당 순이익(EPS)을 현재 주가로 나눈 비율이다.<br>
 주가 대비 순이익 비율(P/E 비율의 역수)로 이 비율이 높을수록 주식이 저평가 되었음을 의미한다. <br>
 PER의 역수이다.
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># E/P 구하기</span>
-</span></span><span style="display:flex;"><span>ep = pd.DataFrame({<span style="color:#ed9d13">&#39;E/P&#39;</span>:fm[<span style="color:#ed9d13">&#39;E/P&#39;</span>].sort_values(ascending=<span style="color:#6ab825;font-weight:bold">False</span>)})
-</span></span><span style="display:flex;"><span>ep[<span style="color:#ed9d13">&#39;winE/P&#39;</span>] = winsorize(ep[<span style="color:#ed9d13">&#39;E/P&#39;</span>],limits=[<span style="color:#3677a9">0.05</span>,<span style="color:#3677a9">0.05</span>])  <span style="color:#999;font-style:italic"># 이상치 조절</span>
-</span></span><span style="display:flex;"><span>ep[<span style="color:#ed9d13">&#39;stE/P&#39;</span>] = ss.zscore(ep[<span style="color:#ed9d13">&#39;winE/P&#39;</span>]) <span style="color:#999;font-style:italic"># z-score</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># E/P 구하기</span>
+</span></span><span style="display:flex;"><span>ep <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame({<span style="color:#e6db74">&#39;E/P&#39;</span>:fm[<span style="color:#e6db74">&#39;E/P&#39;</span>]<span style="color:#f92672">.</span>sort_values(ascending<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)})
+</span></span><span style="display:flex;"><span>ep[<span style="color:#e6db74">&#39;winE/P&#39;</span>] <span style="color:#f92672">=</span> winsorize(ep[<span style="color:#e6db74">&#39;E/P&#39;</span>],limits<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0.05</span>,<span style="color:#ae81ff">0.05</span>])  <span style="color:#75715e"># 이상치 조절</span>
+</span></span><span style="display:flex;"><span>ep[<span style="color:#e6db74">&#39;stE/P&#39;</span>] <span style="color:#f92672">=</span> ss<span style="color:#f92672">.</span>zscore(ep[<span style="color:#e6db74">&#39;winE/P&#39;</span>]) <span style="color:#75715e"># z-score</span>
 </span></span></code></pre></div></li>
 <li><span style="text-decoration:none; border-bottom:3px solid blue; font-weight:bold;">Sales to Price Ratio</span><br>
 회사의 주당 매출을 현재 주가로 나눈 비율이다.
@@ -480,10 +481,10 @@ PER의 역수이다.
 </li>
 </ul>
 <h4 id="value-result">Value Result</h4>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 가치점수(VS) 만들기</span>
-</span></span><span style="display:flex;"><span>value_S = pd.merge(ep,bp,left_index=<span style="color:#6ab825;font-weight:bold">True</span>,right_index=<span style="color:#6ab825;font-weight:bold">True</span>,how=<span style="color:#ed9d13">&#39;inner&#39;</span>)
-</span></span><span style="display:flex;"><span>value_S[<span style="color:#ed9d13">&#39;VS&#39;</span>] = (value_S.iloc[:,<span style="color:#3677a9">2</span>]+value_S.iloc[:,<span style="color:#3677a9">5</span>])/<span style="color:#3677a9">2</span>
-</span></span><span style="display:flex;"><span>value_S.sort_values(by=<span style="color:#ed9d13">&#39;VS&#39;</span>,ascending=<span style="color:#6ab825;font-weight:bold">False</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 가치점수(VS) 만들기</span>
+</span></span><span style="display:flex;"><span>value_S <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>merge(ep,bp,left_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,right_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,how<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;inner&#39;</span>)
+</span></span><span style="display:flex;"><span>value_S[<span style="color:#e6db74">&#39;VS&#39;</span>] <span style="color:#f92672">=</span> (value_S<span style="color:#f92672">.</span>iloc[:,<span style="color:#ae81ff">2</span>]<span style="color:#f92672">+</span>value_S<span style="color:#f92672">.</span>iloc[:,<span style="color:#ae81ff">5</span>])<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>value_S<span style="color:#f92672">.</span>sort_values(by<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;VS&#39;</span>,ascending<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
 </span></span></code></pre></div><p>가치점수인 <code>VS(Value Score)</code>도 E/P 와 B/P 의 평균으로 구해준다.</p>
 <p align="center">
   <a href="/images/Investment/style_value.png" data-lightbox="image-set">
@@ -496,20 +497,20 @@ PER의 역수이다.
 <ol>
 <li>종목별로 <code>GS Rank</code> 와 <code>VS Rank</code> 를 계산한다. 순위매기는 거라고 생각하면 된다.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 데이터 합치기</span>
-</span></span><span style="display:flex;"><span>style = pd.merge(value_S[<span style="color:#ed9d13">&#39;VS&#39;</span>],growth_S[<span style="color:#ed9d13">&#39;GS&#39;</span>],left_index=<span style="color:#6ab825;font-weight:bold">True</span>,right_index=<span style="color:#6ab825;font-weight:bold">True</span>,how=<span style="color:#ed9d13">&#39;inner&#39;</span>)
-</span></span><span style="display:flex;"><span>style= style.sort_values(<span style="color:#ed9d13">&#39;GS&#39;</span>,ascending=<span style="color:#6ab825;font-weight:bold">False</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 데이터 합치기</span>
+</span></span><span style="display:flex;"><span>style <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>merge(value_S[<span style="color:#e6db74">&#39;VS&#39;</span>],growth_S[<span style="color:#e6db74">&#39;GS&#39;</span>],left_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,right_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,how<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;inner&#39;</span>)
+</span></span><span style="display:flex;"><span>style<span style="color:#f92672">=</span> style<span style="color:#f92672">.</span>sort_values(<span style="color:#e6db74">&#39;GS&#39;</span>,ascending<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 성장 점수 순위 컬럼 생성</span>
-</span></span><span style="display:flex;"><span>style[<span style="color:#ed9d13">&#39;GS_Rank&#39;</span>] = style[<span style="color:#ed9d13">&#39;GS&#39;</span>].rank(method=<span style="color:#ed9d13">&#39;min&#39;</span>,ascending=<span style="color:#6ab825;font-weight:bold">False</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 성장 점수 순위 컬럼 생성</span>
+</span></span><span style="display:flex;"><span>style[<span style="color:#e6db74">&#39;GS_Rank&#39;</span>] <span style="color:#f92672">=</span> style[<span style="color:#e6db74">&#39;GS&#39;</span>]<span style="color:#f92672">.</span>rank(method<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;min&#39;</span>,ascending<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 가치 점수 순위 컬럼 생성</span>
-</span></span><span style="display:flex;"><span>style[<span style="color:#ed9d13">&#39;VS_Rank&#39;</span>] = style[<span style="color:#ed9d13">&#39;VS&#39;</span>].rank(method=<span style="color:#ed9d13">&#39;min&#39;</span>,ascending=<span style="color:#6ab825;font-weight:bold">False</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 가치 점수 순위 컬럼 생성</span>
+</span></span><span style="display:flex;"><span>style[<span style="color:#e6db74">&#39;VS_Rank&#39;</span>] <span style="color:#f92672">=</span> style[<span style="color:#e6db74">&#39;VS&#39;</span>]<span style="color:#f92672">.</span>rank(method<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;min&#39;</span>,ascending<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
 </span></span></code></pre></div><ol start="2">
 <li><code>GS_Rank / VS_Rank</code> 를 계산하여 정렬한다. 이 값을 기준으로 최종 순위를 매긴다.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 스타일 순위 매기기 </span>
-</span></span><span style="display:flex;"><span>style[<span style="color:#ed9d13">&#39;Rank&#39;</span>] = style[<span style="color:#ed9d13">&#39;GS_Rank&#39;</span>]/style[<span style="color:#ed9d13">&#39;VS_Rank&#39;</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 스타일 순위 매기기 </span>
+</span></span><span style="display:flex;"><span>style[<span style="color:#e6db74">&#39;Rank&#39;</span>] <span style="color:#f92672">=</span> style[<span style="color:#e6db74">&#39;GS_Rank&#39;</span>]<span style="color:#f92672">/</span>style[<span style="color:#e6db74">&#39;VS_Rank&#39;</span>]
 </span></span></code></pre></div><p align="center">
   <a href="/images/Investment/style_res.png" data-lightbox="image-set">
     <img src="/images/Investment/style_res.png" alt="Your Alt Text" >
@@ -523,54 +524,54 @@ PER의 역수이다.
     <img src="/images/Investment/paper1.png" alt="Your Alt Text" >
   </a>
 </p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 시가총액 불러오기</span>
-</span></span><span style="display:flex;"><span>cap = pd.DataFrame(stock.get_market_cap(<span style="color:#ed9d13">&#39;20240603&#39;</span>,market=<span style="color:#ed9d13">&#34;KOSPI&#34;</span>)[<span style="color:#ed9d13">&#39;시가총액&#39;</span>])
-</span></span><span style="display:flex;"><span>style_dt= pd.merge(style,cap,left_index=<span style="color:#6ab825;font-weight:bold">True</span>,right_index=<span style="color:#6ab825;font-weight:bold">True</span>,how=<span style="color:#ed9d13">&#39;inner&#39;</span>)
-</span></span><span style="display:flex;"><span>total_cap = style_dt.시가총액.sum()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 시가총액 불러오기</span>
+</span></span><span style="display:flex;"><span>cap <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(stock<span style="color:#f92672">.</span>get_market_cap(<span style="color:#e6db74">&#39;20240603&#39;</span>,market<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;KOSPI&#34;</span>)[<span style="color:#e6db74">&#39;시가총액&#39;</span>])
+</span></span><span style="display:flex;"><span>style_dt<span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>merge(style,cap,left_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,right_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,how<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;inner&#39;</span>)
+</span></span><span style="display:flex;"><span>total_cap <span style="color:#f92672">=</span> style_dt<span style="color:#f92672">.</span>시가총액<span style="color:#f92672">.</span>sum()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 전체 시총 대비 개별 종목 시총 비율 구하기</span>
-</span></span><span style="display:flex;"><span>style_dt[<span style="color:#ed9d13">&#39;cap_ratio&#39;</span>] = style_dt.iloc[:,<span style="color:#3677a9">5</span>]/total_cap
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 전체 시총 대비 개별 종목 시총 비율 구하기</span>
+</span></span><span style="display:flex;"><span>style_dt[<span style="color:#e6db74">&#39;cap_ratio&#39;</span>] <span style="color:#f92672">=</span> style_dt<span style="color:#f92672">.</span>iloc[:,<span style="color:#ae81ff">5</span>]<span style="color:#f92672">/</span>total_cap
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 개별 종목 시총 누적비율 컬럼 생성</span>
-</span></span><span style="display:flex;"><span>style_dt=style_dt.sort_values(by=<span style="color:#ed9d13">&#39;Rank&#39;</span>)
-</span></span><span style="display:flex;"><span>style_dt[<span style="color:#ed9d13">&#39;cum_cap&#39;</span>] = style_dt[<span style="color:#ed9d13">&#39;cap_ratio&#39;</span>].cumsum()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 개별 종목 시총 누적비율 컬럼 생성</span>
+</span></span><span style="display:flex;"><span>style_dt<span style="color:#f92672">=</span>style_dt<span style="color:#f92672">.</span>sort_values(by<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Rank&#39;</span>)
+</span></span><span style="display:flex;"><span>style_dt[<span style="color:#e6db74">&#39;cum_cap&#39;</span>] <span style="color:#f92672">=</span> style_dt[<span style="color:#e6db74">&#39;cap_ratio&#39;</span>]<span style="color:#f92672">.</span>cumsum()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 시총 비율로 3구간 나눠서 성장,중간,가치 그룹화 하기</span>
-</span></span><span style="display:flex;"><span>GS = style_dt[style_dt[<span style="color:#ed9d13">&#39;cum_cap&#39;</span>] &lt;= <span style="color:#3677a9">0.33</span>]
-</span></span><span style="display:flex;"><span>GS[<span style="color:#ed9d13">&#39;group&#39;</span>] = <span style="color:#ed9d13">&#39;growth&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 시총 비율로 3구간 나눠서 성장,중간,가치 그룹화 하기</span>
+</span></span><span style="display:flex;"><span>GS <span style="color:#f92672">=</span> style_dt[style_dt[<span style="color:#e6db74">&#39;cum_cap&#39;</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0.33</span>]
+</span></span><span style="display:flex;"><span>GS[<span style="color:#e6db74">&#39;group&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;growth&#39;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>NEUTRAL = style_dt[(style_dt[<span style="color:#ed9d13">&#39;cum_cap&#39;</span>] &gt; <span style="color:#3677a9">0.33</span>) &amp; (style_dt[<span style="color:#ed9d13">&#39;cum_cap&#39;</span>] &lt;= <span style="color:#3677a9">0.67</span>)]
-</span></span><span style="display:flex;"><span>NEUTRAL[<span style="color:#ed9d13">&#39;group&#39;</span>] = <span style="color:#ed9d13">&#39;neutral&#39;</span>
+</span></span><span style="display:flex;"><span>NEUTRAL <span style="color:#f92672">=</span> style_dt[(style_dt[<span style="color:#e6db74">&#39;cum_cap&#39;</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.33</span>) <span style="color:#f92672">&amp;</span> (style_dt[<span style="color:#e6db74">&#39;cum_cap&#39;</span>] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0.67</span>)]
+</span></span><span style="display:flex;"><span>NEUTRAL[<span style="color:#e6db74">&#39;group&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;neutral&#39;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>VS = style_dt[style_dt[<span style="color:#ed9d13">&#39;cum_cap&#39;</span>]&gt;<span style="color:#3677a9">0.67</span>]
-</span></span><span style="display:flex;"><span>VS[<span style="color:#ed9d13">&#39;group&#39;</span>] = <span style="color:#ed9d13">&#39;value&#39;</span>
+</span></span><span style="display:flex;"><span>VS <span style="color:#f92672">=</span> style_dt[style_dt[<span style="color:#e6db74">&#39;cum_cap&#39;</span>]<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0.67</span>]
+</span></span><span style="display:flex;"><span>VS[<span style="color:#e6db74">&#39;group&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;value&#39;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>style_group = pd.concat([GS,NEUTRAL,VS],axis=<span style="color:#3677a9">0</span>)
+</span></span><span style="display:flex;"><span>style_group <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>concat([GS,NEUTRAL,VS],axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
 </span></span></code></pre></div><p>먼저 코스피의 종목 중 style 그룹에 속해있는 종목들만 뽑아서 시가총액 합을 구해준다.<br>
 그리고 각 종목의 시가총액 비율을 누적합으로 구한 다음 0~33, 33~67, 68~100 으로 세 구간을 나눠준다.
 순서별로 성장그룹, 중립그룹, 가치그룹으로 분류해주면 된다.</p>
 <p>결과를 확인해보면</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 나눈 구간으로 실제 시총 비율 확인하기 </span>
-</span></span><span style="display:flex;"><span>growth_cap = style_group.groupby(<span style="color:#ed9d13">&#39;group&#39;</span>).get_group(<span style="color:#ed9d13">&#39;growth&#39;</span>).sum().시가총액
-</span></span><span style="display:flex;"><span>neutral_cap = style_group.groupby(<span style="color:#ed9d13">&#39;group&#39;</span>).get_group(<span style="color:#ed9d13">&#39;neutral&#39;</span>).sum().시가총액
-</span></span><span style="display:flex;"><span>value_cap = style_group.groupby(<span style="color:#ed9d13">&#39;group&#39;</span>).get_group(<span style="color:#ed9d13">&#39;value&#39;</span>).sum().시가총액
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 나눈 구간으로 실제 시총 비율 확인하기 </span>
+</span></span><span style="display:flex;"><span>growth_cap <span style="color:#f92672">=</span> style_group<span style="color:#f92672">.</span>groupby(<span style="color:#e6db74">&#39;group&#39;</span>)<span style="color:#f92672">.</span>get_group(<span style="color:#e6db74">&#39;growth&#39;</span>)<span style="color:#f92672">.</span>sum()<span style="color:#f92672">.</span>시가총액
+</span></span><span style="display:flex;"><span>neutral_cap <span style="color:#f92672">=</span> style_group<span style="color:#f92672">.</span>groupby(<span style="color:#e6db74">&#39;group&#39;</span>)<span style="color:#f92672">.</span>get_group(<span style="color:#e6db74">&#39;neutral&#39;</span>)<span style="color:#f92672">.</span>sum()<span style="color:#f92672">.</span>시가총액
+</span></span><span style="display:flex;"><span>value_cap <span style="color:#f92672">=</span> style_group<span style="color:#f92672">.</span>groupby(<span style="color:#e6db74">&#39;group&#39;</span>)<span style="color:#f92672">.</span>get_group(<span style="color:#e6db74">&#39;value&#39;</span>)<span style="color:#f92672">.</span>sum()<span style="color:#f92672">.</span>시가총액
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>((growth_cap/total_cap)*<span style="color:#3677a9">100</span>)
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>((neutral_cap/total_cap)*<span style="color:#3677a9">100</span>)
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>((value_cap/total_cap)*<span style="color:#3677a9">100</span>)
+</span></span><span style="display:flex;"><span>print((growth_cap<span style="color:#f92672">/</span>total_cap)<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>print((neutral_cap<span style="color:#f92672">/</span>total_cap)<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>print((value_cap<span style="color:#f92672">/</span>total_cap)<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 스타일별 종목 개수 확인</span>
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(<span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#39;</span>,style_group.group.value_counts())
-</span></span><span style="display:flex;"><span><span style="color:#ed9d13">&#39;&#39;&#39;
-</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">31.633205801881942
-</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">35.36428009359327
-</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">33.002514104524785
-</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">
-</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13"> group
-</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">value      393
-</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">growth     153
-</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">neutral     16
-</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">&#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 스타일별 종목 개수 확인</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>,style_group<span style="color:#f92672">.</span>group<span style="color:#f92672">.</span>value_counts())
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">31.633205801881942
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">35.36428009359327
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">33.002514104524785
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> group
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">value      393
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">growth     153
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">neutral     16
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;&#39;&#39;</span>
 </span></span></code></pre></div><p>각 그룹의 비율은 적절하게 삼등분된 걸 알 수 있다. 그룹별 속한 종목의 수를 보면 가치 종목이 절반 이상이고, 중립그룹은 16개로 그 수가 적은 것을 알 수 있다.
 22년도에 프로젝트 했을 때도 중립 그룹 수가 가장 적긴 했지만 그때는 76개로 지금보다 더 많았다.
 원인을 찾아보니, 중립그룹에 속한 삼성전자가의 시가총액 비율이 무려 27%나 차지했다. 그러다 보니 자연스럽게 중립그룹의 종목 수가 적을 수밖에..</p>
@@ -598,39 +599,39 @@ PER의 역수이다.
 <ol>
 <li>그룹별 점수 평균 구하기</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>n = NEUTRAL <span style="color:#999;font-style:italic"># 향후 작업 편의를 위해 중립그룹을 n으로 지정</span>
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(<span style="color:#ed9d13">f</span><span style="color:#ed9d13">&#39;AV_G :</span><span style="color:#ed9d13">{</span>VS.GS.mean()<span style="color:#ed9d13">}</span><span style="color:#ed9d13">&#39;</span>) <span style="color:#999;font-style:italic"># 가치그룹의 평균 성장점수</span>
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(<span style="color:#ed9d13">f</span><span style="color:#ed9d13">&#39;AV_V :</span><span style="color:#ed9d13">{</span>VS.VS.mean()<span style="color:#ed9d13">}</span><span style="color:#ed9d13">&#39;</span>) <span style="color:#999;font-style:italic"># 가치그룹의 평균 가치점수</span>
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(<span style="color:#ed9d13">f</span><span style="color:#ed9d13">&#39;AG_G :</span><span style="color:#ed9d13">{</span>GS.GS.mean()<span style="color:#ed9d13">}</span><span style="color:#ed9d13">&#39;</span>) <span style="color:#999;font-style:italic"># 성장그룹의 평균 성장점수</span>
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(<span style="color:#ed9d13">f</span><span style="color:#ed9d13">&#39;AG_V :</span><span style="color:#ed9d13">{</span>GS.VS.mean()<span style="color:#ed9d13">}</span><span style="color:#ed9d13">&#39;</span>) <span style="color:#999;font-style:italic"># 성장그룹의 평균 가치점수</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>n <span style="color:#f92672">=</span> NEUTRAL <span style="color:#75715e"># 향후 작업 편의를 위해 중립그룹을 n으로 지정</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;AV_G :</span><span style="color:#e6db74">{</span>VS<span style="color:#f92672">.</span>GS<span style="color:#f92672">.</span>mean()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>) <span style="color:#75715e"># 가치그룹의 평균 성장점수</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;AV_V :</span><span style="color:#e6db74">{</span>VS<span style="color:#f92672">.</span>VS<span style="color:#f92672">.</span>mean()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>) <span style="color:#75715e"># 가치그룹의 평균 가치점수</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;AG_G :</span><span style="color:#e6db74">{</span>GS<span style="color:#f92672">.</span>GS<span style="color:#f92672">.</span>mean()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>) <span style="color:#75715e"># 성장그룹의 평균 성장점수</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;AG_V :</span><span style="color:#e6db74">{</span>GS<span style="color:#f92672">.</span>VS<span style="color:#f92672">.</span>mean()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>) <span style="color:#75715e"># 성장그룹의 평균 가치점수</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ed9d13">&#39;&#39;&#39;
-</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">AV_G :-0.09683188730398012
-</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">AV_V :0.2589608805872862
-</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">AG_G :0.9230853249666636
-</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">AG_V :-0.4840451009196985
-</span></span></span><span style="display:flex;"><span><span style="color:#ed9d13">&#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">AV_G :-0.09683188730398012
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">AV_V :0.2589608805872862
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">AG_G :0.9230853249666636
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">AG_V :-0.4840451009196985
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;&#39;&#39;</span>
 </span></span></code></pre></div><ol start="2">
 <li>Midpoint Distance로 그룹 판단하기
 성장 그룹을 먼저 보면</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 첫번째 조건(IF) : 중립 종목의 성장 점수 &gt;= 성장그룹의 평균 성장점수 </span>
-</span></span><span style="display:flex;"><span>g_first = n[n[<span style="color:#ed9d13">&#39;GS&#39;</span>]&gt;=GS.GS.mean()] 
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 해당 종목의 MD : 중립종목의 가치점수 - 성장그룹의 평균 가치점수</span>
-</span></span><span style="display:flex;"><span>g_first[<span style="color:#ed9d13">&#39;D(G,X)&#39;</span>] = <span style="color:#24909d">abs</span>(g_first.iloc[:,<span style="color:#3677a9">0</span>]-GS.VS.mean())
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 첫번째 조건(IF) : 중립 종목의 성장 점수 &gt;= 성장그룹의 평균 성장점수 </span>
+</span></span><span style="display:flex;"><span>g_first <span style="color:#f92672">=</span> n[n[<span style="color:#e6db74">&#39;GS&#39;</span>]<span style="color:#f92672">&gt;=</span>GS<span style="color:#f92672">.</span>GS<span style="color:#f92672">.</span>mean()] 
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 해당 종목의 MD : 중립종목의 가치점수 - 성장그룹의 평균 가치점수</span>
+</span></span><span style="display:flex;"><span>g_first[<span style="color:#e6db74">&#39;D(G,X)&#39;</span>] <span style="color:#f92672">=</span> abs(g_first<span style="color:#f92672">.</span>iloc[:,<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span>GS<span style="color:#f92672">.</span>VS<span style="color:#f92672">.</span>mean())
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 두번째 조건(Else IF) : 중립 종목의 가치 점수 &lt;= -성장그룹의 평균 가치점수</span>
-</span></span><span style="display:flex;"><span>g_second = n[n[<span style="color:#ed9d13">&#39;VS&#39;</span>]&lt;= GS.VS.mean()]
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 해당 종목의 MD : 성장그룹의 평균 성장 점수 - 중립 종목의 성장점수</span>
-</span></span><span style="display:flex;"><span>g_second[<span style="color:#ed9d13">&#39;D(G,X)&#39;</span>] =<span style="color:#24909d">abs</span>(GS.GS.mean() - g_second.iloc[:,<span style="color:#3677a9">1</span>])
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 두번째 조건(Else IF) : 중립 종목의 가치 점수 &lt;= -성장그룹의 평균 가치점수</span>
+</span></span><span style="display:flex;"><span>g_second <span style="color:#f92672">=</span> n[n[<span style="color:#e6db74">&#39;VS&#39;</span>]<span style="color:#f92672">&lt;=</span> GS<span style="color:#f92672">.</span>VS<span style="color:#f92672">.</span>mean()]
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 해당 종목의 MD : 성장그룹의 평균 성장 점수 - 중립 종목의 성장점수</span>
+</span></span><span style="display:flex;"><span>g_second[<span style="color:#e6db74">&#39;D(G,X)&#39;</span>] <span style="color:#f92672">=</span>abs(GS<span style="color:#f92672">.</span>GS<span style="color:#f92672">.</span>mean() <span style="color:#f92672">-</span> g_second<span style="color:#f92672">.</span>iloc[:,<span style="color:#ae81ff">1</span>])
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 세번쨰 조건(Else) : 위의 두 가지 조건에 포함되지 않는 종목</span>
-</span></span><span style="display:flex;"><span>g_third = n.drop(index=(g_first.index.tolist() + g_second.index.tolist()))
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 해당 종목의 MD </span>
-</span></span><span style="display:flex;"><span>g_third[<span style="color:#ed9d13">&#39;D(G,X)&#39;</span>] = (((g_third.iloc[:,<span style="color:#3677a9">0</span>])-GS.VS.mean())**<span style="color:#3677a9">2</span> + (GS.GS.mean()-g_third.iloc[:,<span style="color:#3677a9">1</span>])**<span style="color:#3677a9">2</span>)**(<span style="color:#3677a9">1</span>/<span style="color:#3677a9">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 세번쨰 조건(Else) : 위의 두 가지 조건에 포함되지 않는 종목</span>
+</span></span><span style="display:flex;"><span>g_third <span style="color:#f92672">=</span> n<span style="color:#f92672">.</span>drop(index<span style="color:#f92672">=</span>(g_first<span style="color:#f92672">.</span>index<span style="color:#f92672">.</span>tolist() <span style="color:#f92672">+</span> g_second<span style="color:#f92672">.</span>index<span style="color:#f92672">.</span>tolist()))
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 해당 종목의 MD </span>
+</span></span><span style="display:flex;"><span>g_third[<span style="color:#e6db74">&#39;D(G,X)&#39;</span>] <span style="color:#f92672">=</span> (((g_third<span style="color:#f92672">.</span>iloc[:,<span style="color:#ae81ff">0</span>])<span style="color:#f92672">-</span>GS<span style="color:#f92672">.</span>VS<span style="color:#f92672">.</span>mean())<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> (GS<span style="color:#f92672">.</span>GS<span style="color:#f92672">.</span>mean()<span style="color:#f92672">-</span>g_third<span style="color:#f92672">.</span>iloc[:,<span style="color:#ae81ff">1</span>])<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">**</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># If/Else if/ Else 결과 합치기 </span>
-</span></span><span style="display:flex;"><span>ng_total = pd.concat([g_first,g_second,g_third],axis=<span style="color:#3677a9">0</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># If/Else if/ Else 결과 합치기 </span>
+</span></span><span style="display:flex;"><span>ng_total <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>concat([g_first,g_second,g_third],axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
 </span></span><span style="display:flex;"><span>ng_total
 </span></span></code></pre></div><p>중립종목들의 성장그룹과의 거리를 구한 결과이다.
 마지막 컬럼의 <code>D(G,X)</code> 를 보면 되며, 종목 X의 성장그룹G 와의 거리 D 를 뜻한다.</p>
@@ -640,20 +641,20 @@ PER의 역수이다.
   </a>
 </p>
 <p>동일한 방법으로 가치그룹과의 거리를 구해보면,</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># IF 에 해당</span>
-</span></span><span style="display:flex;"><span>v_first = n[n[<span style="color:#ed9d13">&#39;VS&#39;</span>] &gt;= VS.VS.mean()]
-</span></span><span style="display:flex;"><span>v_first[<span style="color:#ed9d13">&#39;D(V,X)&#39;</span>] = <span style="color:#24909d">abs</span>(v_first.iloc[:,<span style="color:#3677a9">1</span>]-(VS.GS.mean()))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># IF 에 해당</span>
+</span></span><span style="display:flex;"><span>v_first <span style="color:#f92672">=</span> n[n[<span style="color:#e6db74">&#39;VS&#39;</span>] <span style="color:#f92672">&gt;=</span> VS<span style="color:#f92672">.</span>VS<span style="color:#f92672">.</span>mean()]
+</span></span><span style="display:flex;"><span>v_first[<span style="color:#e6db74">&#39;D(V,X)&#39;</span>] <span style="color:#f92672">=</span> abs(v_first<span style="color:#f92672">.</span>iloc[:,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>(VS<span style="color:#f92672">.</span>GS<span style="color:#f92672">.</span>mean()))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># Else if 에 해당</span>
-</span></span><span style="display:flex;"><span>v_second = n[n[<span style="color:#ed9d13">&#39;GS&#39;</span>] &lt;= VS.GS.mean()]
-</span></span><span style="display:flex;"><span>v_second[<span style="color:#ed9d13">&#39;D(V,X)&#39;</span>] = <span style="color:#24909d">abs</span>(VS.VS.mean() - v_second.iloc[:,<span style="color:#3677a9">0</span>])
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Else if 에 해당</span>
+</span></span><span style="display:flex;"><span>v_second <span style="color:#f92672">=</span> n[n[<span style="color:#e6db74">&#39;GS&#39;</span>] <span style="color:#f92672">&lt;=</span> VS<span style="color:#f92672">.</span>GS<span style="color:#f92672">.</span>mean()]
+</span></span><span style="display:flex;"><span>v_second[<span style="color:#e6db74">&#39;D(V,X)&#39;</span>] <span style="color:#f92672">=</span> abs(VS<span style="color:#f92672">.</span>VS<span style="color:#f92672">.</span>mean() <span style="color:#f92672">-</span> v_second<span style="color:#f92672">.</span>iloc[:,<span style="color:#ae81ff">0</span>])
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># Else 에 해당</span>
-</span></span><span style="display:flex;"><span>v_thrid = n.drop(index=(v_first.index.tolist() + v_second.index.tolist()))
-</span></span><span style="display:flex;"><span>v_thrid[<span style="color:#ed9d13">&#39;D(V,X)&#39;</span>] = ((v_thrid.VS-VS.VS.mean())**<span style="color:#3677a9">2</span> + (VS.GS.mean()-v_thrid.GS)**<span style="color:#3677a9">2</span>)**(<span style="color:#3677a9">1</span>/<span style="color:#3677a9">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Else 에 해당</span>
+</span></span><span style="display:flex;"><span>v_thrid <span style="color:#f92672">=</span> n<span style="color:#f92672">.</span>drop(index<span style="color:#f92672">=</span>(v_first<span style="color:#f92672">.</span>index<span style="color:#f92672">.</span>tolist() <span style="color:#f92672">+</span> v_second<span style="color:#f92672">.</span>index<span style="color:#f92672">.</span>tolist()))
+</span></span><span style="display:flex;"><span>v_thrid[<span style="color:#e6db74">&#39;D(V,X)&#39;</span>] <span style="color:#f92672">=</span> ((v_thrid<span style="color:#f92672">.</span>VS<span style="color:#f92672">-</span>VS<span style="color:#f92672">.</span>VS<span style="color:#f92672">.</span>mean())<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> (VS<span style="color:#f92672">.</span>GS<span style="color:#f92672">.</span>mean()<span style="color:#f92672">-</span>v_thrid<span style="color:#f92672">.</span>GS)<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">**</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># IF/Else if/Else 합치기</span>
-</span></span><span style="display:flex;"><span>nv_total = pd.concat([v_first,v_second,v_thrid],axis=<span style="color:#3677a9">0</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># IF/Else if/Else 합치기</span>
+</span></span><span style="display:flex;"><span>nv_total <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>concat([v_first,v_second,v_thrid],axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
 </span></span><span style="display:flex;"><span>nv_total
 </span></span></code></pre></div><p>마지막 컬럼 <code>D(V,X)</code> 로 결과를 확인할 수 있다.</p>
 <p align="center">
@@ -680,12 +681,12 @@ PER의 역수이다.
 </li>
 </ul>
 <p>로 정의한다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># ng,nv 데이터 합치기 </span>
-</span></span><span style="display:flex;"><span>nw = pd.merge(ng_total[<span style="color:#ed9d13">&#39;D(G,X)&#39;</span>],nv_total[<span style="color:#ed9d13">&#39;D(V,X)&#39;</span>], left_index=<span style="color:#6ab825;font-weight:bold">True</span>,right_index=<span style="color:#6ab825;font-weight:bold">True</span>, how=<span style="color:#ed9d13">&#39;inner&#39;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># ng,nv 데이터 합치기 </span>
+</span></span><span style="display:flex;"><span>nw <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>merge(ng_total[<span style="color:#e6db74">&#39;D(G,X)&#39;</span>],nv_total[<span style="color:#e6db74">&#39;D(V,X)&#39;</span>], left_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,right_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, how<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;inner&#39;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># weight 구하기</span>
-</span></span><span style="display:flex;"><span>nw[<span style="color:#ed9d13">&#39;W(V,X)&#39;</span>] = nw[<span style="color:#ed9d13">&#39;D(G,X)&#39;</span>]/(nw[<span style="color:#ed9d13">&#39;D(G,X)&#39;</span>]+nw[<span style="color:#ed9d13">&#39;D(V,X)&#39;</span>])
-</span></span><span style="display:flex;"><span>nw[<span style="color:#ed9d13">&#39;W(G,X)&#39;</span>] = nw[<span style="color:#ed9d13">&#39;D(V,X)&#39;</span>]/(nw[<span style="color:#ed9d13">&#39;D(G,X)&#39;</span>]+nw[<span style="color:#ed9d13">&#39;D(V,X)&#39;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># weight 구하기</span>
+</span></span><span style="display:flex;"><span>nw[<span style="color:#e6db74">&#39;W(V,X)&#39;</span>] <span style="color:#f92672">=</span> nw[<span style="color:#e6db74">&#39;D(G,X)&#39;</span>]<span style="color:#f92672">/</span>(nw[<span style="color:#e6db74">&#39;D(G,X)&#39;</span>]<span style="color:#f92672">+</span>nw[<span style="color:#e6db74">&#39;D(V,X)&#39;</span>])
+</span></span><span style="display:flex;"><span>nw[<span style="color:#e6db74">&#39;W(G,X)&#39;</span>] <span style="color:#f92672">=</span> nw[<span style="color:#e6db74">&#39;D(V,X)&#39;</span>]<span style="color:#f92672">/</span>(nw[<span style="color:#e6db74">&#39;D(G,X)&#39;</span>]<span style="color:#f92672">+</span>nw[<span style="color:#e6db74">&#39;D(V,X)&#39;</span>])
 </span></span></code></pre></div><p>이렇게 구한 다음 W(V,X) &gt; W(G,X) 라면 Value 그룹, W(V,X) &lt; W(G,X) 라면 Growth 그룹으로 분류한다.</p>
 <p align="center">
   <a href="/images/Investment/n_result.png" data-lightbox="image-set" >
@@ -756,21 +757,31 @@ PER의 역수이다.
     <footer
   class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
 >
-  <div class="mr-auto">
-    &copy; 2024
-    <a class="link" href="/">Ahora</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >✎ Paper</a
-  >
+<div class="mr-auto">
+  &copy; 2024
+  <a class="link" href="/">Ahora</a>
+</div>
+<a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+>Powered by Hugo️️</a
+>️
+<a
+class="link"
+href="https://github.com/nanxiaobei/hugo-paper"
+rel="noopener"
+target="_blank"
+>✎ Paper</a
+>
 </footer>
+
+<script src="/js/highlight.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    document.querySelectorAll("pre code").forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
 
     
     

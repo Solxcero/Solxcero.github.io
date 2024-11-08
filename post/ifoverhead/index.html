@@ -78,7 +78,6 @@
   
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
-
   
   <title>IF문의 오버헤드 - Ahora</title>
 
@@ -200,6 +199,8 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
   <link rel="canonical" href="/post/ifoverhead/" />
   
   
+  <link rel="stylesheet" href="/css/highlight.css">
+  <link rel="stylesheet" href="/css/custom.css">
 </head>
 
   <body class="text-black duration-200 ease-out dark:text-white">
@@ -353,37 +354,37 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
       <h2 id="백준-boj거리-문제를-풀다가">백준 BOJ거리 문제를 풀다가</h2>
 <p>BOJ 거리 문제는 DP 알고리즘 문제로 B,O,J 블록을 순서대로 점프하면서 최소한의 에너지로 종료지점에 도착해야하는 문제이다. <a href="https://www.acmicpc.net/problem/12026">문제링크</a></p>
 <p>아래는 내가 짠 코드이다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">sys</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> sys
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#24909d">input</span> = sys.stdin.readline
+</span></span><span style="display:flex;"><span>input <span style="color:#f92672">=</span> sys<span style="color:#f92672">.</span>stdin<span style="color:#f92672">.</span>readline
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>N = <span style="color:#24909d">int</span>(<span style="color:#24909d">input</span>())
-</span></span><span style="display:flex;"><span>blocks = <span style="color:#24909d">str</span>(<span style="color:#24909d">input</span>().strip())
+</span></span><span style="display:flex;"><span>N <span style="color:#f92672">=</span> int(input())
+</span></span><span style="display:flex;"><span>blocks <span style="color:#f92672">=</span> str(input()<span style="color:#f92672">.</span>strip())
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>jump_order = {<span style="color:#ed9d13">&#39;B&#39;</span>:<span style="color:#ed9d13">&#39;O&#39;</span>,<span style="color:#ed9d13">&#39;O&#39;</span>:<span style="color:#ed9d13">&#39;J&#39;</span>,<span style="color:#ed9d13">&#39;J&#39;</span>:<span style="color:#ed9d13">&#39;B&#39;</span>}
+</span></span><span style="display:flex;"><span>jump_order <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;B&#39;</span>:<span style="color:#e6db74">&#39;O&#39;</span>,<span style="color:#e6db74">&#39;O&#39;</span>:<span style="color:#e6db74">&#39;J&#39;</span>,<span style="color:#e6db74">&#39;J&#39;</span>:<span style="color:#e6db74">&#39;B&#39;</span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>max_energy = <span style="color:#3677a9">999</span>*<span style="color:#3677a9">999</span> + <span style="color:#3677a9">1</span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 소요된 에너지를 저장 -&gt; 최솟값 업데이트를 위해 최댓값으로 저장</span>
-</span></span><span style="display:flex;"><span>dp = [max_energy] * N
-</span></span><span style="display:flex;"><span>dp[<span style="color:#3677a9">0</span>] = <span style="color:#3677a9">0</span>  <span style="color:#999;font-style:italic"># 처음 위치에서 에너지 0 -&gt; 즉, dp[i] 는 i칸에 가기 위한 에너지의 최솟값</span>
+</span></span><span style="display:flex;"><span>max_energy <span style="color:#f92672">=</span> <span style="color:#ae81ff">999</span><span style="color:#f92672">*</span><span style="color:#ae81ff">999</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 소요된 에너지를 저장 -&gt; 최솟값 업데이트를 위해 최댓값으로 저장</span>
+</span></span><span style="display:flex;"><span>dp <span style="color:#f92672">=</span> [max_energy] <span style="color:#f92672">*</span> N
+</span></span><span style="display:flex;"><span>dp[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  <span style="color:#75715e"># 처음 위치에서 에너지 0 -&gt; 즉, dp[i] 는 i칸에 가기 위한 에너지의 최솟값</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">range</span>(N):
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">if</span> dp[i] == max_energy:
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">continue</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> j <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">range</span>(i+<span style="color:#3677a9">1</span>,N):
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> blocks[j] == jump_order[blocks[i]]:
-</span></span><span style="display:flex;"><span>            dp[j] = <span style="color:#24909d">min</span>(dp[j],(j-i)*(j-i)+dp[i])
-</span></span><span style="display:flex;"><span>            <span style="color:#999;font-style:italic"># print(dp)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(N):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> dp[i] <span style="color:#f92672">==</span> max_energy:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,N):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> blocks[j] <span style="color:#f92672">==</span> jump_order[blocks[i]]:
+</span></span><span style="display:flex;"><span>            dp[j] <span style="color:#f92672">=</span> min(dp[j],(j<span style="color:#f92672">-</span>i)<span style="color:#f92672">*</span>(j<span style="color:#f92672">-</span>i)<span style="color:#f92672">+</span>dp[i])
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># print(dp)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(dp[-<span style="color:#3677a9">1</span>] <span style="color:#6ab825;font-weight:bold">if</span> dp[-<span style="color:#3677a9">1</span>] != max_energy <span style="color:#6ab825;font-weight:bold">else</span> -<span style="color:#3677a9">1</span>)
+</span></span><span style="display:flex;"><span>print(dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">if</span> dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> max_energy <span style="color:#66d9ef">else</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
 </span></span></code></pre></div><p>간단히 설명하자면 미리 최댓값으로 초기화한 배열에서 연산을 반복하면서 최솟값으로 업데이트 하는 방법을 구현한 것이다.</p>
 <h2 id="나는-분명-효율적인-코드를-짰는데">나는 분명 효율적인 코드를 짰는데..?</h2>
 <p>알고리즘 문제를 풀다보면 수많은 시간 초과와 메모리 초과 에러를 만나게 된다.<br>
 그러다보면 코드를 짤 때 최대한 불필요한 연산을 줄이는 효율적인 코드를 짜려고 노력을 하게 된다.<br>
 위의 내가 짠 코드도 그러한 고민을 거쳐서 나온 코드이다.</p>
 <p>특히</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">if</span> dp[i] == max_energy:
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">continue</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> dp[i] <span style="color:#f92672">==</span> max_energy:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">continue</span>
 </span></span></code></pre></div><p>이 부분은 블록을 점프할 때, 블록 값이 <code>max_energy</code> 라면 애초에 점프할 수 없는 블록이기에 &ldquo;아래의 반복문 연산을 하지 않아도 된다&rdquo; 라는 제한 조건을 걸어 둔 것이다.
 &ldquo;코드 두 줄로 불필요한 연산을 줄였으니 분명 시간을 단축시켰겠지?!&rdquo;  라는 설렘을 가지고 해당 조건문을 없애고 다시 코드를 제출해 봤다.</p>
 <p><img src="/images/DailyCoding/12026.png" alt="코드제출결과화면"></p>
@@ -408,50 +409,50 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
 제출 결과를 보면 메모리 측면에서는 성능 차이가 없었기 때문에 결국 <code>조건문 오버헤드</code>  이 친구가 범인이었다.<br>
 (조건문 오버헤드는 단순히 조건문을 검사하는 비용뿐 아니라 메모리 접근 패턴의 일관성에도 영향을 주는 것 처럼 보인다.)</p>
 <h2 id="그래서-제가-직접-해보았습니다">그래서 제가 직접 해보았습니다.</h2>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">time</span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">random</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> random
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">with_condition</span>(N, blocks):
-</span></span><span style="display:flex;"><span>    jump_order = {<span style="color:#ed9d13">&#39;B&#39;</span>: <span style="color:#ed9d13">&#39;O&#39;</span>, <span style="color:#ed9d13">&#39;O&#39;</span>: <span style="color:#ed9d13">&#39;J&#39;</span>, <span style="color:#ed9d13">&#39;J&#39;</span>: <span style="color:#ed9d13">&#39;B&#39;</span>}
-</span></span><span style="display:flex;"><span>    max_energy = <span style="color:#3677a9">999</span>*<span style="color:#3677a9">999</span> + <span style="color:#3677a9">1</span>
-</span></span><span style="display:flex;"><span>    dp = [max_energy] * N
-</span></span><span style="display:flex;"><span>    dp[<span style="color:#3677a9">0</span>] = <span style="color:#3677a9">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">with_condition</span>(N, blocks):
+</span></span><span style="display:flex;"><span>    jump_order <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;B&#39;</span>: <span style="color:#e6db74">&#39;O&#39;</span>, <span style="color:#e6db74">&#39;O&#39;</span>: <span style="color:#e6db74">&#39;J&#39;</span>, <span style="color:#e6db74">&#39;J&#39;</span>: <span style="color:#e6db74">&#39;B&#39;</span>}
+</span></span><span style="display:flex;"><span>    max_energy <span style="color:#f92672">=</span> <span style="color:#ae81ff">999</span><span style="color:#f92672">*</span><span style="color:#ae81ff">999</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    dp <span style="color:#f92672">=</span> [max_energy] <span style="color:#f92672">*</span> N
+</span></span><span style="display:flex;"><span>    dp[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">range</span>(N):
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">if</span> dp[i] == max_energy:
-</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">continue</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">for</span> j <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">range</span>(i + <span style="color:#3677a9">1</span>, N):
-</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">if</span> blocks[j] == jump_order[blocks[i]]:
-</span></span><span style="display:flex;"><span>                dp[j] = <span style="color:#24909d">min</span>(dp[j], (j - i) * (j - i) + dp[i])
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> dp[-<span style="color:#3677a9">1</span>] <span style="color:#6ab825;font-weight:bold">if</span> dp[-<span style="color:#3677a9">1</span>] != max_energy <span style="color:#6ab825;font-weight:bold">else</span> -<span style="color:#3677a9">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(N):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> dp[i] <span style="color:#f92672">==</span> max_energy:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, N):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> blocks[j] <span style="color:#f92672">==</span> jump_order[blocks[i]]:
+</span></span><span style="display:flex;"><span>                dp[j] <span style="color:#f92672">=</span> min(dp[j], (j <span style="color:#f92672">-</span> i) <span style="color:#f92672">*</span> (j <span style="color:#f92672">-</span> i) <span style="color:#f92672">+</span> dp[i])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">if</span> dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> max_energy <span style="color:#66d9ef">else</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">without_condition</span>(N, blocks):
-</span></span><span style="display:flex;"><span>    jump_order = {<span style="color:#ed9d13">&#39;B&#39;</span>: <span style="color:#ed9d13">&#39;O&#39;</span>, <span style="color:#ed9d13">&#39;O&#39;</span>: <span style="color:#ed9d13">&#39;J&#39;</span>, <span style="color:#ed9d13">&#39;J&#39;</span>: <span style="color:#ed9d13">&#39;B&#39;</span>}
-</span></span><span style="display:flex;"><span>    max_energy = <span style="color:#3677a9">999</span>*<span style="color:#3677a9">999</span> + <span style="color:#3677a9">1</span>
-</span></span><span style="display:flex;"><span>    dp = [max_energy] * N
-</span></span><span style="display:flex;"><span>    dp[<span style="color:#3677a9">0</span>] = <span style="color:#3677a9">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">without_condition</span>(N, blocks):
+</span></span><span style="display:flex;"><span>    jump_order <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;B&#39;</span>: <span style="color:#e6db74">&#39;O&#39;</span>, <span style="color:#e6db74">&#39;O&#39;</span>: <span style="color:#e6db74">&#39;J&#39;</span>, <span style="color:#e6db74">&#39;J&#39;</span>: <span style="color:#e6db74">&#39;B&#39;</span>}
+</span></span><span style="display:flex;"><span>    max_energy <span style="color:#f92672">=</span> <span style="color:#ae81ff">999</span><span style="color:#f92672">*</span><span style="color:#ae81ff">999</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    dp <span style="color:#f92672">=</span> [max_energy] <span style="color:#f92672">*</span> N
+</span></span><span style="display:flex;"><span>    dp[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">range</span>(N):
-</span></span><span style="display:flex;"><span>        <span style="color:#6ab825;font-weight:bold">for</span> j <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">range</span>(i + <span style="color:#3677a9">1</span>, N):
-</span></span><span style="display:flex;"><span>            <span style="color:#6ab825;font-weight:bold">if</span> blocks[j] == jump_order[blocks[i]]:
-</span></span><span style="display:flex;"><span>                dp[j] = <span style="color:#24909d">min</span>(dp[j], (j - i) * (j - i) + dp[i])
-</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">return</span> dp[-<span style="color:#3677a9">1</span>] <span style="color:#6ab825;font-weight:bold">if</span> dp[-<span style="color:#3677a9">1</span>] != max_energy <span style="color:#6ab825;font-weight:bold">else</span> -<span style="color:#3677a9">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(N):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, N):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> blocks[j] <span style="color:#f92672">==</span> jump_order[blocks[i]]:
+</span></span><span style="display:flex;"><span>                dp[j] <span style="color:#f92672">=</span> min(dp[j], (j <span style="color:#f92672">-</span> i) <span style="color:#f92672">*</span> (j <span style="color:#f92672">-</span> i) <span style="color:#f92672">+</span> dp[i])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">if</span> dp[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> max_energy <span style="color:#66d9ef">else</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 랜덤으로 BOJ 블록 생성하기 </span>
-</span></span><span style="display:flex;"><span>N = <span style="color:#3677a9">10000</span>
-</span></span><span style="display:flex;"><span>blocks = <span style="color:#ed9d13">&#39;&#39;</span>.join(random.choice(<span style="color:#ed9d13">&#39;BOJ&#39;</span>) <span style="color:#6ab825;font-weight:bold">for</span> _ <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">range</span>(N))
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 랜덤으로 BOJ 블록 생성하기 </span>
+</span></span><span style="display:flex;"><span>N <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>
+</span></span><span style="display:flex;"><span>blocks <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(random<span style="color:#f92672">.</span>choice(<span style="color:#e6db74">&#39;BOJ&#39;</span>) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(N))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 조건문 있는 경우</span>
-</span></span><span style="display:flex;"><span>start_time = time.time()
-</span></span><span style="display:flex;"><span>result_with_condition = with_condition(N, blocks)
-</span></span><span style="display:flex;"><span>end_time = time.time()
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(<span style="color:#ed9d13">f</span><span style="color:#ed9d13">&#34;IF문 있음: </span><span style="color:#ed9d13">{</span>result_with_condition<span style="color:#ed9d13">}</span><span style="color:#ed9d13">, Time: </span><span style="color:#ed9d13">{</span>end_time - start_time<span style="color:#ed9d13">:</span><span style="color:#ed9d13">.6f</span><span style="color:#ed9d13">}</span><span style="color:#ed9d13"> seconds&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 조건문 있는 경우</span>
+</span></span><span style="display:flex;"><span>start_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>result_with_condition <span style="color:#f92672">=</span> with_condition(N, blocks)
+</span></span><span style="display:flex;"><span>end_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;IF문 있음: </span><span style="color:#e6db74">{</span>result_with_condition<span style="color:#e6db74">}</span><span style="color:#e6db74">, Time: </span><span style="color:#e6db74">{</span>end_time <span style="color:#f92672">-</span> start_time<span style="color:#e6db74">:</span><span style="color:#e6db74">.6f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> seconds&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#999;font-style:italic"># 조건문 없는 경우 </span>
-</span></span><span style="display:flex;"><span>start_time = time.time()
-</span></span><span style="display:flex;"><span>result_without_condition = without_condition(N, blocks)
-</span></span><span style="display:flex;"><span>end_time = time.time()
-</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(<span style="color:#ed9d13">f</span><span style="color:#ed9d13">&#34;IF문 없음: </span><span style="color:#ed9d13">{</span>result_without_condition<span style="color:#ed9d13">}</span><span style="color:#ed9d13">, Time: </span><span style="color:#ed9d13">{</span>end_time - start_time<span style="color:#ed9d13">:</span><span style="color:#ed9d13">.6f</span><span style="color:#ed9d13">}</span><span style="color:#ed9d13"> seconds&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 조건문 없는 경우 </span>
+</span></span><span style="display:flex;"><span>start_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>result_without_condition <span style="color:#f92672">=</span> without_condition(N, blocks)
+</span></span><span style="display:flex;"><span>end_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;IF문 없음: </span><span style="color:#e6db74">{</span>result_without_condition<span style="color:#e6db74">}</span><span style="color:#e6db74">, Time: </span><span style="color:#e6db74">{</span>end_time <span style="color:#f92672">-</span> start_time<span style="color:#e6db74">:</span><span style="color:#e6db74">.6f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> seconds&#34;</span>)
 </span></span></code></pre></div><p><code>with_condition</code>  함수와 <code>without_condition</code> 함수를 만들어서 실행시간을 측정해보았다.<br>
 이때 BOJ 블록은 그냥 랜덤으로 생성하되 일정 시간이 걸려야 하므로 블록길이 N을 크게 주었다.</p>
 <p>기대되는 실행 결과는~~~</p>
@@ -463,12 +464,12 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
 <h2 id="그래서-제가-직접-해보았습니다-2">그래서 제가 직접 해보았습니다 2</h2>
 <p>blocks 데이터를 두 가지 경우로 만들어 보았다.</p>
 <h4 id="조건문이-있는게-도움이-되는-경우">조건문이 있는게 도움이 되는 경우</h4>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>blocks = <span style="color:#ed9d13">&#39;BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJBOJ&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>blocks <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJBOJ&#39;</span>
 </span></span></code></pre></div><p>BOJ가 연속적이지 않은 경우이다.
 <img src="/images/DailyCoding/12026_3.png" alt="결과3">
 처음 B에서 다음 O가 나올 때까지 <code>dp[i] == max_energy</code> 조건에 걸려 반복문 연산을 다 건너뛰기 때문에 if 문이 있는 코드가 더 빠르게 통과한다.</p>
 <h4 id="조건문이-없는게-나은-경우">조건문이 없는게 나은 경우</h4>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>blocks = <span style="color:#ed9d13">&#39;BOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJJ&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>blocks <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;BOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJBOJJ&#39;</span>
 </span></span></code></pre></div><p>BOJ가 연속적인 패턴으로 등장하는 경우이다.
 <img src="/images/DailyCoding/12026_4.png" alt="결과4">
 블록의 매 순서가 IF문에 해당하지 않아 거의 모든 순서에서 반복문을 실행해야 한다.  따라서 IF 문의 역할이 미미하다.</p>
@@ -520,21 +521,31 @@ import sys input = sys.stdin.readline N = int(input()) blocks = str(input().stri
     <footer
   class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
 >
-  <div class="mr-auto">
-    &copy; 2024
-    <a class="link" href="/">Ahora</a>
-  </div>
-  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
-    >Powered by Hugo️️</a
-  >️
-  <a
-    class="link"
-    href="https://github.com/nanxiaobei/hugo-paper"
-    rel="noopener"
-    target="_blank"
-    >✎ Paper</a
-  >
+<div class="mr-auto">
+  &copy; 2024
+  <a class="link" href="/">Ahora</a>
+</div>
+<a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+>Powered by Hugo️️</a
+>️
+<a
+class="link"
+href="https://github.com/nanxiaobei/hugo-paper"
+rel="noopener"
+target="_blank"
+>✎ Paper</a
+>
 </footer>
+
+<script src="/js/highlight.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    document.querySelectorAll("pre code").forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
 
     
     
