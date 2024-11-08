@@ -1,0 +1,559 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #fff"
+  lang="en-us"
+>
+<head>
+  
+  <link rel="stylesheet" href="/css/custom.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+    
+
+
+</head>
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+
+  
+  <title>드디어 @classmethod를 써본다 - Ahora</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  
+  <meta name="description" content="배운 것을 실제로 내가 하고자하는 일에 적용했을 때의 쾌감이란
+@classmethod는 하나의 객체 내에서만 사용되는 것이 아니라 해당 클래스로 생성된 인스턴스 전체가 공유하는 함수라고 배웠었다.
+물론 간단한 실습은 했었지만 실제로 언제 사용하게 될지 궁금했었는데, 이번에 연구과제 프로젝트를 수행하면서 드디어 써봤다 우히히힣ㅎㅎ
+왜 쓰게 됐냐면,
+화력발전소에는 A~F 까지 총 6대의 미분기가 존재한다.
+그래서 당연히 미분기 Class를 만들고, 6개의 객체를 생성해서 각 미분기에 부여된 id 값으로 테이블에서 조회 후 계산 결과를 다시 테이블에 저장하고 있었다." />
+  <meta name="author" content="덕후의 즐거운 인생" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+
+  
+  
+  
+  
+  
+  <link rel="preload" as="image" href="/theme.png" />
+
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://github.com/Solxcero/Solxcero.github.io/assets/99321739/4ccb5f75-725b-4360-b1d6-6b1c99072d56" />
+  
+  
+
+  
+  
+  <link rel="preload" as="image" href="/github.svg" />
+  
+  
+
+  
+  
+  <script
+    defer
+    src="/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+  
+  
+  
+
+  
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.124.0">
+
+  
+  
+  
+  
+  
+  <meta itemprop="name" content="드디어 @classmethod를 써본다">
+<meta itemprop="description" content="배운 것을 실제로 내가 하고자하는 일에 적용했을 때의 쾌감이란
+@classmethod는 하나의 객체 내에서만 사용되는 것이 아니라 해당 클래스로 생성된 인스턴스 전체가 공유하는 함수라고 배웠었다.
+물론 간단한 실습은 했었지만 실제로 언제 사용하게 될지 궁금했었는데, 이번에 연구과제 프로젝트를 수행하면서 드디어 써봤다 우히히힣ㅎㅎ
+왜 쓰게 됐냐면,
+화력발전소에는 A~F 까지 총 6대의 미분기가 존재한다.
+그래서 당연히 미분기 Class를 만들고, 6개의 객체를 생성해서 각 미분기에 부여된 id 값으로 테이블에서 조회 후 계산 결과를 다시 테이블에 저장하고 있었다."><meta itemprop="datePublished" content="2024-11-01T10:45:44+09:00" />
+<meta itemprop="dateModified" content="2024-11-01T10:45:44+09:00" />
+<meta itemprop="wordCount" content="331">
+<meta itemprop="keywords" content="" />
+  
+  <meta property="og:title" content="드디어 @classmethod를 써본다" />
+<meta property="og:description" content="배운 것을 실제로 내가 하고자하는 일에 적용했을 때의 쾌감이란
+@classmethod는 하나의 객체 내에서만 사용되는 것이 아니라 해당 클래스로 생성된 인스턴스 전체가 공유하는 함수라고 배웠었다.
+물론 간단한 실습은 했었지만 실제로 언제 사용하게 될지 궁금했었는데, 이번에 연구과제 프로젝트를 수행하면서 드디어 써봤다 우히히힣ㅎㅎ
+왜 쓰게 됐냐면,
+화력발전소에는 A~F 까지 총 6대의 미분기가 존재한다.
+그래서 당연히 미분기 Class를 만들고, 6개의 객체를 생성해서 각 미분기에 부여된 id 값으로 테이블에서 조회 후 계산 결과를 다시 테이블에 저장하고 있었다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/classmethod/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-11-01T10:45:44+09:00" />
+<meta property="article:modified_time" content="2024-11-01T10:45:44+09:00" />
+
+  
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="드디어 @classmethod를 써본다"/>
+<meta name="twitter:description" content="배운 것을 실제로 내가 하고자하는 일에 적용했을 때의 쾌감이란
+@classmethod는 하나의 객체 내에서만 사용되는 것이 아니라 해당 클래스로 생성된 인스턴스 전체가 공유하는 함수라고 배웠었다.
+물론 간단한 실습은 했었지만 실제로 언제 사용하게 될지 궁금했었는데, 이번에 연구과제 프로젝트를 수행하면서 드디어 써봤다 우히히힣ㅎㅎ
+왜 쓰게 됐냐면,
+화력발전소에는 A~F 까지 총 6대의 미분기가 존재한다.
+그래서 당연히 미분기 Class를 만들고, 6개의 객체를 생성해서 각 미분기에 부여된 id 값으로 테이블에서 조회 후 계산 결과를 다시 테이블에 저장하고 있었다."/>
+
+  
+  
+  
+  <link rel="canonical" href="/post/classmethod/" />
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="/"
+      >Ahora</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#fff'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/categories/"
+        >Categories</a
+      >
+      
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/Solxcero"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 pb-16 pt-12 dark:prose-invert"
+    >
+      
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
+    
+    <nav id="TableOfContents"></nav>
+  </aside>
+</div>
+
+  <article>
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">드디어 @classmethod를 써본다</h1>
+
+      
+      <div class="text-sm antialiased opacity-60">
+        
+        <time>Nov 1, 2024</time>
+        
+        
+        
+        
+      </div>
+      
+    </header>
+    
+    <section>
+      <p>배운 것을 실제로 내가 하고자하는 일에 적용했을 때의 쾌감이란</p>
+<p><code>@classmethod</code>는 하나의 객체 내에서만 사용되는 것이 아니라 해당 클래스로 생성된 인스턴스 전체가 공유하는 함수라고 배웠었다.<br>
+물론 간단한 실습은 했었지만 실제로 언제 사용하게 될지 궁금했었는데, 이번에 연구과제 프로젝트를 수행하면서 드디어 써봤다 우히히힣ㅎㅎ</p>
+<p>왜 쓰게 됐냐면,<br>
+화력발전소에는 A~F 까지 총 6대의 미분기가 존재한다.<br>
+그래서 당연히 미분기 Class를 만들고, 6개의 객체를 생성해서 각 미분기에 부여된 id 값으로 테이블에서 조회 후 계산 결과를 다시 테이블에 저장하고 있었다.</p>
+<p>이때 서버를 실행하면 가장 마지막에 저장된 datetime 이나 id 값을 기준으로 연산이 진행되어야 하는데,
+특정 테이블의 경우 미분기 객체와 상관없이 id 번호가 부여되고 있었다. (DB는 내가 만든게 아니라 하핳)</p>
+<p>즉 미분기 A~F가 id 번호를 공유해서 사용해야되는 상황이었다.</p>
+<p>하나의 클래스에서 생성된 모든 객체가 특정 값을 공유한다? 이거슨 클래스 메서드잖아?
+바아로오 적용</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># pulvbr.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">PulvPhysic</span>:
+</span></span><span style="display:flex;"><span>    bias_counter = <span style="color:#3677a9">0</span> 
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ffa500">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">initialize_counter</span>(cls, start_value):
+</span></span><span style="display:flex;"><span>        cls.bias_counter = start_value
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">update_bias</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#999;font-style:italic"># 그외 생략</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#24909d">type</span>(self).bias_counter += <span style="color:#3677a9">1</span>
+</span></span><span style="display:flex;"><span>        bias_id = <span style="color:#24909d">type</span>(self).bias_counter
+</span></span></code></pre></div><p>bias_counter라는 변수를 생성하여 모든 PulvPhysic 객체에서 해당 변수를 공유할 수 있도록 하였다.
+<code>@classmethod</code> 로 bias_counter를 초기화 하는 함수를 만들었다. <code>cls</code>를 사용하여 클래스 변수에 접근하여 초기화 하며 이 메서드는 인스턴스가 아니라 클래스 차원에서 직접 호출한다.</p>
+<p>실질적으로 bias_counter를 증가시키는 update_bias 함수가 있다.
+update_bias 함수가 각 객체에서 호출되면 bias_counter는 해당 클래스 내에서 증가하여 그 값을 모든 객체가 공유하게 된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#999;font-style:italic"># MyServer.py</span>
+</span></span><span style="display:flex;"><span>initial_pulv_bias_value = DB_Process(db_connector,<span style="color:#ed9d13">&#39;A&#39;</span>).get_last_bias()
+</span></span><span style="display:flex;"><span>PulvPhysic.initialize_counter(initial_pulv_bias_value)
+</span></span></code></pre></div><p>요렇게 사용을 하면 된다.
+초기화할 bias_id를 DB 연산 모듈에 작성해둔 <code>get_last_bias()</code> 로 가져온 뒤 해당 값을 PulvPhysic의 bias_counter 초기 값으로 넘긴다.
+이렇게 하면 MultiThread로 생성된 각 Pulv 객체들이 update_bias 를 호출할 때 마다 bias_id를 업데이트한다.</p>
+<p>아이 재미따~~</p>
+<p>추가로 <code>type(self)</code> 에 대해서는 잘 몰랐었는데 이번에 작업하면서 제대로 이해할 수 있었다.<br>
+내가 만들어본 예제이다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Example</span>:
+</span></span><span style="display:flex;"><span>    counter = <span style="color:#3677a9">0</span>  <span style="color:#999;font-style:italic"># 클래스 변수</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#ffa500">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">initialize_counter</span>(cls, start_value):
+</span></span><span style="display:flex;"><span>        cls.counter = start_value
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">increment_counter</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#24909d">type</span>(self).counter += <span style="color:#3677a9">1</span>      <span style="color:#999;font-style:italic"># 클래스 변수 증가</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">increment_counter_alternative</span>(self):
+</span></span><span style="display:flex;"><span>        self.counter += <span style="color:#3677a9">1</span>           <span style="color:#999;font-style:italic"># 인스턴스 변수 증가         </span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>Example.initialize_counter(<span style="color:#3677a9">2</span>)       
+</span></span><span style="display:flex;"><span>ex = Example()
+</span></span><span style="display:flex;"><span>ex2 = Example()
+</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(ex.counter, ex2.counter) <span style="color:#999;font-style:italic"># 2 2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ex.increment_counter()
+</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(ex.counter) <span style="color:#999;font-style:italic"># 3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ex2.increment_counter()
+</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(ex2.counter) <span style="color:#999;font-style:italic"># 4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ex.increment_counter_alternative()
+</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(ex.counter) <span style="color:#999;font-style:italic"># 5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ex2.increment_counter_alternative()
+</span></span><span style="display:flex;"><span><span style="color:#24909d">print</span>(ex2.counter) <span style="color:#999;font-style:italic"># 5</span>
+</span></span></code></pre></div><p><code>type(self).counter</code> 는 <code>Example.counter</code> 와 동일하다는 것을 알 수 있다.</p>
+
+    </section> 
+
+    
+    
+
+    
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+      
+      
+      <a
+        class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="/post/styleindex/"
+        ><span>Style 배분 전략</span><span class="ml-1.5">→</span></a
+      >
+      
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+
+    
+
+
+    
+  </article>
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2024
+    <a class="link" href="/">Ahora</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >✎ Paper</a
+  >
+</footer>
+
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+    
+
+     
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var tocLinks = document.querySelectorAll('.toc a');
+            var sections = [];
+
+            
+            var options = {
+                root: null, 
+                rootMargin: '0px 0px -50% 0px', 
+                threshold: 0 
+            };
+
+            
+            tocLinks.forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href && href.startsWith("#")) {
+                    var targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        sections.push({ link: link, section: targetSection });
+                    }
+                }
+            });
+
+            
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    var targetSection = entry.target;
+                    var link = sections.find(function(s) {
+                        return s.section === targetSection;
+                    }).link;
+
+                    if (entry.isIntersecting) {
+                        
+                        tocLinks.forEach(function(link) {
+                            link.classList.remove('toc-active');
+                        });
+                        link.classList.add('toc-active');
+                    }
+                });
+            }, options);
+
+            
+            sections.forEach(function(section) {
+                observer.observe(section.section);
+            });
+
+            
+            tocLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    
+                    tocLinks.forEach(function(link) {
+                        link.classList.remove('toc-active');
+                    });
+                    
+                    link.classList.add('toc-active');
+                });
+            });
+        });
+
+
+  </script>
+  
+
+  </body>
+</html>

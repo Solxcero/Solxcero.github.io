@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Ahora</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Jul 2024 09:21:19 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 01 Nov 2024 10:45:44 +0900</lastBuildDate>
     <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>드디어 @classmethod를 써본다</title>
+      <link>/post/classmethod/</link>
+      <pubDate>Fri, 01 Nov 2024 10:45:44 +0900</pubDate>
+      <guid>/post/classmethod/</guid>
+      <description>배운 것을 실제로 내가 하고자하는 일에 적용했을 때의 쾌감이란&#xA;@classmethod는 하나의 객체 내에서만 사용되는 것이 아니라 해당 클래스로 생성된 인스턴스 전체가 공유하는 함수라고 배웠었다.&#xA;물론 간단한 실습은 했었지만 실제로 언제 사용하게 될지 궁금했었는데, 이번에 연구과제 프로젝트를 수행하면서 드디어 써봤다 우히히힣ㅎㅎ&#xA;왜 쓰게 됐냐면,&#xA;화력발전소에는 A~F 까지 총 6대의 미분기가 존재한다.&#xA;그래서 당연히 미분기 Class를 만들고, 6개의 객체를 생성해서 각 미분기에 부여된 id 값으로 테이블에서 조회 후 계산 결과를 다시 테이블에 저장하고 있었다.</description>
+    </item>
     <item>
       <title>Style 배분 전략</title>
       <link>/post/styleindex/</link>
