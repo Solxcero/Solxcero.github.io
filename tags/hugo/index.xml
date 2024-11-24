@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hugo on Ahora</title>
+    <title>Hugo on 漸入佳境</title>
     <link>/tags/hugo/</link>
-    <description>Recent content in Hugo on Ahora</description>
+    <description>Recent content in Hugo on 漸入佳境</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 03 Apr 2024 10:41:44 +0900</lastBuildDate>
     <atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Blog</title>
+      <title>Hugo로 GitBlog 만들기</title>
       <link>/post/blog/</link>
       <pubDate>Wed, 03 Apr 2024 10:41:44 +0900</pubDate>
       <guid>/post/blog/</guid>

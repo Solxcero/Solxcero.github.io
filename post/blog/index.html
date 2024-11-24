@@ -49,19 +49,17 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         renderMathInElement(document.body, {
-          
-          
           delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false},
-              {left: '\\(', right: '\\)', display: false},
-              {left: '\\[', right: '\\]', display: true}
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
           ],
-          
-          throwOnError : false
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
         });
     });
 </script>
+
     
 
 
@@ -142,19 +140,17 @@ hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo �
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         renderMathInElement(document.body, {
-          
-          
           delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false},
-              {left: '\\(', right: '\\)', display: false},
-              {left: '\\[', right: '\\]', display: true}
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
           ],
-          
-          throwOnError : false
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
         });
     });
 </script>
+
   
   
   
@@ -178,7 +174,7 @@ Hugo 설치 (Windows 기준)
 hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo 프로젝트 파일을 담을 폴더를 생성 (C:/Hugo) C:/Hugo/bin 디렉토리 생성 후 설치 파일 압축 해제 하여 넣기 C:/Hugo/bin 환경변수에 추가 -&gt; cmd에 hugo version 입력하여 Path 추가 되었는지 확인 Hugo Local 실행 1."><meta itemprop="datePublished" content="2024-04-03T10:41:44+09:00" />
 <meta itemprop="dateModified" content="2024-04-03T10:41:44+09:00" />
 <meta itemprop="wordCount" content="486">
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="hugo," />
   
   <meta property="og:title" content="Hugo로 GitBlog 만들기" />
 <meta property="og:description" content="Hugo 블로그. 깃허브 블로그 테마 유목민이던 내가 드디어 맘에 드는 테마를 발견했는데, 기존에 사용하던 Jekyll가 아닌 Hugo 기반이다.
@@ -314,6 +310,7 @@ hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo �
       class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-7 pb-16 pt-12 dark:prose-invert"
     >
       
+<link rel="stylesheet" href="/assets/css/custom.css">
 <div class="content-wrapper">
   <aside class="toc" id="toc">
     
@@ -333,6 +330,14 @@ hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo �
     <header class="mb-16">
       <h1 class="!my-0 pb-2.5">Hugo로 GitBlog 만들기</h1>
 
+          
+          <div class="post-categories">
+            
+              <a href="/categories/blog" class="category-box">blog</a>
+            
+          </div>
+            
+    
       
       <div class="text-sm antialiased opacity-60">
         
@@ -344,6 +349,7 @@ hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo �
       </div>
       
     </header>
+    
     
     <section>
       <h2 id="hugo-블로그">Hugo 블로그.</h2>
@@ -442,6 +448,16 @@ Windows는 쉘스크립트를 실행할 수 없으므로 <code>gitbash</code>를
 
     
     
+    <footer class="mt-12 flex flex-wrap">
+       
+      <a
+        class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
+        href="/tags/hugo"
+        >hugo</a
+      >
+      
+    </footer>
+    
 
     
     
@@ -511,19 +527,17 @@ target="_blank"
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         renderMathInElement(document.body, {
-          
-          
           delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false},
-              {left: '\\(', right: '\\)', display: false},
-              {left: '\\[', right: '\\]', display: true}
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
           ],
-          
-          throwOnError : false
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
         });
     });
 </script>
+
     
 
      
