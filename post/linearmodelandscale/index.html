@@ -171,7 +171,7 @@
 상사의 궁금사항은 이러했다.
 선형회귀모델을 만들었는데, 로우데이터, 정규화 데이터, 표준화 데이터의 MSE 값이 모두 동일하게(완벽히 동일은 아니고 소수점 7자리 까지 동일함) 나온다는 것이었다. 데이터 스케일링을 하면 이상치 값들이 정제되면서 모델의 성능이 개선되어야 하는것이 아니냐? 라는게 상사의 질문."><meta itemprop="datePublished" content="2024-11-20T11:11:47+09:00" />
 <meta itemprop="dateModified" content="2024-11-20T11:11:47+09:00" />
-<meta itemprop="wordCount" content="932">
+<meta itemprop="wordCount" content="942">
 <meta itemprop="keywords" content="" />
   
   <meta property="og:title" content="선형회귀와 스케일링" />
@@ -449,7 +449,8 @@ $$</p>
 </span></span><span style="display:flex;"><span>예측 값 (Predictions): [14.71 29.76 44.86 59.96 75.01]
 </span></span><span style="display:flex;"><span>MSE (Mean Squared Error): 0.05340000000000017
 </span></span></code></pre></div><p>데이터를 스케일링한다는 것은 데이터의 표현방식을 바꾸는 것이기에 결과 해석에 쓰이는 계수값은 당연히 변한다.
-하지만 예측 값은 유사하게 나온다.</p>
+하지만 예측 값은 유사하게 나온다.<br>
+왜냐하면 데이터의 표현이 바뀌었을 뿐 데이터들간의 상대적인 관계는 유지되었기 때문이다.</p>
 <p>따라서 예측값과 실제값의 오차의 제곱을 계산하는 MSE 값도 두 결과과 매우 유사하다.
 스케일링 결과가 조금 더 성능이 높게 나오지만, 학습 데이터의 수가 많아질 수록 저 차이가 줄어든다.</p>
 <p>주목할 점은 독립변수간의 상관관계를 높게 설정해두었는데, 만약 상관관계가 약하다면 결과는 또 달라진다.(스케일링이 결과에 유의미한 영향을 준다.)</p>
