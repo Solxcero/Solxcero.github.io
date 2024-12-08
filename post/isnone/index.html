@@ -1,0 +1,557 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #fff"
+  lang="en-us"
+>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+  <link rel="stylesheet" href="/css/custom.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+    
+
+
+</head>
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+  
+  <title>왜 is None인가 - 漸入佳境</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  
+  <meta name="description" content="당연하게 쓰던 코드들이 갑자기 궁금해질 때가 있다.
+동료에게 계산 결과가 None인 경우를 처리해 달라고 부탁한 적이 있다.
+그러고 얼마 후 디버깅을 위해 코드를 살펴보던 중 특이한 점을 발견했다.
+if x == None : 이렇게 == 비교 연산자로 조건문이 작성되어 있었다.
+보통 is None 쓰지 않나?
+비교 연산자는 두 변수의 값을 비교하기 위한 건데, None은 값이라 할 수 있나?
+라는 의문이 들었다.
+None 은 무엇인가 파이썬에서 None은 단일객체 즉, 싱글톤이다.
+None 이라는 것은 말그대로 &lsquo;값이 없다&rsquo; 라는 뜻인데, 각 객체 마다 None이라는 값이 각자의 메모리를 갖는 것은 비효율적이다." />
+  <meta name="author" content="덕후의 즐거운 인생" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
+
+  
+  
+  
+  
+  
+  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
+
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://github.com/Solxcero/Solxcero.github.io/assets/99321739/4ccb5f75-725b-4360-b1d6-6b1c99072d56" />
+  
+  
+
+  
+  
+  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
+  
+  
+
+  
+  
+  <script
+    defer
+    src="//localhost:1313/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+  
+  
+  
+
+  
+  <link rel="icon" href="//localhost:1313/favicon.ico" />
+  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.124.0">
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/highlight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="//localhost:1313/"
+      >漸入佳境</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#fff'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/categories/"
+        >Categories</a
+      >
+      
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/Solxcero"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-7 pb-16 pt-12 dark:prose-invert"
+    >
+      
+<link rel="stylesheet" href="/assets/css/custom.css">
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#none-은-무엇인가">None 은 무엇인가</a></li>
+    <li><a href="#왜-is-none일까">왜 is None일까?</a></li>
+    <li><a href="#pep8가-그러라-했음">PEP8가 그러라 했음</a></li>
+    <li><a href="#결론">결론</a></li>
+    <li><a href="#추가로-알게됨-파이썬의-정수-캐싱-메커니즘">(추가로 알게됨) 파이썬의 정수 캐싱 메커니즘</a></li>
+  </ul>
+</nav>
+  </aside>
+</div>
+
+  <article>
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">왜 is None인가</h1>
+
+          
+          <div class="post-categories">
+            
+              <a href="/categories/devlog" class="category-box">DevLog</a>
+            
+          </div>
+            
+    
+      
+      <div class="text-sm antialiased opacity-60">
+        
+        <time>Dec 7, 2024</time>
+        
+        
+        
+        
+      </div>
+      
+    </header>
+    
+    
+    <section>
+      <p>당연하게 쓰던 코드들이 갑자기 궁금해질 때가 있다.</p>
+<p>동료에게 계산 결과가 None인 경우를 처리해 달라고 부탁한 적이 있다.</p>
+<p>그러고 얼마 후 디버깅을 위해 코드를 살펴보던 중 특이한 점을 발견했다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> x <span style="color:#f92672">==</span> <span style="color:#66d9ef">None</span> :
+</span></span></code></pre></div><p>이렇게 <code>==</code> 비교 연산자로 조건문이 작성되어 있었다.</p>
+<blockquote>
+<p>보통 is None 쓰지 않나?<br>
+비교 연산자는 두 변수의 값을 비교하기 위한 건데, None은 값이라 할 수 있나?</p>
+</blockquote>
+<p>라는 의문이 들었다.</p>
+<h2 id="none-은-무엇인가">None 은 무엇인가</h2>
+<p>파이썬에서 None은 단일객체 즉, 싱글톤이다.<br>
+None 이라는 것은 말그대로 &lsquo;값이 없다&rsquo; 라는 뜻인데, 각 객체 마다 None이라는 값이 각자의 메모리를 갖는 것은 비효율적이다.<br>
+그래서 하나의 프로그램에서 모든 None 값은 동일한 메모리 주소를 공유한다.</p>
+<p>그리고 자체적으로 데이터타입을 가진다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(type(<span style="color:#66d9ef">None</span>))  <span style="color:#75715e"># &lt;class &#39;NoneType&#39;&gt;</span>
+</span></span></code></pre></div><p>실제로 동일한 메모리 주소를 공유하는지도 살펴보자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>print(x <span style="color:#f92672">is</span> y)  <span style="color:#75715e"># True</span>
+</span></span><span style="display:flex;"><span>print(id(x) <span style="color:#f92672">==</span> id(y)) <span style="color:#75715e"># True</span>
+</span></span></code></pre></div><p>x,y 두 None이 동일한 주소를 공유한다는 것을 알 수 있다.</p>
+<h2 id="왜-is-none일까">왜 is None일까?</h2>
+<p>사실 비교연산자로 None 을 판단해도 작동이 되긴한다.<br>
+하지만 파이썬은 is None을 권장한다. 왜냐면!</p>
+<p><code>==</code> 은 변수의 <code>동등성</code> 을 확인하고, <code>is</code> 는 변수의 <code>정체성</code>을 확인하기 때문이다.<br>
+동등성은 값이 같은지를 판단하며 정체성은 값이 동일한 객체인지를 판단한다고 보면 된다.<br>
+즉, None은 모든 객체가 참조하는 하나의 주소이기 때문에 정체성을 판단해주는 <code>is</code>를 써야 한다는 것이다.</p>
+<p>예제를 보면 이해가 쉬워진다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomObject</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __eq__(self, other):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>obj <span style="color:#f92672">=</span> CustomObject()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(obj <span style="color:#f92672">==</span> <span style="color:#66d9ef">None</span>)  <span style="color:#75715e"># True</span>
+</span></span><span style="display:flex;"><span>print(obj <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>)  <span style="color:#75715e"># False</span>
+</span></span></code></pre></div><p><code>==</code>연산자는 객체의 <code>__eq__</code> 메서드를 호출하게 되어 있다.<br>
+여기서는 <code>CustomObject</code> 클래스를 활용하여 <code>__eq__</code> 메서드를 오버라이드(재정의) 했다. (항상 True를 반환하도록)
+즉, 비교연산자는 <code>__eq__</code> 메서드에 의존하므로 이 메서드가 변경될 경우 동일한 결과를 보장받지 못한다.<br>
+그러나 <code>is</code> 의 경우 객체의 주소를 확인하기 때문에 언제나 명확하게 None을 판단할 수 있다.</p>
+<h2 id="pep8가-그러라-했음">PEP8가 그러라 했음</h2>
+<p>가장 중요한 사실은 PEP8에서 is None을 쓰라고 명시해뒀다.</p>
+<blockquote>
+<p>Comparisons to singletons like None should always be done with is or is not, never the equality operators.</p>
+</blockquote>
+<h2 id="결론">결론</h2>
+<p>지금까지 is None을 당연하듯이 써왔지만 그 이유를 제대로 생각해본 적은 없었는데, 이번 기회로 알 수 있게 되었다.</p>
+<h2 id="추가로-알게됨-파이썬의-정수-캐싱-메커니즘">(추가로 알게됨) 파이썬의 정수 캐싱 메커니즘</h2>
+<p>비교연산자 예제를 만들다가, None이 아닌 값을 대입 시킨 후 주소를 비교하면 같은 값이라도 주소가 다르게 나오겠지? 라고 생각을 했다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>print(a <span style="color:#f92672">is</span> b)           <span style="color:#75715e"># True</span>
+</span></span><span style="display:flex;"><span>print(id(a) <span style="color:#f92672">==</span> id(b))   <span style="color:#75715e"># True</span>
+</span></span></code></pre></div><p>잉???? 내 생각은 이게 아니었는데..?<br>
+찾아보니 파이썬은 메모리 최적화를 위해 정수 (-5 ~ 256) 까지는 캐싱을 동해 동일한 객체를 재사용한다고 한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">257</span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> <span style="color:#ae81ff">257</span>
+</span></span><span style="display:flex;"><span>print( a <span style="color:#f92672">is</span> b )         <span style="color:#75715e"># False</span>
+</span></span><span style="display:flex;"><span>print( id(a) <span style="color:#f92672">==</span> id(b) ) <span style="color:#75715e"># False</span>
+</span></span></code></pre></div><p>파이썬이 불변객체(int,tuple,str)에 대해 캐싱을 적용하는 경우가 있다고 한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hello&#34;</span>
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hello&#34;</span>
+</span></span><span style="display:flex;"><span>print(x <span style="color:#f92672">is</span> y)           <span style="color:#75715e"># True (캐싱됨)</span>
+</span></span><span style="display:flex;"><span>print(id(x) <span style="color:#f92672">==</span> id(y))   <span style="color:#75715e"># True</span>
+</span></span></code></pre></div><p>이렇게 짧은 문자열의 경우 동일한 주소를 갖는 것을 알 수 있다.<br>
+불변객체의 범위 혹은 길이가 길어지면 캐싱이 되지 않는데, 그건 인터프리터에 따라 다르다고 한다.</p>
+<p>하나 또 알고 간다 ~!</p>
+
+    </section> 
+
+    
+    
+
+    
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+      
+      
+      <a
+        class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="//localhost:1313/post/longquery/"
+        ><span>My Longest Query So Far</span><span class="ml-1.5">→</span></a
+      >
+      
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+
+    
+
+
+    
+  </article>
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+<div class="mr-auto">
+  &copy; 2024
+  <a class="link" href="//localhost:1313/">漸入佳境</a>
+</div>
+<a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+>Powered by Hugo️️</a
+>️
+<a
+class="link"
+href="https://github.com/nanxiaobei/hugo-paper"
+rel="noopener"
+target="_blank"
+>✎ Paper</a
+>
+<div id="back-to-top" style="display: none;">
+    <a href="#top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 10.5a.5.5 0 0 0 .5-.5V4.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3.5-3.5a.5.5 0 0 0-.708 0l-3.5 3.5a.5.5 0 1 0 .708.708L7.5 4.707V10a.5.5 0 0 0 .5.5z"/>
+      </svg>
+    </a>
+  </div>
+  
+
+</footer>
+<script src="/js/back-to-top.js"></script>
+
+<script src="/js/highlight.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    document.querySelectorAll("pre code").forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+    
+
+     
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var tocLinks = document.querySelectorAll('.toc a');
+            var sections = [];
+
+            
+            var options = {
+                root: null, 
+                rootMargin: '0px 0px -50% 0px', 
+                threshold: 0 
+            };
+
+            
+            tocLinks.forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href && href.startsWith("#")) {
+                    var targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        sections.push({ link: link, section: targetSection });
+                    }
+                }
+            });
+
+            
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    var targetSection = entry.target;
+                    var link = sections.find(function(s) {
+                        return s.section === targetSection;
+                    }).link;
+
+                    if (entry.isIntersecting) {
+                        
+                        tocLinks.forEach(function(link) {
+                            link.classList.remove('toc-active');
+                        });
+                        link.classList.add('toc-active');
+                    }
+                });
+            }, options);
+
+            
+            sections.forEach(function(section) {
+                observer.observe(section.section);
+            });
+
+            
+            tocLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    
+                    tocLinks.forEach(function(link) {
+                        link.classList.remove('toc-active');
+                    });
+                    
+                    link.classList.add('toc-active');
+                });
+            });
+        });
+
+
+  </script>
+  
+
+  </body>
+</html>
