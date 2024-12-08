@@ -427,7 +427,7 @@ None 이라는 것은 말그대로 &lsquo;값이 없다&rsquo; 라는 뜻인데,
 </span></span><span style="display:flex;"><span>print(a <span style="color:#f92672">is</span> b)           <span style="color:#75715e"># True</span>
 </span></span><span style="display:flex;"><span>print(id(a) <span style="color:#f92672">==</span> id(b))   <span style="color:#75715e"># True</span>
 </span></span></code></pre></div><p>잉???? 내 생각은 이게 아니었는데..?<br>
-찾아보니 파이썬은 메모리 최적화를 위해 정수 (-5 ~ 256) 까지는 캐싱을 동해 동일한 객체를 재사용한다고 한다.</p>
+찾아보니 파이썬은 메모리 최적화를 위해 정수 (-5 ~ 256) 까지는 캐싱을 통해 동일한 객체를 재사용한다고 한다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">257</span>
 </span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> <span style="color:#ae81ff">257</span>
 </span></span><span style="display:flex;"><span>print( a <span style="color:#f92672">is</span> b )         <span style="color:#75715e"># False</span>
