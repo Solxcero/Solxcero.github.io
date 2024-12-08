@@ -6,8 +6,15 @@
     <description>Recent content in DevLog on 漸入佳境</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Dec 2024 18:48:04 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 07 Dec 2024 18:12:53 +0900</lastBuildDate>
     <atom:link href="/categories/devlog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>왜 is None인가</title>
+      <link>/post/isnone/</link>
+      <pubDate>Sat, 07 Dec 2024 18:12:53 +0900</pubDate>
+      <guid>/post/isnone/</guid>
+      <description>당연하게 쓰던 코드들이 갑자기 궁금해질 때가 있다.&#xA;동료에게 계산 결과가 None인 경우를 처리해 달라고 부탁한 적이 있다.&#xA;그러고 얼마 후 디버깅을 위해 코드를 살펴보던 중 특이한 점을 발견했다.&#xA;if x == None : 이렇게 == 비교 연산자로 조건문이 작성되어 있었다.&#xA;보통 is None 쓰지 않나?&#xA;비교 연산자는 두 변수의 값을 비교하기 위한 건데, None은 값이라 할 수 있나?&#xA;라는 의문이 들었다.&#xA;None 은 무엇인가 파이썬에서 None은 단일객체 즉, 싱글톤이다.&#xA;None 이라는 것은 말그대로 &amp;lsquo;값이 없다&amp;rsquo; 라는 뜻인데, 각 객체 마다 None이라는 값이 각자의 메모리를 갖는 것은 비효율적이다.</description>
+    </item>
     <item>
       <title>My Longest Query So Far</title>
       <link>/post/longquery/</link>
