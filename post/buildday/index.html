@@ -39,7 +39,7 @@
   style="--bg: #fff"
   lang="en-us"
 >
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   
   <link rel="stylesheet" href="/css/custom.css">
   
@@ -77,7 +77,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
   
-  <title>DevLog - 漸入佳境</title>
+  <title>하루종일 빌드만했다니까요 - 漸入佳境</title>
 
   
   <meta name="theme-color" />
@@ -86,11 +86,12 @@
   
   
   
-  
-  <meta
-    name="description"
-    content="A personal blog"
-  />
+  <meta name="description" content="12월도 이제 중순을 향해 달려가고~~ 나라는 어지럽고~ 내 머리도 어지럽다 못해 터질 것 같다~
+프로젝트도 빨리 마무리를 지어버리고 싶은데, 자꾸 일정에 차질이 생기는구만! ㅠ
+최근에 울 회사에서 만든 프로젝트를 협력사 서버에 설치해야한다는 지시를 받았다.
+실행할 수 있는 파일로 전달해달라길래, pyinstaller로 빌드해서 줘야겠다~ 생각했지.
+근데 이게 하루를 다 쓰고도 해결이 안될 줄은 몰랐지! ㅋ
+작년에 다른 프로젝트 건으로 간단한 프로그램을 만들어서 납품했던 적이 있었는데, 그 때는 빌드 과정에서 큰 오류 없이 척척 잘 됐었다." />
   <meta name="author" content="덕후의 즐거운 인생" />
   
 
@@ -100,14 +101,14 @@
   
   
   
-  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
 
   
   
   
   
   
-  <link rel="preload" as="image" href="/theme.png" />
+  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
 
   
   
@@ -119,11 +120,17 @@
 
   
   
-  <link rel="preload" as="image" href="/github.svg" />
+  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
   
   
 
   
+  
+  <script
+    defer
+    src="//localhost:1313/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
   
 
   
@@ -151,40 +158,13 @@
   
 
   
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" href="//localhost:1313/favicon.ico" />
+  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.124.0">
 
   
-  
-  
-  
-  
-  <meta itemprop="name" content="DevLog">
-<meta itemprop="description" content="">
-  
-  <meta property="og:title" content="DevLog" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/categories/devlog/" />
-
-  
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="DevLog"/>
-<meta name="twitter:description" content=""/>
-
-  
-  
-  <link
-    rel="alternate"
-    type="application/rss&#43;xml"
-    href="/categories/devlog/index.xml"
-    title="漸入佳境"
-  />
-  
-  
-  <link rel="canonical" href="/categories/devlog/" />
   
   
   <link rel="stylesheet" href="/css/highlight.css">
@@ -196,7 +176,7 @@
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
-      href="/"
+      href="//localhost:1313/"
       >漸入佳境</a
     >
     <div
@@ -298,106 +278,90 @@
       class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-7 pb-16 pt-12 dark:prose-invert"
     >
       
+<link rel="stylesheet" href="/assets/css/custom.css">
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#경로-설정-제대로-하자">경로 설정 제대로 하자.</a></li>
+  </ul>
+</nav>
+  </aside>
+</div>
+
+  <article>
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">하루종일 빌드만했다니까요</h1>
+
+          
+          <div class="post-categories">
+            
+              <a href="/categories/devlog" class="category-box">DevLog</a>
+            
+          </div>
+            
+    
+      
+      <div class="text-sm antialiased opacity-60">
+        
+        <time>Dec 12, 2024</time>
+        
+        
+        
+        
+      </div>
+      
+    </header>
+    
+    
+    <section>
+      <p>12월도 이제 중순을 향해 달려가고~~ 나라는 어지럽고~  내 머리도 어지럽다 못해 터질 것 같다~</p>
+<p>프로젝트도 빨리 마무리를 지어버리고 싶은데, 자꾸 일정에 차질이 생기는구만! ㅠ</p>
+<p>최근에 울 회사에서 만든 프로젝트를 협력사 서버에 설치해야한다는 지시를 받았다.</p>
+<p>실행할 수 있는 파일로 전달해달라길래, pyinstaller로 빌드해서 줘야겠다~ 생각했지.<br>
+근데 이게 하루를 다 쓰고도 해결이 안될 줄은 몰랐지! ㅋ</p>
+<p>작년에 다른 프로젝트 건으로 간단한 프로그램을 만들어서 납품했던 적이 있었는데, 그 때는 빌드 과정에서 큰 오류 없이 척척 잘 됐었다.</p>
+<p>근데 이번 프로젝트는 모듈 구조도 좀 복잡해지고, 소스 자체가 방대해지다 보니 자꾸자꾸 에러가 나버렸다..ㅠ</p>
+<p>그 하루 동안 머리 쥐어싸면서 고군분투한 결과 배운 것들&hellip;</p>
+<h2 id="경로-설정-제대로-하자">경로 설정 제대로 하자.</h2>
+<p>아우 모듈 경로 꼬여서 고생 했네..
+정확하게 이 최종실행파일이 어떤 위치에서 어떻게 실행되는지 파악하고,, 경로 설정 제대로 해주자고,,,</p>
+<h1 id="heading"></h1>
+
+    </section> 
+
+    
+    
+
+    
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+      
+      
+      <a
+        class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="//localhost:1313/post/isnone/"
+        ><span>왜 is None인가</span><span class="ml-1.5">→</span></a
+      >
+      
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+
+    
 
 
-
-<h1 class="mb-16">#DevLog</h1>
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">왜 is None인가</h2>
-  <time class="post-date"
-    >Dec 7, 2024</time
-  >
-  <a class="absolute inset-0 text-[0]" href="/post/isnone/">왜 is None인가</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">My Longest Query So Far</h2>
-  <time class="post-date"
-    >Dec 2, 2024</time
-  >
-  <a class="absolute inset-0 text-[0]" href="/post/longquery/">My Longest Query So Far</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">선형회귀와 스케일링</h2>
-  <time class="post-date"
-    >Nov 20, 2024</time
-  >
-  <a class="absolute inset-0 text-[0]" href="/post/linearmodelandscale/">선형회귀와 스케일링</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">CallBack</h2>
-  <time class="post-date"
-    >Nov 9, 2024</time
-  >
-  <a class="absolute inset-0 text-[0]" href="/post/callback/">CallBack</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">드디어 @classmethod를 써본다</h2>
-  <time class="post-date"
-    >Nov 1, 2024</time
-  >
-  <a class="absolute inset-0 text-[0]" href="/post/classmethod/">드디어 @classmethod를 써본다</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">IF문의 오버헤드</h2>
-  <time class="post-date"
-    >Jul 6, 2024</time
-  >
-  <a class="absolute inset-0 text-[0]" href="/post/ifoverhead/">IF문의 오버헤드</a>
-</section>
-
-
-
-
-
-
-
+    
+  </article>
 
     </main>
 
@@ -406,7 +370,7 @@
 >
 <div class="mr-auto">
   &copy; 2024
-  <a class="link" href="/">漸入佳境</a>
+  <a class="link" href="//localhost:1313/">漸入佳境</a>
 </div>
 <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
 >Powered by Hugo️️</a

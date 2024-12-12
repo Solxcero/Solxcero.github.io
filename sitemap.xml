@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/post/</loc>
+    <lastmod>2024-12-12T21:20:49+09:00</lastmod>
+  </url><url>
+    <loc>/</loc>
+    <lastmod>2024-12-12T21:20:49+09:00</lastmod>
+  </url><url>
     <loc>/categories/</loc>
     <lastmod>2024-12-07T18:12:53+09:00</lastmod>
   </url><url>
     <loc>/categories/devlog/</loc>
     <lastmod>2024-12-07T18:12:53+09:00</lastmod>
   </url><url>
-    <loc>/post/</loc>
-    <lastmod>2024-12-07T18:12:53+09:00</lastmod>
-  </url><url>
     <loc>/post/isnone/</loc>
-    <lastmod>2024-12-07T18:12:53+09:00</lastmod>
-  </url><url>
-    <loc>/</loc>
     <lastmod>2024-12-07T18:12:53+09:00</lastmod>
   </url><url>
     <loc>/post/longquery/</loc>
