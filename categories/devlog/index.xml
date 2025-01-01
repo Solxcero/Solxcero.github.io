@@ -6,8 +6,15 @@
     <description>Recent content in DevLog on 漸入佳境</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 07 Dec 2024 18:12:53 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 12 Dec 2024 21:20:49 +0900</lastBuildDate>
     <atom:link href="/categories/devlog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Eventlet과 Monkey Patch</title>
+      <link>/post/eventletmonkey/</link>
+      <pubDate>Thu, 12 Dec 2024 21:20:49 +0900</pubDate>
+      <guid>/post/eventletmonkey/</guid>
+      <description>출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&amp;hellip;&#xA;import 에러, 모듈 경로 에러, eventlet 에러&amp;hellip; 를 해치우고 빌드를 했더니,&#xA;알고보니 설치하는 서버는 리눅스였단 사실&amp;hellip;&#xA;Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서&#xA;결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말&#xA;암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.&#xA;eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.&#xA;근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데,</description>
+    </item>
     <item>
       <title>왜 is None인가</title>
       <link>/post/isnone/</link>

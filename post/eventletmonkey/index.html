@@ -39,7 +39,7 @@
   style="--bg: #fff"
   lang="en-us"
 >
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   
   <link rel="stylesheet" href="/css/custom.css">
   
@@ -77,7 +77,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
   
-  <title>하루종일 빌드만했다니까요 - 漸入佳境</title>
+  <title>Eventlet과 Monkey Patch - 漸入佳境</title>
 
   
   <meta name="theme-color" />
@@ -86,12 +86,14 @@
   
   
   
-  <meta name="description" content="12월도 이제 중순을 향해 달려가고~~ 나라는 어지럽고~ 내 머리도 어지럽다 못해 터질 것 같다~
-프로젝트도 빨리 마무리를 지어버리고 싶은데, 자꾸 일정에 차질이 생기는구만! ㅠ
-최근에 울 회사에서 만든 프로젝트를 협력사 서버에 설치해야한다는 지시를 받았다.
-실행할 수 있는 파일로 전달해달라길래, pyinstaller로 빌드해서 줘야겠다~ 생각했지.
-근데 이게 하루를 다 쓰고도 해결이 안될 줄은 몰랐지! ㅋ
-작년에 다른 프로젝트 건으로 간단한 프로그램을 만들어서 납품했던 적이 있었는데, 그 때는 빌드 과정에서 큰 오류 없이 척척 잘 됐었다." />
+  <meta name="description" content="출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&hellip;
+import 에러, 모듈 경로 에러, eventlet 에러&hellip; 를 해치우고 빌드를 했더니,
+알고보니 설치하는 서버는 리눅스였단 사실&hellip;
+Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서
+결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말
+암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.
+eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.
+근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데," />
   <meta name="author" content="덕후의 즐거운 인생" />
   
 
@@ -101,14 +103,14 @@
   
   
   
-  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
 
   
   
   
   
   
-  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
+  <link rel="preload" as="image" href="/theme.png" />
 
   
   
@@ -120,7 +122,7 @@
 
   
   
-  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
+  <link rel="preload" as="image" href="/github.svg" />
   
   
 
@@ -128,7 +130,7 @@
   
   <script
     defer
-    src="//localhost:1313/highlight.min.js"
+    src="/highlight.min.js"
     onload="hljs.initHighlightingOnLoad();"
   ></script>
   
@@ -158,13 +160,59 @@
   
 
   
-  <link rel="icon" href="//localhost:1313/favicon.ico" />
-  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.124.0">
 
   
+  
+  
+  
+  
+  <meta itemprop="name" content="Eventlet과 Monkey Patch">
+<meta itemprop="description" content="출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&hellip;
+import 에러, 모듈 경로 에러, eventlet 에러&hellip; 를 해치우고 빌드를 했더니,
+알고보니 설치하는 서버는 리눅스였단 사실&hellip;
+Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서
+결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말
+암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.
+eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.
+근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데,"><meta itemprop="datePublished" content="2024-12-12T21:20:49+09:00" />
+<meta itemprop="dateModified" content="2024-12-12T21:20:49+09:00" />
+<meta itemprop="wordCount" content="406">
+<meta itemprop="keywords" content="" />
+  
+  <meta property="og:title" content="Eventlet과 Monkey Patch" />
+<meta property="og:description" content="출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&hellip;
+import 에러, 모듈 경로 에러, eventlet 에러&hellip; 를 해치우고 빌드를 했더니,
+알고보니 설치하는 서버는 리눅스였단 사실&hellip;
+Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서
+결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말
+암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.
+eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.
+근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데," />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/eventletmonkey/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-12-12T21:20:49+09:00" />
+<meta property="article:modified_time" content="2024-12-12T21:20:49+09:00" />
+
+  
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Eventlet과 Monkey Patch"/>
+<meta name="twitter:description" content="출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&hellip;
+import 에러, 모듈 경로 에러, eventlet 에러&hellip; 를 해치우고 빌드를 했더니,
+알고보니 설치하는 서버는 리눅스였단 사실&hellip;
+Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서
+결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말
+암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.
+eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.
+근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데,"/>
+
+  
+  
+  
+  <link rel="canonical" href="/post/eventletmonkey/" />
   
   
   <link rel="stylesheet" href="/css/highlight.css">
@@ -176,7 +224,7 @@
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
-      href="//localhost:1313/"
+      href="/"
       >漸入佳境</a
     >
     <div
@@ -284,8 +332,11 @@
     
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#경로-설정-제대로-하자">경로 설정 제대로 하자.</a></li>
     <li><a href="#eventlet">eventlet</a></li>
+    <li><a href="#monkey-patch">Monkey Patch</a></li>
+    <li><a href="#그럼-왜-소스-상단으로">그럼 왜 소스 상단으로?</a></li>
+    <li><a href="#하지만-개발환경에서는-없어도-됐잖아">하지만 개발환경에서는 없어도 됐잖아?</a></li>
+    <li><a href="#또-급하게-마무리">또 급하게 마무리</a></li>
   </ul>
 </nav>
   </aside>
@@ -293,7 +344,7 @@
 
   <article>
     <header class="mb-16">
-      <h1 class="!my-0 pb-2.5">하루종일 빌드만했다니까요</h1>
+      <h1 class="!my-0 pb-2.5">Eventlet과 Monkey Patch</h1>
 
           
           <div class="post-categories">
@@ -317,18 +368,12 @@
     
     
     <section>
-      <p>12월도 이제 중순을 향해 달려가고~~ 나라는 어지럽고~  내 머리도 어지럽다 못해 터질 것 같다~</p>
-<p>프로젝트도 빨리 마무리를 지어버리고 싶은데, 자꾸 일정에 차질이 생기는구만! ㅠ</p>
-<p>최근에 울 회사에서 만든 프로젝트를 협력사 서버에 설치해야한다는 지시를 받았다.</p>
-<p>실행할 수 있는 파일로 전달해달라길래, pyinstaller로 빌드해서 줘야겠다~ 생각했지.<br>
-근데 이게 하루를 다 쓰고도 해결이 안될 줄은 몰랐지! ㅋ</p>
-<p>작년에 다른 프로젝트 건으로 간단한 프로그램을 만들어서 납품했던 적이 있었는데, 그 때는 빌드 과정에서 큰 오류 없이 척척 잘 됐었다.</p>
-<p>근데 이번 프로젝트는 모듈 구조도 좀 복잡해지고, 소스 자체가 방대해지다 보니 자꾸자꾸 에러가 나버렸다..ㅠ</p>
-<p>그 하루 동안 머리 쥐어싸면서 고군분투한 결과 배운 것들&hellip;</p>
-<h2 id="경로-설정-제대로-하자">경로 설정 제대로 하자.</h2>
-<p>아우 모듈 경로 꼬여서 고생 했네..
-정확하게 이 최종실행파일이 어떤 위치에서 어떻게 실행되는지 파악하고,, 경로 설정 제대로 해주자고,,, <br>
-개발환경에서 실행할 때의 경로와, 빌드 후에 실행될 때의 차이를 먼저 생각해야 한다.</p>
+      <p>출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&hellip;<br>
+import 에러, 모듈 경로 에러, eventlet 에러&hellip; 를 해치우고 빌드를 했더니,<br>
+알고보니 설치하는 서버는 리눅스였단 사실&hellip;<br>
+Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서<br>
+결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말</p>
+<p>암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.</p>
 <h2 id="eventlet">eventlet</h2>
 <p>비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.<br>
 근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데,<br>
@@ -339,16 +384,58 @@
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>socketio <span style="color:#f92672">=</span> SocketIO(app, cors_allowed_origins<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;*&#34;</span>, async_mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;eventlet&#39;</span>)
 </span></span></code></pre></div><ol start="2">
-<li>
-<p>eventlet 관련 라이브러리 spec 파일에 포함시키기</p>
-</li>
-<li>
-<p>monkey_patch 를 소스 가장 상단에!</p>
-</li>
+<li>eventlet 관련 라이브러리 spec 파일에 포함시키기</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>hiddenimports <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;greenlet&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;dns&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.support&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.hubs&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.hubs.epolls&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green.ssl&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green.socket&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green.select&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green.threading&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;socketio.async_drivers.eventlet&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>상황에 따라 저거보다 더 필요할 수도있음.</p>
+<ol start="3">
+<li>monkey_patch 를 소스 가장 상단에!</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> eventlet
 </span></span><span style="display:flex;"><span>eventlet<span style="color:#f92672">.</span>monkey_patch()
-</span></span></code></pre></div>
+</span></span></code></pre></div><p>monkey_patch() ? 상당히 큐티한 이름이다 ㅋㅎ<br>
+이게 뭘까?<br>
+왜 소스 가장 상단에 입력해야할까?<br>
+개발 환경에서는 해당 코드가 없어도 잘 작동하는데, 왜 빌드된 파일은 저 코드가 없으면 에러가 날까?</p>
+<p>자~ 알아봅시당</p>
+<h2 id="monkey-patch">Monkey Patch</h2>
+<p>기본적으로 Python 표준 라이브러리는 동기적(Blocking)으로 동작한다고 한다.<br>
+개발하려는 환경은 비동기 동작이 구현되어야 하므로, eventlet 라이브러를 사용한다.<br>
+이때 <code>monkey_patch()</code> 는 Python의 표준 라이브러리들이 비동기 I/O를 지원하도록 패치하는 함수이다.<br>
+즉, I/O와 관련된 함수와 스레드 등을 비동기적으로 실행할 수 있도록 도와준다.<br>
+이와 관련하여 <code>Green Threads</code> 라는 개념이 있는데, 아래 블로그 내용으로 이해했다.<br>
+<a href="https://spoqa.github.io/2012/02/13/concurrency-and-eventlet.html">https://spoqa.github.io/2012/02/13/concurrency-and-eventlet.html</a></p>
+<h2 id="그럼-왜-소스-상단으로">그럼 왜 소스 상단으로?</h2>
+<p><strong>표준 라이브러리 교체</strong><br>
+해당 코드는 패치 코드이다.<br>
+따라서 다른 라이브러리들이 import 되기 전에 비동기 패치가 완료 되어야 한다.<br>
+만약 패치 코드 이전에 라이브러리를 import 하면 해당 모듈은 기존의 Blocking 버전의 객체로 로드되게 된다.</p>
+<p>비동기 I/O나 네트워크 처리를 위해 Eventlet의 그린 스레드를 사용하려면, 모든 관련 모듈이 비동기 버전을 참고해야 한다.</p>
+<h2 id="하지만-개발환경에서는-없어도-됐잖아">하지만 개발환경에서는 없어도 됐잖아?</h2>
+<p>개발환경과 빌드환경의 차이를 이해해야 한다.<br>
+개발환경에서는 표준 라이브러리와 Eventlet 라이브러리가 자연스럽게 공존한다고 한다.<br>
+socket, threading, time 과 같은 모듈이 동기 버전으로 작동해도 동작하는 데 큰 문제가 없을 수 있다.<br>
+Flask 나 Flask-SocketIO 같은 프레임워크는 개발환경에서는 종종 동기 모드를 허용하거나 기본적으로 동기방식으로 동작하기 때문이라고 한다.</p>
+<p>반면에 Pyinstaller 로 빌드한 실행 파일은 모든 Python 코드와 라이브러리를 하나의 실행 파일에 포함시키는데 이 과정에서 모듈의 로딩 순서와 라이브러리의 의존성이 변경될 수 있다.<br>
+즉, Eventlet의 비동기 기능을 기대하는 부분이 Blocking 버전의 라이브러리를 사용할 수도 있다는 거다.</p>
+<p>또한, Flask-SocketIO는 비동기 처리를 위해 Eventlet이나 gevent 같은 비동기 드라이버를 사용한다.<br>
+개발환경에서는 기본적으로 동기 모드로 동작하지만, 빌드된 실행 파일에서는 비동기 드라이버의 명확한 설정이 필요하다.</p>
+<h2 id="또-급하게-마무리">또 급하게 마무리</h2>
+<p>야근까지하면서 에러잡고 결국은 대상 서버에 설치 완료된거까지 확인하고 집에 갔다는 이야기.<br>
+그 과정에서 마주쳤던 Monkey patch는 한동안 계속 기억날 것 같다.</p>
+
     </section> 
 
     
@@ -363,7 +450,7 @@
       
       <a
         class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-        href="//localhost:1313/post/isnone/"
+        href="/post/isnone/"
         ><span>왜 is None인가</span><span class="ml-1.5">→</span></a
       >
       
@@ -389,8 +476,8 @@
   class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
 >
 <div class="mr-auto">
-  &copy; 2024
-  <a class="link" href="//localhost:1313/">漸入佳境</a>
+  &copy; 2025
+  <a class="link" href="/">漸入佳境</a>
 </div>
 <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
 >Powered by Hugo️️</a

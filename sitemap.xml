@@ -2,17 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/categories/</loc>
+    <lastmod>2024-12-12T21:20:49+09:00</lastmod>
+  </url><url>
+    <loc>/categories/devlog/</loc>
+    <lastmod>2024-12-12T21:20:49+09:00</lastmod>
+  </url><url>
+    <loc>/post/eventletmonkey/</loc>
+    <lastmod>2024-12-12T21:20:49+09:00</lastmod>
+  </url><url>
     <loc>/post/</loc>
     <lastmod>2024-12-12T21:20:49+09:00</lastmod>
   </url><url>
     <loc>/</loc>
     <lastmod>2024-12-12T21:20:49+09:00</lastmod>
-  </url><url>
-    <loc>/categories/</loc>
-    <lastmod>2024-12-07T18:12:53+09:00</lastmod>
-  </url><url>
-    <loc>/categories/devlog/</loc>
-    <lastmod>2024-12-07T18:12:53+09:00</lastmod>
   </url><url>
     <loc>/post/isnone/</loc>
     <lastmod>2024-12-07T18:12:53+09:00</lastmod>
@@ -47,13 +50,9 @@
     <loc>/about/</loc>
     <lastmod>2024-04-03T13:02:33+09:00</lastmod>
   </url><url>
-    <loc>/tags/hugo/</loc>
-    <lastmod>2024-04-03T10:41:44+09:00</lastmod>
-  </url><url>
     <loc>/post/blog/</loc>
     <lastmod>2024-04-03T10:41:44+09:00</lastmod>
   </url><url>
     <loc>/tags/</loc>
-    <lastmod>2024-04-03T10:41:44+09:00</lastmod>
   </url>
 </urlset>

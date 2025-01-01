@@ -77,7 +77,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
   
-  <title>하루종일 빌드만했다니까요 - 漸入佳境</title>
+  <title>eventlet에 대하여,(하루죙일 빌드만 했어요) - 漸入佳境</title>
 
   
   <meta name="theme-color" />
@@ -90,8 +90,9 @@
 프로젝트도 빨리 마무리를 지어버리고 싶은데, 자꾸 일정에 차질이 생기는구만! ㅠ
 최근에 울 회사에서 만든 프로젝트를 협력사 서버에 설치해야한다는 지시를 받았다.
 실행할 수 있는 파일로 전달해달라길래, pyinstaller로 빌드해서 줘야겠다~ 생각했지.
-근데 이게 하루를 다 쓰고도 해결이 안될 줄은 몰랐지! ㅋ
-작년에 다른 프로젝트 건으로 간단한 프로그램을 만들어서 납품했던 적이 있었는데, 그 때는 빌드 과정에서 큰 오류 없이 척척 잘 됐었다." />
+그리고 고군분투 끝에 빌드 성공했는데 현장 서버는 Linux 라 다시 Ubuntu로 환경 다 만들어서 빌드 했다고 한다.
+eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.
+근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데," />
   <meta name="author" content="덕후의 즐거운 인생" />
   
 
@@ -284,7 +285,6 @@
     
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#경로-설정-제대로-하자">경로 설정 제대로 하자.</a></li>
     <li><a href="#eventlet">eventlet</a></li>
   </ul>
 </nav>
@@ -293,7 +293,7 @@
 
   <article>
     <header class="mb-16">
-      <h1 class="!my-0 pb-2.5">하루종일 빌드만했다니까요</h1>
+      <h1 class="!my-0 pb-2.5">eventlet에 대하여,(하루죙일 빌드만 했어요)</h1>
 
           
           <div class="post-categories">
@@ -321,14 +321,7 @@
 <p>프로젝트도 빨리 마무리를 지어버리고 싶은데, 자꾸 일정에 차질이 생기는구만! ㅠ</p>
 <p>최근에 울 회사에서 만든 프로젝트를 협력사 서버에 설치해야한다는 지시를 받았다.</p>
 <p>실행할 수 있는 파일로 전달해달라길래, pyinstaller로 빌드해서 줘야겠다~ 생각했지.<br>
-근데 이게 하루를 다 쓰고도 해결이 안될 줄은 몰랐지! ㅋ</p>
-<p>작년에 다른 프로젝트 건으로 간단한 프로그램을 만들어서 납품했던 적이 있었는데, 그 때는 빌드 과정에서 큰 오류 없이 척척 잘 됐었다.</p>
-<p>근데 이번 프로젝트는 모듈 구조도 좀 복잡해지고, 소스 자체가 방대해지다 보니 자꾸자꾸 에러가 나버렸다..ㅠ</p>
-<p>그 하루 동안 머리 쥐어싸면서 고군분투한 결과 배운 것들&hellip;</p>
-<h2 id="경로-설정-제대로-하자">경로 설정 제대로 하자.</h2>
-<p>아우 모듈 경로 꼬여서 고생 했네..
-정확하게 이 최종실행파일이 어떤 위치에서 어떻게 실행되는지 파악하고,, 경로 설정 제대로 해주자고,,, <br>
-개발환경에서 실행할 때의 경로와, 빌드 후에 실행될 때의 차이를 먼저 생각해야 한다.</p>
+<del>그리고 고군분투 끝에 빌드 성공했는데 현장 서버는 Linux 라 다시 Ubuntu로 환경 다 만들어서 빌드 했다고 한다.</del></p>
 <h2 id="eventlet">eventlet</h2>
 <p>비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.<br>
 근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데,<br>
@@ -339,12 +332,24 @@
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>socketio <span style="color:#f92672">=</span> SocketIO(app, cors_allowed_origins<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;*&#34;</span>, async_mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;eventlet&#39;</span>)
 </span></span></code></pre></div><ol start="2">
-<li>
-<p>eventlet 관련 라이브러리 spec 파일에 포함시키기</p>
-</li>
-<li>
-<p>monkey_patch 를 소스 가장 상단에!</p>
-</li>
+<li>eventlet 관련 라이브러리 spec 파일에 포함시키기</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>hiddenimports <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;greenlet&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;dns&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.support&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.hubs&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.hubs.epolls&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green.ssl&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green.socket&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green.select&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green.threading&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;socketio.async_drivers.eventlet&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>상황에 따라 저거보다 더 필요할 수도있음.</p>
+<ol start="3">
+<li>monkey_patch 를 소스 가장 상단에!</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> eventlet
 </span></span><span style="display:flex;"><span>eventlet<span style="color:#f92672">.</span>monkey_patch()
