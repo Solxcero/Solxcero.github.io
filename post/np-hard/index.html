@@ -39,7 +39,7 @@
   style="--bg: #fff"
   lang="en-us"
 >
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   
   <link rel="stylesheet" href="/css/custom.css">
   
@@ -103,14 +103,14 @@ TSP 알고리즘이 카테고리로 설정되어 있었다." />
   
   
   
-  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
 
   
   
   
   
   
-  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
+  <link rel="preload" as="image" href="/theme.png" />
 
   
   
@@ -122,7 +122,7 @@ TSP 알고리즘이 카테고리로 설정되어 있었다." />
 
   
   
-  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
+  <link rel="preload" as="image" href="/github.svg" />
   
   
 
@@ -130,7 +130,7 @@ TSP 알고리즘이 카테고리로 설정되어 있었다." />
   
   <script
     defer
-    src="//localhost:1313/highlight.min.js"
+    src="/highlight.min.js"
     onload="hljs.initHighlightingOnLoad();"
   ></script>
   
@@ -160,13 +160,59 @@ TSP 알고리즘이 카테고리로 설정되어 있었다." />
   
 
   
-  <link rel="icon" href="//localhost:1313/favicon.ico" />
-  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.124.0">
 
   
+  
+  
+  
+  
+  <meta itemprop="name" content="NP Hard">
+<meta itemprop="description" content="🎅흥미로운 주제 발견 Dacon에서 흥미로운 주제로 대회를 열었길래, 이번에 참여해보기로 했다.
+대회링크
+대회 이름은 산타 배송 경로 최적화
+내용을 간단히 설명하자면
+(0,0) 에 위치한 산타가 (100,100) 좌표 위의 모든 마을에 선물을 전달할 수 있는 최단경로 마을 방문순서 구하기!
+⚠️ 🦌가 힘들기 때문에 한번에 선물 25개만 실을 수 있고, 한번 방문한 마을은 다시 방문할 수 없음.
+⚠️ 점수는 참가자가 도출한 배달 순서를 기반으로 유클리드 거리를 계산하여 산정
+TSP 알고리즘이 카테고리로 설정되어 있었다."><meta itemprop="datePublished" content="2025-01-05T11:26:51+09:00" />
+<meta itemprop="dateModified" content="2025-01-05T11:26:51+09:00" />
+<meta itemprop="wordCount" content="517">
+<meta itemprop="keywords" content="" />
+  
+  <meta property="og:title" content="NP Hard" />
+<meta property="og:description" content="🎅흥미로운 주제 발견 Dacon에서 흥미로운 주제로 대회를 열었길래, 이번에 참여해보기로 했다.
+대회링크
+대회 이름은 산타 배송 경로 최적화
+내용을 간단히 설명하자면
+(0,0) 에 위치한 산타가 (100,100) 좌표 위의 모든 마을에 선물을 전달할 수 있는 최단경로 마을 방문순서 구하기!
+⚠️ 🦌가 힘들기 때문에 한번에 선물 25개만 실을 수 있고, 한번 방문한 마을은 다시 방문할 수 없음.
+⚠️ 점수는 참가자가 도출한 배달 순서를 기반으로 유클리드 거리를 계산하여 산정
+TSP 알고리즘이 카테고리로 설정되어 있었다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/np-hard/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2025-01-05T11:26:51+09:00" />
+<meta property="article:modified_time" content="2025-01-05T11:26:51+09:00" />
+
+  
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="NP Hard"/>
+<meta name="twitter:description" content="🎅흥미로운 주제 발견 Dacon에서 흥미로운 주제로 대회를 열었길래, 이번에 참여해보기로 했다.
+대회링크
+대회 이름은 산타 배송 경로 최적화
+내용을 간단히 설명하자면
+(0,0) 에 위치한 산타가 (100,100) 좌표 위의 모든 마을에 선물을 전달할 수 있는 최단경로 마을 방문순서 구하기!
+⚠️ 🦌가 힘들기 때문에 한번에 선물 25개만 실을 수 있고, 한번 방문한 마을은 다시 방문할 수 없음.
+⚠️ 점수는 참가자가 도출한 배달 순서를 기반으로 유클리드 거리를 계산하여 산정
+TSP 알고리즘이 카테고리로 설정되어 있었다."/>
+
+  
+  
+  
+  <link rel="canonical" href="/post/np-hard/" />
   
   
   <link rel="stylesheet" href="/css/highlight.css">
@@ -178,7 +224,7 @@ TSP 알고리즘이 카테고리로 설정되어 있었다." />
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
-      href="//localhost:1313/"
+      href="/"
       >漸入佳境</a
     >
     <div
@@ -507,7 +553,7 @@ TSP 알고리즘이 카테고리로 설정되어 있었다." />
       
       <a
         class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-        href="//localhost:1313/post/eventletmonkey/"
+        href="/post/eventletmonkey/"
         ><span>Eventlet과 Monkey Patch</span><span class="ml-1.5">→</span></a
       >
       
@@ -534,7 +580,7 @@ TSP 알고리즘이 카테고리로 설정되어 있었다." />
 >
 <div class="mr-auto">
   &copy; 2025
-  <a class="link" href="//localhost:1313/">漸入佳境</a>
+  <a class="link" href="/">漸入佳境</a>
 </div>
 <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
 >Powered by Hugo️️</a

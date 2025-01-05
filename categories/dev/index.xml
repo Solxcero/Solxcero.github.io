@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dev on 漸入佳境</title>
-    <link>//localhost:1313/categories/dev/</link>
+    <link>/categories/dev/</link>
     <description>Recent content in Dev on 漸入佳境</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 05 Jan 2025 11:26:51 +0900</lastBuildDate>
-    <atom:link href="//localhost:1313/categories/dev/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/categories/dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>NP Hard</title>
-      <link>//localhost:1313/post/np-hard/</link>
+      <link>/post/np-hard/</link>
       <pubDate>Sun, 05 Jan 2025 11:26:51 +0900</pubDate>
-      <guid>//localhost:1313/post/np-hard/</guid>
-      <description>🎅흥미로운 주제 발견 Dacon에서 흥미로운 주제로 대회를 열었길래, 이번에 참여해보기로 했다.&#xA;대회링크&#xA;대회 이름은 산타 배송 경로 최적화&#xA;내용을 간단히 설명하자면&#xA;(0,0) 에 위치한 산타가 (100,100) 좌표 위의 모든 마을에 선물을 전달할 수 있는 최단경로 마을 방문순서 구하기!&#xA;⚠️ 🦌가 힘들기 때문에 한번에 선물 25개만 실을 수 있고, 한번 방문한 마을은 다시 방문할 수 없음.&#xA;TSP 알고리즘이 카테고리로 설정되어 있었다.&#xA;외판원 알고리즘이라고 예전에 코테 스터디할 때 잠깐 들었던 기억이 있긴한데,</description>
+      <guid>/post/np-hard/</guid>
+      <description>🎅흥미로운 주제 발견 Dacon에서 흥미로운 주제로 대회를 열었길래, 이번에 참여해보기로 했다.&#xA;대회링크&#xA;대회 이름은 산타 배송 경로 최적화&#xA;내용을 간단히 설명하자면&#xA;(0,0) 에 위치한 산타가 (100,100) 좌표 위의 모든 마을에 선물을 전달할 수 있는 최단경로 마을 방문순서 구하기!&#xA;⚠️ 🦌가 힘들기 때문에 한번에 선물 25개만 실을 수 있고, 한번 방문한 마을은 다시 방문할 수 없음.&#xA;⚠️ 점수는 참가자가 도출한 배달 순서를 기반으로 유클리드 거리를 계산하여 산정&#xA;TSP 알고리즘이 카테고리로 설정되어 있었다.</description>
     </item>
   </channel>
 </rss>
