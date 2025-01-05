@@ -77,7 +77,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
   
-  <title>漸入佳境</title>
+  <title>NP Hard - 漸入佳境</title>
 
   
   <meta name="theme-color" />
@@ -86,11 +86,14 @@
   
   
   
-  
-  <meta
-    name="description"
-    content="A personal blog"
-  />
+  <meta name="description" content="🎅흥미로운 주제 발견 Dacon에서 흥미로운 주제로 대회를 열었길래, 이번에 참여해보기로 했다.
+대회링크
+대회 이름은 산타 배송 경로 최적화
+내용을 간단히 설명하자면
+(0,0) 에 위치한 산타가 (100,100) 좌표 위의 모든 마을에 선물을 전달할 수 있는 최단경로 마을 방문순서 구하기!
+⚠️ 🦌가 힘들기 때문에 한번에 선물 25개만 실을 수 있고, 한번 방문한 마을은 다시 방문할 수 없음.
+⚠️ 점수는 참가자가 도출한 배달 순서를 기반으로 유클리드 거리를 계산하여 산정
+TSP 알고리즘이 카테고리로 설정되어 있었다." />
   <meta name="author" content="덕후의 즐거운 인생" />
   
 
@@ -124,6 +127,12 @@
   
 
   
+  
+  <script
+    defer
+    src="//localhost:1313/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
   
 
   
@@ -271,71 +280,252 @@
       class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-7 pb-16 pt-12 dark:prose-invert"
     >
       
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">포스팅 이미지 팝업으로 보기</h2>
-  <time class="post-date"
-    >May 3, 2024</time
-  >
+<link rel="stylesheet" href="/assets/css/custom.css">
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
     
-  
-    <span class="post-category">  #
-      
-      blog
-    
-    </span>
-  
-  <a class="absolute inset-0 text-[0]" href="//localhost:1313/post/imagebox/">포스팅 이미지 팝업으로 보기</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">Hugo로 GitBlog 만들기</h2>
-  <time class="post-date"
-    >Apr 3, 2024</time
-  >
-    
-  
-    <span class="post-category">  #
-      
-      blog
-    
-    </span>
-  
-  <a class="absolute inset-0 text-[0]" href="//localhost:1313/post/blog/">Hugo로 GitBlog 만들기</a>
-</section>
-
-
-
-
-<nav class="mt-16 flex">
-  
-  <a class="btn" href="/">← Prev Page</a>
-  
-  
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#흥미로운-주제-발견">🎅흥미로운 주제 발견</a></li>
+    <li><a href="#np-hard">NP-Hard</a>
+      <ul>
+        <li><a href="#np-hard의-정의">NP-Hard의 정의</a></li>
+        <li><a href="#쉽게-이해하는-np-hard">쉽게 이해하는 NP-Hard</a></li>
+        <li><a href="#tsp가-np-hard인-이유">TSP가 NP-Hard인 이유</a></li>
+        <li><a href="#그럼-np-hard-문제는-우찌-해결하나여">그럼 NP-Hard 문제는 우찌 해결하나여</a></li>
+        <li><a href="#쉽게-이해하는-tsp와-np-hard">쉽게 이해하는 TSP와 NP-Hard</a></li>
+        <li><a href="#일상적인-np-hard-문제-예시">일상적인 NP-Hard 문제 예시</a></li>
+      </ul>
+    </li>
+    <li><a href="#결론">결론</a></li>
+  </ul>
 </nav>
+  </aside>
+</div>
+
+  <article>
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">NP Hard</h1>
+
+          
+          <div class="post-categories">
+            
+              <a href="/categories/dev" class="category-box">Dev</a>
+            
+          </div>
+            
+    
+      
+      <div class="text-sm antialiased opacity-60">
+        
+        <time>Jan 5, 2025</time>
+        
+        
+        
+        
+      </div>
+      
+    </header>
+    
+    
+    <section>
+      <h2 id="흥미로운-주제-발견">🎅흥미로운 주제 발견</h2>
+<p>Dacon에서 흥미로운 주제로 대회를 열었길래, 이번에 참여해보기로 했다.<br>
+<a href="https://dacon.io/competitions/official/236437/overview/rules">대회링크</a><br>
+대회 이름은 <code>산타 배송 경로 최적화</code></p>
+<p>내용을 간단히 설명하자면</p>
+<blockquote>
+<p>(0,0) 에 위치한 산타가 (100,100) 좌표 위의 모든 마을에 선물을 전달할 수 있는 최단경로 마을 방문순서 구하기!<br>
+⚠️ 🦌가 힘들기 때문에 한번에 선물 25개만 실을 수 있고, 한번 방문한 마을은 다시 방문할 수 없음.<br>
+⚠️ 점수는 참가자가 도출한 배달 순서를 기반으로 유클리드 거리를 계산하여 산정</p>
+</blockquote>
+<p>TSP 알고리즘이 카테고리로 설정되어 있었다.<br>
+외판원 알고리즘이라고 예전에 코테 스터디할 때 잠깐 들었던 기억이 있긴한데,<br>
+당시에 너무 어려웠어서 그냥 패스했었다. 자랑스럽다.</p>
+<p>그래서 대회에 본격적으로 참여하기 앞서 여러 개념들을 공부해보려고 한당.</p>
+<p>이번 주제는 <strong>NP-Hard</strong> ~<br>
+뭔진 몰라도 상당히 Hard 한 기운이 느껴진다.</p>
+<h2 id="np-hard">NP-Hard</h2>
+<hr>
+<h3 id="np-hard의-정의">NP-Hard의 정의</h3>
+<blockquote>
+<p>NP-Hard(Non-deterministic Polynomial-time Hard)는 계산 복잡도 이론에서 아주 어려운 문제의 집합</p>
+</blockquote>
+<p><strong>NP-Hard 문제의 특징</strong></p>
+<ol>
+<li>해결하는 데 시간이 매우 오래 걸림(기존의 알고리즘으로는 다항 시간 안에 해결 불가능).</li>
+<li>문제의 해가 주어졌을 때, 그것이 맞는지 확인하는 것도 시간이 오래 걸림.</li>
+<li>NP 문제보다도 더 어려운 문제를 포함.</li>
+</ol>
+<p>TSP(Traveling Salesman Problem)는 NP-Hard 문제 중 하나이다.<br>
+도시 수가 많아질수록 가능한 경로 수가 기하급수적으로 증가하기 때문에 빠르게 최적해를 찾는 것이 어렵다고 한당.</p>
+<hr>
+<h3 id="쉽게-이해하는-np-hard">쉽게 이해하는 NP-Hard</h3>
+<p>1️⃣ <strong>P(Polynomial-time)</strong>:<br>
+문제를 해결하는 데 필요한 시간이 다항 시간 내에 가능</p>
+<ul>
+<li>덧셈, 뺄셈, 정렬 등.</li>
+</ul>
+<p>2️⃣ <strong>NP(Non-deterministic Polynomial-time)</strong>:<br>
+문제를 해결하는 데 시간이 오래 걸릴 수 있지만, 해가 주어졌을 때, 그것이 맞는지 검증하는 것은 다항 시간 내에 가능</p>
+<ul>
+<li>Sudoku 퍼즐: 문제를 푸는 데 시간이 오래 걸리지만, 정답이 주어졌을 때 검증하는 것은 빠름</li>
+</ul>
+<p>3️⃣ <strong>NP-Hard</strong>:</p>
+<ul>
+<li>P 문제와 NP 문제를 모두 포함하는 더 어려운 문제</li>
+<li>어떤 알고리즘을 사용하더라도 일반적으로 빠른 해결책을 찾기 어렵</li>
+<li>NP-Hard 문제를 해결할 수 있는 알고리즘이 있다면, 모든 NP 문제를 해결 가능</li>
+</ul>
+<hr>
+<h3 id="tsp가-np-hard인-이유">TSP가 NP-Hard인 이유</h3>
+<p>TSP의 핵심은 모든 도시를 한 번씩 방문하고 다시 출발점으로 돌아오는 최소 경로를 찾는 문제이다.<br>
+그러므로 도시 수가 증가할수록 가능한 경로 수가 기하급수적으로 증가하게 된다.</p>
+<h4 id="가능한-경로-수">가능한 경로 수:</h4>
+<ul>
+<li>도시가 ( n )개일 때, 가능한 경로 수는 ((n-1)!)
+즉, 시간복잡도가 n! 이 된다.</li>
+</ul>
+<p>예시로 도시 수를 증가시켜 보면:</p>
+<table>
+<thead>
+<tr>
+<th>도시 수</th>
+<th>가능한 경로 수</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>( 3! = 6 )</td>
+</tr>
+<tr>
+<td>5</td>
+<td>( 4! = 24 )</td>
+</tr>
+<tr>
+<td>10</td>
+<td>( 9! = 362,880 )</td>
+</tr>
+<tr>
+<td>20</td>
+<td>( 19! \approx 10^{17} )</td>
+</tr>
+</tbody>
+</table>
+<p>이처럼, 도시 수가 많아지면 가능한 경로 수가 기하급수적으로 증가하기 때문에, 현실적으로 모든 경로를 탐색하여 최적 경로를 찾는 것은 힘들어보인다.</p>
+<hr>
+<h3 id="그럼-np-hard-문제는-우찌-해결하나여">그럼 NP-Hard 문제는 우찌 해결하나여</h3>
+<p>NP-Hard 문제를 해결하기 위해 완벽한 최적해를 찾기보다 근사해(Approximate Solution)를 찾는 알고리즘을 사용한다고 한다.</p>
+<p>몇 가지 대표적인 알고리즘:</p>
+<table>
+<thead>
+<tr>
+<th>알고리즘</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Greedy Algorithm</td>
+<td>현재 상황에서 가장 좋은 선택을 반복.</td>
+</tr>
+<tr>
+<td>Dynamic Programming</td>
+<td>문제를 작은 부분 문제로 나눠 해결.</td>
+</tr>
+<tr>
+<td>Genetic Algorithm</td>
+<td>자연 선택을 모방한 최적화 알고리즘.</td>
+</tr>
+<tr>
+<td>Simulated Annealing</td>
+<td>물질이 냉각될 때의 분자 이동을 모방.</td>
+</tr>
+<tr>
+<td>Ant Colony Optimization</td>
+<td>개미의 먹이 탐색을 모방한 알고리즘.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="쉽게-이해하는-tsp와-np-hard">쉽게 이해하는 TSP와 NP-Hard</h3>
+<p>🔧 TSP가 어려운 이유</p>
+<ul>
+<li>도시가 많아질수록 가능한 경로 수가 급격히 증가하기 때문</li>
+<li>단순히 가능한 모든 경로를 탐색하는 것은 현실적으로 불가능</li>
+</ul>
+<p>💡 그래도 해결은 해야지?</p>
+<ul>
+<li>완벽한 최적해를 찾는 대신, 근사 알고리즘을 사용하여 빠르게 좋은 경로를 찾기</li>
+</ul>
+<hr>
+<h3 id="일상적인-np-hard-문제-예시">일상적인 NP-Hard 문제 예시</h3>
+<table>
+<thead>
+<tr>
+<th>문제 유형</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TSP</td>
+<td>모든 도시를 한 번씩 방문하고 최소 경로를 찾기.</td>
+</tr>
+<tr>
+<td>Job Scheduling</td>
+<td>작업을 가장 효율적으로 배치하는 문제.</td>
+</tr>
+<tr>
+<td>Knapsack Problem</td>
+<td>제한된 용량 내에서 최대 가치를 얻는 문제.</td>
+</tr>
+<tr>
+<td>Sudoku</td>
+<td>숫자를 채워서 퍼즐을 완성하는 문제.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="결론">결론</h2>
+<p>그니까, 원래 알던 코드로 돌리면 한세월 걸릴테니
+시간복잡도와 정답 모두 챙긴 코드가 필요하다는 뜻 같다.<br>
+어렵겠지만 그만큼 재밌을 것 같당.</p>
+
+    </section> 
+
+    
+    
+
+    
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+      
+      
+      <a
+        class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="//localhost:1313/post/eventletmonkey/"
+        ><span>Eventlet과 Monkey Patch</span><span class="ml-1.5">→</span></a
+      >
+      
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+
+    
 
 
+    
+  </article>
 
     </main>
 

@@ -77,7 +77,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
   
-  <title>Posts - 漸入佳境</title>
+  <title>NP Hard - 漸入佳境</title>
 
   
   <meta name="theme-color" />
@@ -86,11 +86,8 @@
   
   
   
-  
-  <meta
-    name="description"
-    content="A personal blog"
-  />
+  <meta name="description" content="📌 NP-Hard란 무엇인가요? ✅ NP-Hard의 정의 **NP-Hard(Non-deterministic Polynomial-time Hard)**는 계산 복잡도 이론에서 아주 어려운 문제의 집합을 가리킵니다. NP-Hard 문제는 다음과 같은 특징이 있습니다:
+해결하는 데 시간이 매우 오래 걸리며 (기존의 알고리즘으로는 다항 시간 안에 해결 불가능). 문제의 해가 주어졌을 때, 그것이 맞는지 확인하는 것도 시간이 오래 걸립니다. NP 문제보다도 더 어려운 문제를 포함합니다. **TSP(Traveling Salesman Problem)**는 NP-Hard 문제 중 하나입니다. 도시 수가 많아질수록 가능한 경로 수가 기하급수적으로 증가하기 때문에 빠르게 최적해를 찾는 것이 어렵습니다." />
   <meta name="author" content="덕후의 즐거운 인생" />
   
 
@@ -124,6 +121,12 @@
   
 
   
+  
+  <script
+    defer
+    src="//localhost:1313/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
   
 
   
@@ -271,69 +274,212 @@
       class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-7 pb-16 pt-12 dark:prose-invert"
     >
       
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">포스팅 이미지 팝업으로 보기</h2>
-  <time class="post-date"
-    >May 3, 2024</time
-  >
+<link rel="stylesheet" href="/assets/css/custom.css">
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
     
-  
-    <span class="post-category">  #
-      
-      blog
-    
-    </span>
-  
-  <a class="absolute inset-0 text-[0]" href="//localhost:1313/post/imagebox/">포스팅 이미지 팝업으로 보기</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">Hugo로 GitBlog 만들기</h2>
-  <time class="post-date"
-    >Apr 3, 2024</time
-  >
-    
-  
-    <span class="post-category">  #
-      
-      blog
-    
-    </span>
-  
-  <a class="absolute inset-0 text-[0]" href="//localhost:1313/post/blog/">Hugo로 GitBlog 만들기</a>
-</section>
-
-
-
-
-<nav class="mt-16 flex">
-  
-  <a class="btn" href="/post/">← Prev Page</a>
-  
-  
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#-np-hard란-무엇인가요">📌 <strong>NP-Hard란 무엇인가요?</strong></a></li>
+        <li><a href="#-np-hard의-정의">✅ <strong>NP-Hard의 정의</strong></a></li>
+        <li><a href="#-쉽게-이해하는-np-hard">✅ <strong>쉽게 이해하는 NP-Hard</strong></a></li>
+        <li><a href="#-tsp가-np-hard인-이유">✅ <strong>TSP가 NP-Hard인 이유</strong></a></li>
+        <li><a href="#-np-hard-문제를-어떻게-해결하나요">✅ <strong>NP-Hard 문제를 어떻게 해결하나요?</strong></a></li>
+        <li><a href="#-쉽게-이해하는-tsp와-np-hard">✅ <strong>쉽게 이해하는 TSP와 NP-Hard</strong></a></li>
+        <li><a href="#-일상적인-np-hard-문제-예시">✅ <strong>일상적인 NP-Hard 문제 예시</strong></a></li>
+        <li><a href="#-정리">✅ <strong>정리</strong></a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
+  </aside>
+</div>
+
+  <article>
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">NP Hard</h1>
+
+              
+    
+      
+    </header>
+    
+    
+    <section>
+      <h3 id="-np-hard란-무엇인가요">📌 <strong>NP-Hard란 무엇인가요?</strong></h3>
+<hr>
+<h3 id="-np-hard의-정의">✅ <strong>NP-Hard의 정의</strong></h3>
+<p>**NP-Hard(Non-deterministic Polynomial-time Hard)**는 <strong>계산 복잡도 이론</strong>에서 <strong>아주 어려운 문제</strong>의 집합을 가리킵니다. NP-Hard 문제는 다음과 같은 특징이 있습니다:</p>
+<ol>
+<li><strong>해결하는 데 시간이 매우 오래 걸리며</strong> (기존의 알고리즘으로는 다항 시간 안에 해결 불가능).</li>
+<li>문제의 해가 주어졌을 때, 그것이 맞는지 확인하는 것도 시간이 오래 걸립니다.</li>
+<li><strong>NP 문제보다도 더 어려운 문제</strong>를 포함합니다.</li>
+</ol>
+<p>**TSP(Traveling Salesman Problem)**는 <strong>NP-Hard</strong> 문제 중 하나입니다. 도시 수가 많아질수록 가능한 경로 수가 <strong>기하급수적으로 증가</strong>하기 때문에 빠르게 최적해를 찾는 것이 어렵습니다.</p>
+<hr>
+<h3 id="-쉽게-이해하는-np-hard">✅ <strong>쉽게 이해하는 NP-Hard</strong></h3>
+<p>1️⃣ <strong>P(Polynomial-time)</strong>:<br>
+문제를 해결하는 데 필요한 시간이 <strong>다항 시간 내</strong>에 가능하다면, 이 문제는 <strong>P 문제</strong>라고 부릅니다.</p>
+<p>예시:</p>
+<ul>
+<li>덧셈, 뺄셈, 정렬 등.</li>
+</ul>
+<br>
+<p>2️⃣ <strong>NP(Non-deterministic Polynomial-time)</strong>:<br>
+문제를 해결하는 데 시간이 오래 걸릴 수 있지만, <strong>해가 주어졌을 때, 그것이 맞는지 검증하는 것은 다항 시간 내</strong>에 가능하다면 <strong>NP 문제</strong>입니다.</p>
+<p>예시:</p>
+<ul>
+<li>Sudoku 퍼즐: 문제를 푸는 데 시간이 오래 걸리지만, 정답이 주어졌을 때 검증하는 것은 빠릅니다.</li>
+</ul>
+<br>
+<p>3️⃣ <strong>NP-Hard</strong>:<br>
+NP-Hard 문제는 다음과 같은 특징을 가집니다.</p>
+<ul>
+<li>P 문제와 NP 문제를 모두 포함하는 <strong>더 어려운 문제</strong>입니다.</li>
+<li>어떤 알고리즘을 사용하더라도 일반적으로 <strong>빠른 해결책을 찾기 어렵습니다.</strong></li>
+<li>NP-Hard 문제를 해결할 수 있는 알고리즘이 있다면, 모든 NP 문제를 해결할 수 있습니다.</li>
+</ul>
+<hr>
+<h3 id="-tsp가-np-hard인-이유">✅ <strong>TSP가 NP-Hard인 이유</strong></h3>
+<p><strong>TSP</strong>의 핵심은 <strong>모든 도시를 한 번씩 방문하고 다시 출발점으로 돌아오는 최소 경로를 찾는 것</strong>입니다. 하지만 도시 수가 증가할수록 가능한 경로 수가 기하급수적으로 증가합니다.</p>
+<h4 id="가능한-경로-수">가능한 경로 수:</h4>
+<ul>
+<li>도시가 ( n )개일 때, 가능한 경로 수는 ((n-1)!)입니다.</li>
+</ul>
+<p>예시로 도시 수를 증가시켜 보면:</p>
+<table>
+<thead>
+<tr>
+<th>도시 수</th>
+<th>가능한 경로 수</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>( 3! = 6 )</td>
+</tr>
+<tr>
+<td>5</td>
+<td>( 4! = 24 )</td>
+</tr>
+<tr>
+<td>10</td>
+<td>( 9! = 362,880 )</td>
+</tr>
+<tr>
+<td>20</td>
+<td>( 19! \approx 10^{17} )</td>
+</tr>
+</tbody>
+</table>
+<p>이처럼, 도시 수가 많아지면 가능한 경로 수가 <strong>기하급수적으로 증가</strong>하기 때문에, 현실적으로 모든 경로를 탐색하여 최적 경로를 찾는 것은 매우 어렵습니다.</p>
+<hr>
+<h3 id="-np-hard-문제를-어떻게-해결하나요">✅ <strong>NP-Hard 문제를 어떻게 해결하나요?</strong></h3>
+<p>NP-Hard 문제를 해결하기 위해 <strong>완벽한 최적해</strong>를 찾기보다 **근사해(Approximate Solution)**를 찾는 알고리즘을 사용합니다.</p>
+<p>몇 가지 대표적인 알고리즘:</p>
+<table>
+<thead>
+<tr>
+<th>알고리즘</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Greedy Algorithm</strong></td>
+<td>현재 상황에서 가장 좋은 선택을 반복.</td>
+</tr>
+<tr>
+<td><strong>Dynamic Programming</strong></td>
+<td>문제를 작은 부분 문제로 나눠 해결.</td>
+</tr>
+<tr>
+<td><strong>Genetic Algorithm</strong></td>
+<td>자연 선택을 모방한 최적화 알고리즘.</td>
+</tr>
+<tr>
+<td><strong>Simulated Annealing</strong></td>
+<td>물질이 냉각될 때의 분자 이동을 모방.</td>
+</tr>
+<tr>
+<td><strong>Ant Colony Optimization</strong></td>
+<td>개미의 먹이 탐색을 모방한 알고리즘.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="-쉽게-이해하는-tsp와-np-hard">✅ <strong>쉽게 이해하는 TSP와 NP-Hard</strong></h3>
+<p>🔧 <strong>TSP는 왜 어려울까요?</strong></p>
+<ul>
+<li>도시가 많아질수록 가능한 경로 수가 급격히 증가하기 때문입니다.</li>
+<li>단순히 가능한 모든 경로를 탐색하는 것은 현실적으로 불가능합니다.</li>
+</ul>
+<p>💡 <strong>하지만, 어떻게 해결할 수 있나요?</strong></p>
+<ul>
+<li>완벽한 최적해를 찾는 대신, <strong>근사 알고리즘</strong>을 사용하여 빠르게 <strong>좋은 경로</strong>를 찾습니다.</li>
+</ul>
+<hr>
+<h3 id="-일상적인-np-hard-문제-예시">✅ <strong>일상적인 NP-Hard 문제 예시</strong></h3>
+<table>
+<thead>
+<tr>
+<th>문제 유형</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TSP</strong></td>
+<td>모든 도시를 한 번씩 방문하고 최소 경로를 찾기.</td>
+</tr>
+<tr>
+<td><strong>Job Scheduling</strong></td>
+<td>작업을 가장 효율적으로 배치하는 문제.</td>
+</tr>
+<tr>
+<td><strong>Knapsack Problem</strong></td>
+<td>제한된 용량 내에서 최대 가치를 얻는 문제.</td>
+</tr>
+<tr>
+<td><strong>Sudoku</strong></td>
+<td>숫자를 채워서 퍼즐을 완성하는 문제.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="-정리">✅ <strong>정리</strong></h3>
+<ul>
+<li><strong>NP-Hard</strong> 문제는 <strong>매우 어려운 문제</strong>로, 빠른 시간 내에 해결이 어렵습니다.</li>
+<li>**TSP(Traveling Salesman Problem)**는 대표적인 NP-Hard 문제입니다.</li>
+<li>현실에서는 <strong>완벽한 해답</strong>을 찾기보다는 **근사해(Approximate Solution)**를 찾는 알고리즘을 사용합니다.</li>
+</ul>
+<p>궁금한 점이 있으면 추가로 질문해 주세요! 😊</p>
+
+    </section> 
+
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
 
 
+    
+  </article>
 
     </main>
 
@@ -399,20 +545,20 @@ target="_blank"
 
      
      <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             
             var tocLinks = document.querySelectorAll('.toc a');
             var sections = [];
 
             
             var options = {
-                root: null,
-                rootMargin: '0px 0px -50% 0px',
-                threshold: 0
+                root: null, 
+                rootMargin: '0px 0px -50% 0px', 
+                threshold: 0 
             };
 
             
-            tocLinks.forEach(function (link) {
+            tocLinks.forEach(function(link) {
                 var href = link.getAttribute('href');
                 if (href && href.startsWith("#")) {
                     var targetSection = document.querySelector(href);
@@ -423,40 +569,38 @@ target="_blank"
             });
 
             
-            var observer = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
                     var targetSection = entry.target;
-                    var tocItem = sections.find(function (s) {
+                    var link = sections.find(function(s) {
                         return s.section === targetSection;
-                    });
+                    }).link;
 
-                    if (entry.isIntersecting && tocItem) {
+                    if (entry.isIntersecting) {
                         
-                        tocLinks.forEach(function (link) {
-                            var parentLi = link.parentElement;
-                            var sublist = parentLi.querySelector('ul');
-
-                            if (sublist) {
-                                sublist.style.display = 'none';
-                            }
-                            parentLi.classList.remove('active');
+                        tocLinks.forEach(function(link) {
+                            link.classList.remove('toc-active');
                         });
-
-                        
-                        var parentLi = tocItem.link.parentElement;
-                        var sublist = parentLi.querySelector('ul');
-
-                        if (sublist) {
-                            sublist.style.display = 'block';
-                        }
-                        parentLi.classList.add('active');
+                        link.classList.add('toc-active');
                     }
                 });
             }, options);
 
             
-            sections.forEach(function (section) {
+            sections.forEach(function(section) {
                 observer.observe(section.section);
+            });
+
+            
+            tocLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    
+                    tocLinks.forEach(function(link) {
+                        link.classList.remove('toc-active');
+                    });
+                    
+                    link.classList.add('toc-active');
+                });
             });
         });
 
