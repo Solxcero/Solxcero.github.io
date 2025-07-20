@@ -406,20 +406,20 @@ target="_blank"
 
      
      <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             
             var tocLinks = document.querySelectorAll('.toc a');
             var sections = [];
 
             
             var options = {
-                root: null,
-                rootMargin: '0px 0px -50% 0px',
-                threshold: 0
+                root: null, 
+                rootMargin: '0px 0px -50% 0px', 
+                threshold: 0 
             };
 
             
-            tocLinks.forEach(function (link) {
+            tocLinks.forEach(function(link) {
                 var href = link.getAttribute('href');
                 if (href && href.startsWith("#")) {
                     var targetSection = document.querySelector(href);
@@ -430,40 +430,38 @@ target="_blank"
             });
 
             
-            var observer = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
                     var targetSection = entry.target;
-                    var tocItem = sections.find(function (s) {
+                    var link = sections.find(function(s) {
                         return s.section === targetSection;
-                    });
+                    }).link;
 
-                    if (entry.isIntersecting && tocItem) {
+                    if (entry.isIntersecting) {
                         
-                        tocLinks.forEach(function (link) {
-                            var parentLi = link.parentElement;
-                            var sublist = parentLi.querySelector('ul');
-
-                            if (sublist) {
-                                sublist.style.display = 'none';
-                            }
-                            parentLi.classList.remove('active');
+                        tocLinks.forEach(function(link) {
+                            link.classList.remove('toc-active');
                         });
-
-                        
-                        var parentLi = tocItem.link.parentElement;
-                        var sublist = parentLi.querySelector('ul');
-
-                        if (sublist) {
-                            sublist.style.display = 'block';
-                        }
-                        parentLi.classList.add('active');
+                        link.classList.add('toc-active');
                     }
                 });
             }, options);
 
             
-            sections.forEach(function (section) {
+            sections.forEach(function(section) {
                 observer.observe(section.section);
+            });
+
+            
+            tocLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    
+                    tocLinks.forEach(function(link) {
+                        link.classList.remove('toc-active');
+                    });
+                    
+                    link.classList.add('toc-active');
+                });
             });
         });
 
