@@ -39,7 +39,7 @@
   style="--bg: #fff"
   lang="en-us"
 >
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   
   <link rel="stylesheet" href="/css/custom.css">
   
@@ -98,14 +98,14 @@
   
   
   
-  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
 
   
   
   
   
   
-  <link rel="preload" as="image" href="/theme.png" />
+  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
 
   
   
@@ -117,7 +117,7 @@
 
   
   
-  <link rel="preload" as="image" href="/github.svg" />
+  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
   
   
 
@@ -125,7 +125,7 @@
   
   <script
     defer
-    src="/highlight.min.js"
+    src="//localhost:1313/highlight.min.js"
     onload="hljs.initHighlightingOnLoad();"
   ></script>
   
@@ -155,44 +155,13 @@
   
 
   
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" href="//localhost:1313/favicon.ico" />
+  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.124.0">
 
   
-  
-  
-  
-  
-  <meta itemprop="name" content="선형회귀와 스케일링">
-<meta itemprop="description" content="업무 외 지시는 부당지시 아닌가여? 근데 흥미로워 바빠 죽겠던 어느날, 상사가 코드를 좀 봐줄 수 있냐고 부탁을해서 당연히 업무와 관련된 건줄 알고 그러겠다 했다. 근데 내용을 받아보니, 업무가 아닌 본인이 수강하고 있는 강의의 과제였던 것이다&hellip;
-상사의 궁금사항은 이러했다.
-선형회귀모델을 만들었는데, 로우데이터, 정규화 데이터, 표준화 데이터의 MSE 값이 모두 동일하게(완벽히 동일은 아니고 소수점 7자리 까지 동일함) 나온다는 것이었다. 데이터 스케일링을 하면 이상치 값들이 정제되면서 모델의 성능이 개선되어야 하는것이 아니냐? 라는게 상사의 질문."><meta itemprop="datePublished" content="2024-11-20T11:11:47+09:00" />
-<meta itemprop="dateModified" content="2024-11-20T11:11:47+09:00" />
-<meta itemprop="wordCount" content="942">
-<meta itemprop="keywords" content="" />
-  
-  <meta property="og:title" content="선형회귀와 스케일링" />
-<meta property="og:description" content="업무 외 지시는 부당지시 아닌가여? 근데 흥미로워 바빠 죽겠던 어느날, 상사가 코드를 좀 봐줄 수 있냐고 부탁을해서 당연히 업무와 관련된 건줄 알고 그러겠다 했다. 근데 내용을 받아보니, 업무가 아닌 본인이 수강하고 있는 강의의 과제였던 것이다&hellip;
-상사의 궁금사항은 이러했다.
-선형회귀모델을 만들었는데, 로우데이터, 정규화 데이터, 표준화 데이터의 MSE 값이 모두 동일하게(완벽히 동일은 아니고 소수점 7자리 까지 동일함) 나온다는 것이었다. 데이터 스케일링을 하면 이상치 값들이 정제되면서 모델의 성능이 개선되어야 하는것이 아니냐? 라는게 상사의 질문." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/post/linearmodelandscale/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2024-11-20T11:11:47+09:00" />
-<meta property="article:modified_time" content="2024-11-20T11:11:47+09:00" />
-
-  
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="선형회귀와 스케일링"/>
-<meta name="twitter:description" content="업무 외 지시는 부당지시 아닌가여? 근데 흥미로워 바빠 죽겠던 어느날, 상사가 코드를 좀 봐줄 수 있냐고 부탁을해서 당연히 업무와 관련된 건줄 알고 그러겠다 했다. 근데 내용을 받아보니, 업무가 아닌 본인이 수강하고 있는 강의의 과제였던 것이다&hellip;
-상사의 궁금사항은 이러했다.
-선형회귀모델을 만들었는데, 로우데이터, 정규화 데이터, 표준화 데이터의 MSE 값이 모두 동일하게(완벽히 동일은 아니고 소수점 7자리 까지 동일함) 나온다는 것이었다. 데이터 스케일링을 하면 이상치 값들이 정제되면서 모델의 성능이 개선되어야 하는것이 아니냐? 라는게 상사의 질문."/>
-
-  
-  
-  
-  <link rel="canonical" href="/post/linearmodelandscale/" />
   
   
   <link rel="stylesheet" href="/css/highlight.css">
@@ -204,7 +173,7 @@
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
-      href="/"
+      href="//localhost:1313/"
       >漸入佳境</a
     >
     <div
@@ -276,6 +245,12 @@
         class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
         href="/categories/"
         >Categories</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/projects/"
+        >Projects</a
       >
       
     </nav>
@@ -482,14 +457,14 @@ $$</p>
       
       <a
         class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-        href="/post/longquery/"
+        href="//localhost:1313/post/longquery/"
         ><span class="mr-1.5">←</span><span>My Longest Query So Far</span></a
       >
       
       
       <a
         class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-        href="/post/callback/"
+        href="//localhost:1313/post/devlog/callback/"
         ><span>CallBack</span><span class="ml-1.5">→</span></a
       >
       
@@ -516,7 +491,7 @@ $$</p>
 >
 <div class="mr-auto">
   &copy; 2025
-  <a class="link" href="/">漸入佳境</a>
+  <a class="link" href="//localhost:1313/">漸入佳境</a>
 </div>
 <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
 >Powered by Hugo️️</a

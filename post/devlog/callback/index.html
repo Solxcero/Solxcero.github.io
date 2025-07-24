@@ -1,0 +1,590 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #fff"
+  lang="en-us"
+>
+<head>
+  
+  <link rel="stylesheet" href="/css/custom.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+    
+
+
+</head>
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+  
+  <title>CallBack - 漸入佳境</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  
+  <meta name="description" content="흐어 요새 연구과제 때매 정신이 없다&hellip; 퇴근하면 방전된 상태로 집에 온다 ㅠㅠ 빨리 끝내버리고 싶다 흐규 넘 힘들어 ㅠ
+CallBack 이 필요했던 이유 현재 개발하고 있는 시스템의 구성을 간략히 말하면,
+외부 서버와 통신하는 Socket 인터페이스와 DB 인터페이스가 있다.
+DB 인터페이스의 경우 실시간으로 1분 마다 데이터를 조회 후 연산 결과를 다시 DB에 저장한다.
+Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 메세지가 날라오면 해당 메세지를 처리하여 별도의 연산 프로세스를 수행한 후 결과를 DB에 저장함과 동시에 다시 상대 서버에 메세지를 보낸다." />
+  <meta name="author" content="덕후의 즐거운 인생" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+
+  
+  
+  
+  
+  
+  <link rel="preload" as="image" href="/theme.png" />
+
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://github.com/Solxcero/Solxcero.github.io/assets/99321739/4ccb5f75-725b-4360-b1d6-6b1c99072d56" />
+  
+  
+
+  
+  
+  <link rel="preload" as="image" href="/github.svg" />
+  
+  
+
+  
+  
+  <script
+    defer
+    src="/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+  
+  
+  
+
+  
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.124.0">
+
+  
+  
+  
+  
+  
+  <meta itemprop="name" content="CallBack">
+<meta itemprop="description" content="흐어 요새 연구과제 때매 정신이 없다&hellip; 퇴근하면 방전된 상태로 집에 온다 ㅠㅠ 빨리 끝내버리고 싶다 흐규 넘 힘들어 ㅠ
+CallBack 이 필요했던 이유 현재 개발하고 있는 시스템의 구성을 간략히 말하면,
+외부 서버와 통신하는 Socket 인터페이스와 DB 인터페이스가 있다.
+DB 인터페이스의 경우 실시간으로 1분 마다 데이터를 조회 후 연산 결과를 다시 DB에 저장한다.
+Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 메세지가 날라오면 해당 메세지를 처리하여 별도의 연산 프로세스를 수행한 후 결과를 DB에 저장함과 동시에 다시 상대 서버에 메세지를 보낸다."><meta itemprop="datePublished" content="2024-11-09T00:17:43+09:00" />
+<meta itemprop="dateModified" content="2024-11-09T00:17:43+09:00" />
+<meta itemprop="wordCount" content="326">
+<meta itemprop="keywords" content="" />
+  
+  <meta property="og:title" content="CallBack" />
+<meta property="og:description" content="흐어 요새 연구과제 때매 정신이 없다&hellip; 퇴근하면 방전된 상태로 집에 온다 ㅠㅠ 빨리 끝내버리고 싶다 흐규 넘 힘들어 ㅠ
+CallBack 이 필요했던 이유 현재 개발하고 있는 시스템의 구성을 간략히 말하면,
+외부 서버와 통신하는 Socket 인터페이스와 DB 인터페이스가 있다.
+DB 인터페이스의 경우 실시간으로 1분 마다 데이터를 조회 후 연산 결과를 다시 DB에 저장한다.
+Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 메세지가 날라오면 해당 메세지를 처리하여 별도의 연산 프로세스를 수행한 후 결과를 DB에 저장함과 동시에 다시 상대 서버에 메세지를 보낸다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/devlog/callback/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-11-09T00:17:43+09:00" />
+<meta property="article:modified_time" content="2024-11-09T00:17:43+09:00" />
+
+  
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="CallBack"/>
+<meta name="twitter:description" content="흐어 요새 연구과제 때매 정신이 없다&hellip; 퇴근하면 방전된 상태로 집에 온다 ㅠㅠ 빨리 끝내버리고 싶다 흐규 넘 힘들어 ㅠ
+CallBack 이 필요했던 이유 현재 개발하고 있는 시스템의 구성을 간략히 말하면,
+외부 서버와 통신하는 Socket 인터페이스와 DB 인터페이스가 있다.
+DB 인터페이스의 경우 실시간으로 1분 마다 데이터를 조회 후 연산 결과를 다시 DB에 저장한다.
+Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 메세지가 날라오면 해당 메세지를 처리하여 별도의 연산 프로세스를 수행한 후 결과를 DB에 저장함과 동시에 다시 상대 서버에 메세지를 보낸다."/>
+
+  
+  
+  
+  <link rel="canonical" href="/post/devlog/callback/" />
+  
+  
+  <link rel="stylesheet" href="/css/highlight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="/"
+      >漸入佳境</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#fff'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/categories/"
+        >Categories</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/projects/"
+        >Projects</a
+      >
+      
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/Solxcero"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-7 pb-16 pt-12 dark:prose-invert"
+    >
+      
+<link rel="stylesheet" href="/assets/css/custom.css">
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#callback-이-필요했던-이유">CallBack 이 필요했던 이유</a></li>
+    <li><a href="#프로젝트에서-콜백쓰기">프로젝트에서 콜백쓰기</a></li>
+    <li><a href="#마무리">마무리</a></li>
+  </ul>
+</nav>
+  </aside>
+</div>
+
+  <article>
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">CallBack</h1>
+
+          
+          <div class="post-categories">
+            
+              <a href="/categories/devlog" class="category-box">DevLog</a>
+            
+          </div>
+            
+    
+      
+      <div class="text-sm antialiased opacity-60">
+        
+        <time>Nov 9, 2024</time>
+        
+        
+        
+        
+      </div>
+      
+    </header>
+    
+    
+    <section>
+      <p>흐어 요새 연구과제 때매 정신이 없다&hellip;
+퇴근하면 방전된 상태로 집에 온다 ㅠㅠ 빨리 끝내버리고 싶다 흐규 넘 힘들어 ㅠ</p>
+<h2 id="callback-이-필요했던-이유">CallBack 이 필요했던 이유</h2>
+<p>현재 개발하고 있는 시스템의 구성을 간략히 말하면,<br>
+외부 서버와 통신하는 Socket 인터페이스와 DB 인터페이스가 있다.<br>
+DB 인터페이스의 경우 실시간으로 1분 마다 데이터를 조회 후 연산 결과를 다시 DB에 저장한다.<br>
+Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 메세지가 날라오면 해당 메세지를 처리하여 별도의 연산 프로세스를 수행한 후 결과를 DB에 저장함과 동시에 다시 상대 서버에 메세지를 보낸다.</p>
+<p>내 역할은 API 와 Socket을 통한 통신, DB 연계, 그리고 연산 모듈을 개발하는 것이다.</p>
+<p>아주 대충 시스템 구성을 그려보자면,</p>
+<p align="center">
+  <a href="/images/DevLog/callback(1).png" data-lightbox="image-set">
+    <img src="/images/DevLog/callback(1).png" alt="Your Alt Text" width="400" >
+  </a>
+</p>
+<p>요런 느낌.</p>
+<p>암튼 그래서 내가 콜백함수를 쓴 이유는</p>
+<ol>
+<li>
+<p>비동기 작업 처리<br>
+API 메세지를 받고 추가 연산을 거쳐 다시 DB에 저장하고 API로 송신하는 작업은 다른 작업(1분 마다 조회하고 계산하여 저장)의 완료 여부와 관계 없이 독립적으로 실행되어야 한다.</p>
+</li>
+<li>
+<p>모듈간 의존성 최소화<br>
+PulvPhysic, BoilerPhysic 클래스는 input 데이터를 받아와 복잡한 연산을 거친 후 출구 온도를 return 하는 구조로 되어있다. 이게 이 클래스들의 역할이다.
+input 데이터 받아오기, output 데이터 저장하기, 외부 서버로 데이터 송신하기 등은 클래스 내부에서 처리되어야 한다.<br>
+이렇게 모듈을 구성해두면 유지보수 및 테스트에  매우 용이하지 않은가~</p>
+</li>
+</ol>
+<blockquote>
+<p>콜백함수란?<br>
+특정 이벤트가 발생하거나 작업이 완료된 후 호출되는 함수<br>
+보통 함수의 인자로 전달되어, 특정 조건에서 실행되도록 설계</p>
+</blockquote>
+<h2 id="프로젝트에서-콜백쓰기">프로젝트에서 콜백쓰기</h2>
+<p>이번 프로젝트에서는 연산 클래스에 콜백 함수를 전달하여, 계산 결과나 상태 변화를 최종 실행 모듈이자 외부모듈인 <code>socket.py</code>로 전달하도록 설계하였다.</p>
+<ol>
+<li>콜백함수의 초기화와 전달</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># socket.py</span>
+</span></span><span style="display:flex;"><span>pulv_instance <span style="color:#f92672">=</span> PulvPhysic(pulv_name, update_callback<span style="color:#f92672">=</span>send_and_save_bias)
+</span></span></code></pre></div><p>메인 실행 함수에서 PulvPhysic 클래스의 <code>__init__</code> 메서드에 update_callback 변수를 넘김으로써, 특정상황에서 <code>send_and_save_bias</code> 함수가 호출되도록 한다. 해당 함수는 이름 그대로 bias 데이터를 api로 보냄과 동시에 db에 저장하는 함수이다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># PulvPhysic.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PulvPhysic</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, pulv_type, update_callback<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>pulv <span style="color:#f92672">=</span> pulv_type
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>update_callback <span style="color:#f92672">=</span> update_callback
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#.... 각종 초기화 함수</span>
+</span></span></code></pre></div><p>이렇게 PulvPhysic 클래스 생성 시 콜백 함수는 선택적으로 전달된다.</p>
+<ol start="2">
+<li>콜백 호출</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># PulvPhysic.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>update_callback:
+</span></span><span style="display:flex;"><span>    self<span style="color:#f92672">.</span>update_callback([bias_data, db_data])
+</span></span></code></pre></div><p>특정 작업이 완료가 되면 update_callback(<code>send_and_save_bias</code>) 함수를 호출하여 결과값을 전달한다.</p>
+<p>이렇게함으로써 클래스 내부에서 계산된 결과를 외부 모듈에서 전달 받아 처리할 수 있게 되었다.</p>
+<h2 id="마무리">마무리</h2>
+<p>맨땅 헤딩해가며 개발하는 연구원으로서 머리로만 알던 이론을 이렇게 실무에 적용할 때 기분 very good</p>
+
+    </section> 
+
+    
+    
+
+    
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+      
+      <a
+        class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="/post/devlog/linearmodelandscale/"
+        ><span class="mr-1.5">←</span><span>선형회귀와 스케일링</span></a
+      >
+      
+      
+      <a
+        class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="/post/devlog/classmethod/"
+        ><span>드디어 @classmethod를 써본다</span><span class="ml-1.5">→</span></a
+      >
+      
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+
+    
+
+
+    
+  </article>
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+<div class="mr-auto">
+  &copy; 2025
+  <a class="link" href="/">漸入佳境</a>
+</div>
+<a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+>Powered by Hugo️️</a
+>️
+<a
+class="link"
+href="https://github.com/nanxiaobei/hugo-paper"
+rel="noopener"
+target="_blank"
+>✎ Paper</a
+>
+<div id="back-to-top" style="display: none;">
+    <a href="#top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 10.5a.5.5 0 0 0 .5-.5V4.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3.5-3.5a.5.5 0 0 0-.708 0l-3.5 3.5a.5.5 0 1 0 .708.708L7.5 4.707V10a.5.5 0 0 0 .5.5z"/>
+      </svg>
+    </a>
+  </div>
+  
+
+</footer>
+<script src="/js/back-to-top.js"></script>
+
+<script src="/js/highlight.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    document.querySelectorAll("pre code").forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+    
+
+     
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var tocLinks = document.querySelectorAll('.toc a');
+            var sections = [];
+
+            
+            var options = {
+                root: null, 
+                rootMargin: '0px 0px -50% 0px', 
+                threshold: 0 
+            };
+
+            
+            tocLinks.forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href && href.startsWith("#")) {
+                    var targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        sections.push({ link: link, section: targetSection });
+                    }
+                }
+            });
+
+            
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    var targetSection = entry.target;
+                    var link = sections.find(function(s) {
+                        return s.section === targetSection;
+                    }).link;
+
+                    if (entry.isIntersecting) {
+                        
+                        tocLinks.forEach(function(link) {
+                            link.classList.remove('toc-active');
+                        });
+                        link.classList.add('toc-active');
+                    }
+                });
+            }, options);
+
+            
+            sections.forEach(function(section) {
+                observer.observe(section.section);
+            });
+
+            
+            tocLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    
+                    tocLinks.forEach(function(link) {
+                        link.classList.remove('toc-active');
+                    });
+                    
+                    link.classList.add('toc-active');
+                });
+            });
+        });
+
+
+  </script>
+  
+
+  </body>
+</html>

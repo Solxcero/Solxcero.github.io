@@ -1,0 +1,615 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #fff"
+  lang="en-us"
+>
+<head>
+  
+  <link rel="stylesheet" href="/css/custom.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+    
+
+
+</head>
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+  
+  <title>Hugo로 GitBlog 만들기 - 漸入佳境</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  
+  <meta name="description" content="Hugo 블로그. 깃허브 블로그 테마 유목민이던 내가 드디어 맘에 드는 테마를 발견했는데, 기존에 사용하던 Jekyll가 아닌 Hugo 기반이다.
+Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 때 참고하기 위해 포스팅을 하려고 한다. Hugo Documentation
+Hugo 설치 (Windows 기준)
+hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo 프로젝트 파일을 담을 폴더를 생성 (C:/Hugo) C:/Hugo/bin 디렉토리 생성 후 설치 파일 압축 해제 하여 넣기 C:/Hugo/bin 환경변수에 추가 -&gt; cmd에 hugo version 입력하여 Path 추가 되었는지 확인 Hugo Local 실행 1." />
+  <meta name="author" content="덕후의 즐거운 인생" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+
+  
+  
+  
+  
+  
+  <link rel="preload" as="image" href="/theme.png" />
+
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://github.com/Solxcero/Solxcero.github.io/assets/99321739/4ccb5f75-725b-4360-b1d6-6b1c99072d56" />
+  
+  
+
+  
+  
+  <link rel="preload" as="image" href="/github.svg" />
+  
+  
+
+  
+  
+  <script
+    defer
+    src="/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+  
+  
+  
+
+  
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.124.0">
+
+  
+  
+  
+  
+  
+  <meta itemprop="name" content="Hugo로 GitBlog 만들기">
+<meta itemprop="description" content="Hugo 블로그. 깃허브 블로그 테마 유목민이던 내가 드디어 맘에 드는 테마를 발견했는데, 기존에 사용하던 Jekyll가 아닌 Hugo 기반이다.
+Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 때 참고하기 위해 포스팅을 하려고 한다. Hugo Documentation
+Hugo 설치 (Windows 기준)
+hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo 프로젝트 파일을 담을 폴더를 생성 (C:/Hugo) C:/Hugo/bin 디렉토리 생성 후 설치 파일 압축 해제 하여 넣기 C:/Hugo/bin 환경변수에 추가 -&gt; cmd에 hugo version 입력하여 Path 추가 되었는지 확인 Hugo Local 실행 1."><meta itemprop="datePublished" content="2024-04-03T10:41:44+09:00" />
+<meta itemprop="dateModified" content="2024-04-03T10:41:44+09:00" />
+<meta itemprop="wordCount" content="486">
+<meta itemprop="keywords" content="" />
+  
+  <meta property="og:title" content="Hugo로 GitBlog 만들기" />
+<meta property="og:description" content="Hugo 블로그. 깃허브 블로그 테마 유목민이던 내가 드디어 맘에 드는 테마를 발견했는데, 기존에 사용하던 Jekyll가 아닌 Hugo 기반이다.
+Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 때 참고하기 위해 포스팅을 하려고 한다. Hugo Documentation
+Hugo 설치 (Windows 기준)
+hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo 프로젝트 파일을 담을 폴더를 생성 (C:/Hugo) C:/Hugo/bin 디렉토리 생성 후 설치 파일 압축 해제 하여 넣기 C:/Hugo/bin 환경변수에 추가 -&gt; cmd에 hugo version 입력하여 Path 추가 되었는지 확인 Hugo Local 실행 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/blog/blog/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-04-03T10:41:44+09:00" />
+<meta property="article:modified_time" content="2024-04-03T10:41:44+09:00" />
+
+  
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Hugo로 GitBlog 만들기"/>
+<meta name="twitter:description" content="Hugo 블로그. 깃허브 블로그 테마 유목민이던 내가 드디어 맘에 드는 테마를 발견했는데, 기존에 사용하던 Jekyll가 아닌 Hugo 기반이다.
+Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 때 참고하기 위해 포스팅을 하려고 한다. Hugo Documentation
+Hugo 설치 (Windows 기준)
+hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo 프로젝트 파일을 담을 폴더를 생성 (C:/Hugo) C:/Hugo/bin 디렉토리 생성 후 설치 파일 압축 해제 하여 넣기 C:/Hugo/bin 환경변수에 추가 -&gt; cmd에 hugo version 입력하여 Path 추가 되었는지 확인 Hugo Local 실행 1."/>
+
+  
+  
+  
+  <link rel="canonical" href="/post/blog/blog/" />
+  
+  
+  <link rel="stylesheet" href="/css/highlight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="/"
+      >漸入佳境</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#fff'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/categories/"
+        >Categories</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/projects/"
+        >Projects</a
+      >
+      
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/Solxcero"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-7 pb-16 pt-12 dark:prose-invert"
+    >
+      
+<link rel="stylesheet" href="/assets/css/custom.css">
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#hugo-블로그">Hugo 블로그.</a></li>
+    <li><a href="#hugo-설치">Hugo 설치</a></li>
+    <li><a href="#hugo-local-실행">Hugo Local 실행</a></li>
+    <li><a href="#build-단계">Build 단계</a></li>
+    <li><a href="#쉘스크립트-만들기">쉘스크립트 만들기</a></li>
+  </ul>
+</nav>
+  </aside>
+</div>
+
+  <article>
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">Hugo로 GitBlog 만들기</h1>
+
+          
+          <div class="post-categories">
+            
+              <a href="/categories/blog" class="category-box">blog</a>
+            
+          </div>
+            
+    
+      
+      <div class="text-sm antialiased opacity-60">
+        
+        <time>Apr 3, 2024</time>
+        
+        
+        
+        
+      </div>
+      
+    </header>
+    
+    
+    <section>
+      <h2 id="hugo-블로그">Hugo 블로그.</h2>
+<p>깃허브 블로그 테마 유목민이던 내가 드디어 맘에 드는 테마를 발견했는데, 기존에 사용하던 Jekyll가 아닌 Hugo 기반이다.<br>
+Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 때 참고하기 위해 포스팅을 하려고 한다.
+<a href="https://gohugo.io/documentation/">Hugo Documentation</a></p>
+<h2 id="hugo-설치">Hugo 설치</h2>
+<p>(Windows 기준)</p>
+<ol>
+<li><a href="https://github.com/gohugoio/hugo/releases">hugo release</a> 에서 가장 최신 버전을 다운받는다.</li>
+<li>로컬PC에 Hugo 프로젝트 파일을 담을 폴더를 생성 (<code>C:/Hugo</code>)</li>
+<li><code>C:/Hugo/bin</code> 디렉토리 생성 후 설치 파일 압축 해제 하여 넣기</li>
+<li><code>C:/Hugo/bin</code> 환경변수에 추가 -&gt; cmd에 <code>hugo version</code> 입력하여 Path 추가 되었는지 확인</li>
+</ol>
+<h2 id="hugo-local-실행">Hugo Local 실행</h2>
+<p><strong>1. 프로젝트 폴더 만들기</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo new site blog
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># blog는 프로젝트 이름</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># blog 폴더 안에 Hugo 기본 구조 생성된 것 확인 </span>
+</span></span></code></pre></div><p><strong>2. 원하는 Hugo 테마 선택</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git clone https://github.com/nanxiaobei/hugo-paper.git themes/paper
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 나는 hugo-paper 테마 선택</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 프로젝트의 하위 폴더인 themes 폴더 안에  paper 라는 이름으로 clone    </span>
+</span></span></code></pre></div><p><strong>3. hugo.toml 파일 수정</strong><br>
+해당 테마 공식 깃허브에 가면 hugo.toml(config 파일)을 어떻게 사용하면 되는지 나와 있음.<br>
+모든 Hugo Project에서 중요한 것은 사용할 테마 이름을 지정하는 것.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>theme = &#34;paper&#34;
+</span></span></code></pre></div><p>즉, hugo는 여러 테마를 다운받아서 원하는 테마로 바꾸면서 사용할 수 있는데, 이때 config 파일인 hugo.toml에 어떤 테마를 사용할 것인지 지정을 해주는 단계</p>
+<p><strong>4. 글 작성</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo new &lt;게시글제목&gt;.md
+</span></span></code></pre></div><p>프로젝트 경로의 <code>contents</code> 폴더 안에 포스팅 생성 확인<br>
+<code>post/test.md</code> -&gt; post라는 범주 안에 test 게시글 작성</p>
+<p><strong>5. 로컬서버로 미리보기</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo server -D
+</span></span></code></pre></div><p><code>localhost:1313</code> 혹은 <code>127.0.0.1:1313</code> 으로 접속해 확인</p>
+<h2 id="build-단계">Build 단계</h2>
+<p><strong>1. Github Repo 생성</strong><br>
+&lt;프로젝트이름&gt;의 저장소 하나와, &lt;깃허브ID.github.io&gt; 저장소 하나 생성<br>
+나의 경우 <code>blog</code> 와 <code>Solxcero.github.io</code></p>
+<p><strong>2. 프로젝트 폴더 remote</strong><br>
+! 프로젝트 폴더 안에  <code>public</code> 폴더가 있다면 삭제 필수 !<br>
+<code>C:/Hugo/blog</code> 프로젝트 경로에서</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git init
+</span></span><span style="display:flex;"><span>$ git remote add origin &lt;프로젝트 Repo url&gt;
+</span></span></code></pre></div><p><strong>3. gihub page 폴더 submodule</strong><br>
+프로젝트 폴더 remote 후 생성 된 <code>public</code> 폴더 안에 github.io repo를 연결</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git submodule add -b main &lt;github.io repository url&gt; public
+</span></span></code></pre></div><p><strong>4. 빌드</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo -t paper
+</span></span></code></pre></div><p><code>public</code> 폴더 안에 내가 선택한 테마의 빌드 결과 확인 가능</p>
+<p><strong>5. 커밋하기</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd public
+</span></span><span style="display:flex;"><span>$ git add .
+</span></span><span style="display:flex;"><span>$ git commit -m <span style="color:#e6db74">&#34;&lt;커밋 메세지&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>$ git push origin main
+</span></span><span style="display:flex;"><span>$ cd ..
+</span></span><span style="display:flex;"><span>$ git add .
+</span></span><span style="display:flex;"><span>$ git commit -m <span style="color:#e6db74">&#34;&lt;커밋 메세지&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>$ git push origin main
+</span></span></code></pre></div><h2 id="쉘스크립트-만들기">쉘스크립트 만들기</h2>
+<p>Jekyll와 달리 Hugo는 <code>public</code> 과 <code>프로젝트</code>를 각각 빌드해야하므로 과정이 조금 귀찮다.
+프로젝트 폴더 안에 <code>deploy.sh</code> 이름의 쉘스크립트를 만들어서 빌드 과정을 자동화할 수 있음</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e"># If a command fails then the deploy stops</span>
+</span></span><span style="display:flex;"><span>set -e
+</span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#34;\033[0;32mDeploying updates to GitHub...\033[0m\n&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build the project.</span>
+</span></span><span style="display:flex;"><span>hugo -t paper
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Go To Public folder</span>
+</span></span><span style="display:flex;"><span>cd public
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add changes to git.</span>
+</span></span><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Commit changes.</span>
+</span></span><span style="display:flex;"><span>msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rebuilding site </span><span style="color:#66d9ef">$(</span>date<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span>$*<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>	msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$*<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;</span>$msg<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Push source and build repos.</span>
+</span></span><span style="display:flex;"><span>git push origin main
+</span></span><span style="display:flex;"><span>cd ..
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># anyblogname 업데이트</span>
+</span></span><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rebuilding site `date`&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $# -eq <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">then</span> msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;</span>$msg<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>git push origin main
+</span></span></code></pre></div><p>테마 이름만 본인이 사용하는 이름으로 수정하면 됨.<br>
+Windows는 쉘스크립트를 실행할 수 없으므로 <code>gitbash</code>를 사용하면 됨.
+프로젝트 폴더 경로에서 다음 명령어 실행</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./deploy.sh <span style="color:#e6db74">&#34;commit message&#34;</span>
+</span></span></code></pre></div>
+    </section> 
+
+    
+    
+
+    
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+      
+      <a
+        class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="/post/blog/imagebox/"
+        ><span class="mr-1.5">←</span><span>포스팅 이미지 팝업으로 보기</span></a
+      >
+      
+      
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+
+    
+
+
+    
+  </article>
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+<div class="mr-auto">
+  &copy; 2025
+  <a class="link" href="/">漸入佳境</a>
+</div>
+<a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+>Powered by Hugo️️</a
+>️
+<a
+class="link"
+href="https://github.com/nanxiaobei/hugo-paper"
+rel="noopener"
+target="_blank"
+>✎ Paper</a
+>
+<div id="back-to-top" style="display: none;">
+    <a href="#top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 10.5a.5.5 0 0 0 .5-.5V4.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3.5-3.5a.5.5 0 0 0-.708 0l-3.5 3.5a.5.5 0 1 0 .708.708L7.5 4.707V10a.5.5 0 0 0 .5.5z"/>
+      </svg>
+    </a>
+  </div>
+  
+
+</footer>
+<script src="/js/back-to-top.js"></script>
+
+<script src="/js/highlight.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    document.querySelectorAll("pre code").forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+    
+
+     
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var tocLinks = document.querySelectorAll('.toc a');
+            var sections = [];
+
+            
+            var options = {
+                root: null, 
+                rootMargin: '0px 0px -50% 0px', 
+                threshold: 0 
+            };
+
+            
+            tocLinks.forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href && href.startsWith("#")) {
+                    var targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        sections.push({ link: link, section: targetSection });
+                    }
+                }
+            });
+
+            
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    var targetSection = entry.target;
+                    var link = sections.find(function(s) {
+                        return s.section === targetSection;
+                    }).link;
+
+                    if (entry.isIntersecting) {
+                        
+                        tocLinks.forEach(function(link) {
+                            link.classList.remove('toc-active');
+                        });
+                        link.classList.add('toc-active');
+                    }
+                });
+            }, options);
+
+            
+            sections.forEach(function(section) {
+                observer.observe(section.section);
+            });
+
+            
+            tocLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    
+                    tocLinks.forEach(function(link) {
+                        link.classList.remove('toc-active');
+                    });
+                    
+                    link.classList.add('toc-active');
+                });
+            });
+        });
+
+
+  </script>
+  
+
+  </body>
+</html>

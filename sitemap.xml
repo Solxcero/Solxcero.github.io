@@ -2,58 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2025-01-05T11:26:51+09:00</lastmod>
+    <loc>/projects/</loc>
+    <lastmod>2025-07-24T14:17:38+09:00</lastmod>
   </url><url>
-    <loc>/categories/devlog/</loc>
-    <lastmod>2025-01-05T11:26:51+09:00</lastmod>
-  </url><url>
-    <loc>/post/np-hard/</loc>
-    <lastmod>2025-01-05T11:26:51+09:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2025-07-24T14:17:38+09:00</lastmod>
   </url><url>
     <loc>/post/</loc>
     <lastmod>2025-01-05T11:26:51+09:00</lastmod>
   </url><url>
-    <loc>/</loc>
-    <lastmod>2025-01-05T11:26:51+09:00</lastmod>
-  </url><url>
-    <loc>/post/eventletmonkey/</loc>
+    <loc>/categories/</loc>
     <lastmod>2024-12-12T21:20:49+09:00</lastmod>
   </url><url>
-    <loc>/post/isnone/</loc>
+    <loc>/categories/devlog/</loc>
+    <lastmod>2024-12-12T21:20:49+09:00</lastmod>
+  </url><url>
+    <loc>/post/devlog/eventletmonkey/</loc>
+    <lastmod>2024-12-12T21:20:49+09:00</lastmod>
+  </url><url>
+    <loc>/post/devlog/isnone/</loc>
     <lastmod>2024-12-07T18:12:53+09:00</lastmod>
   </url><url>
-    <loc>/post/longquery/</loc>
+    <loc>/post/devlog/longquery/</loc>
     <lastmod>2024-12-02T18:48:04+09:00</lastmod>
   </url><url>
-    <loc>/post/linearmodelandscale/</loc>
+    <loc>/post/devlog/linearmodelandscale/</loc>
     <lastmod>2024-11-20T11:11:47+09:00</lastmod>
   </url><url>
-    <loc>/post/callback/</loc>
+    <loc>/post/devlog/callback/</loc>
     <lastmod>2024-11-09T00:17:43+09:00</lastmod>
   </url><url>
-    <loc>/post/classmethod/</loc>
+    <loc>/post/devlog/classmethod/</loc>
     <lastmod>2024-11-01T10:45:44+09:00</lastmod>
   </url><url>
     <loc>/categories/investment/</loc>
     <lastmod>2024-07-13T09:21:19+09:00</lastmod>
   </url><url>
-    <loc>/post/styleindex/</loc>
+    <loc>/post/investment/styleindex/</loc>
     <lastmod>2024-07-13T09:21:19+09:00</lastmod>
   </url><url>
-    <loc>/post/ifoverhead/</loc>
+    <loc>/post/devlog/ifoverhead/</loc>
     <lastmod>2024-07-06T22:00:55+09:00</lastmod>
   </url><url>
     <loc>/categories/blog/</loc>
     <lastmod>2024-05-03T10:41:44+09:00</lastmod>
   </url><url>
-    <loc>/post/imagebox/</loc>
+    <loc>/post/blog/imagebox/</loc>
     <lastmod>2024-05-03T10:41:44+09:00</lastmod>
   </url><url>
     <loc>/about/</loc>
     <lastmod>2024-04-03T13:02:33+09:00</lastmod>
   </url><url>
-    <loc>/post/blog/</loc>
+    <loc>/post/blog/blog/</loc>
     <lastmod>2024-04-03T10:41:44+09:00</lastmod>
   </url><url>
     <loc>/tags/</loc>

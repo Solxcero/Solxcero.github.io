@@ -1,0 +1,664 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #fff"
+  lang="en-us"
+>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+  <link rel="stylesheet" href="/css/custom.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+    
+
+
+</head>
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+  
+  <title>NP Hard - 漸入佳境</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  
+  <meta name="description" content="🎅흥미로운 주제 발견 Dacon에서 흥미로운 주제로 대회를 열었길래, 이번에 참여해보기로 했다.
+대회링크
+대회 이름은 산타 배송 경로 최적화
+내용을 간단히 설명하자면
+(0,0) 에 위치한 산타가 (100,100) 좌표 위의 모든 마을에 선물을 전달할 수 있는 최단경로 마을 방문순서 구하기!
+⚠️ 🦌가 힘들기 때문에 한번에 선물 25개만 실을 수 있고, 한번 방문한 마을은 다시 방문할 수 없음.
+⚠️ 점수는 참가자가 도출한 배달 순서를 기반으로 유클리드 거리를 계산하여 산정
+TSP 알고리즘이 카테고리로 설정되어 있었다." />
+  <meta name="author" content="덕후의 즐거운 인생" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
+
+  
+  
+  
+  
+  
+  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
+
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://github.com/Solxcero/Solxcero.github.io/assets/99321739/4ccb5f75-725b-4360-b1d6-6b1c99072d56" />
+  
+  
+
+  
+  
+  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
+  
+  
+
+  
+  
+  <script
+    defer
+    src="//localhost:1313/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+  
+  
+  
+
+  
+  <link rel="icon" href="//localhost:1313/favicon.ico" />
+  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.124.0">
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/highlight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="//localhost:1313/"
+      >漸入佳境</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#fff'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/categories/"
+        >Categories</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/projects/"
+        >Projects</a
+      >
+      
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/Solxcero"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-7 pb-16 pt-12 dark:prose-invert"
+    >
+      
+<link rel="stylesheet" href="/assets/css/custom.css">
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#흥미로운-주제-발견">🎅흥미로운 주제 발견</a></li>
+    <li><a href="#np-hard">NP-Hard</a>
+      <ul>
+        <li><a href="#np-hard의-정의">NP-Hard의 정의</a></li>
+        <li><a href="#쉽게-이해하는-np-hard">쉽게 이해하는 NP-Hard</a></li>
+        <li><a href="#tsp가-np-hard인-이유">TSP가 NP-Hard인 이유</a></li>
+        <li><a href="#그럼-np-hard-문제는-우찌-해결하나여">그럼 NP-Hard 문제는 우찌 해결하나여</a></li>
+        <li><a href="#쉽게-이해하는-tsp와-np-hard">쉽게 이해하는 TSP와 NP-Hard</a></li>
+        <li><a href="#일상적인-np-hard-문제-예시">일상적인 NP-Hard 문제 예시</a></li>
+      </ul>
+    </li>
+    <li><a href="#결론">결론</a></li>
+  </ul>
+</nav>
+  </aside>
+</div>
+
+  <article>
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">NP Hard</h1>
+
+          
+          <div class="post-categories">
+            
+              <a href="/categories/devlog" class="category-box">DevLog</a>
+            
+          </div>
+            
+    
+      
+      <div class="text-sm antialiased opacity-60">
+        
+        <time>Jan 5, 2025</time>
+        
+        
+        
+        
+      </div>
+      
+    </header>
+    
+    
+    <section>
+      <h2 id="흥미로운-주제-발견">🎅흥미로운 주제 발견</h2>
+<p>Dacon에서 흥미로운 주제로 대회를 열었길래, 이번에 참여해보기로 했다.<br>
+<a href="https://dacon.io/competitions/official/236437/overview/rules">대회링크</a><br>
+대회 이름은 <code>산타 배송 경로 최적화</code></p>
+<p>내용을 간단히 설명하자면</p>
+<blockquote>
+<p>(0,0) 에 위치한 산타가 (100,100) 좌표 위의 모든 마을에 선물을 전달할 수 있는 최단경로 마을 방문순서 구하기!<br>
+⚠️ 🦌가 힘들기 때문에 한번에 선물 25개만 실을 수 있고, 한번 방문한 마을은 다시 방문할 수 없음.<br>
+⚠️ 점수는 참가자가 도출한 배달 순서를 기반으로 유클리드 거리를 계산하여 산정</p>
+</blockquote>
+<p>TSP 알고리즘이 카테고리로 설정되어 있었다.<br>
+외판원 알고리즘이라고 예전에 코테 스터디할 때 잠깐 들었던 기억이 있긴한데,<br>
+당시에 너무 어려웠어서 그냥 패스했었다. 자랑스럽다.</p>
+<p>그래서 대회에 본격적으로 참여하기 앞서 여러 개념들을 공부해보려고 한당.</p>
+<p>이번 주제는 <strong>NP-Hard</strong> ~<br>
+뭔진 몰라도 상당히 Hard 한 기운이 느껴진다.</p>
+<h2 id="np-hard">NP-Hard</h2>
+<hr>
+<h3 id="np-hard의-정의">NP-Hard의 정의</h3>
+<blockquote>
+<p>NP-Hard(Non-deterministic Polynomial-time Hard)는 계산 복잡도 이론에서 아주 어려운 문제의 집합</p>
+</blockquote>
+<p><strong>NP-Hard 문제의 특징</strong></p>
+<ol>
+<li>해결하는 데 시간이 매우 오래 걸림(기존의 알고리즘으로는 다항 시간 안에 해결 불가능).</li>
+<li>문제의 해가 주어졌을 때, 그것이 맞는지 확인하는 것도 시간이 오래 걸림.</li>
+<li>NP 문제보다도 더 어려운 문제를 포함.</li>
+</ol>
+<p>TSP(Traveling Salesman Problem)는 NP-Hard 문제 중 하나이다.<br>
+도시 수가 많아질수록 가능한 경로 수가 기하급수적으로 증가하기 때문에 빠르게 최적해를 찾는 것이 어렵다고 한당.</p>
+<hr>
+<h3 id="쉽게-이해하는-np-hard">쉽게 이해하는 NP-Hard</h3>
+<p>1️⃣ <strong>P(Polynomial-time)</strong>:<br>
+문제를 해결하는 데 필요한 시간이 다항 시간 내에 가능</p>
+<ul>
+<li>덧셈, 뺄셈, 정렬 등.</li>
+</ul>
+<p>2️⃣ <strong>NP(Non-deterministic Polynomial-time)</strong>:<br>
+문제를 해결하는 데 시간이 오래 걸릴 수 있지만, 해가 주어졌을 때, 그것이 맞는지 검증하는 것은 다항 시간 내에 가능</p>
+<ul>
+<li>Sudoku 퍼즐: 문제를 푸는 데 시간이 오래 걸리지만, 정답이 주어졌을 때 검증하는 것은 빠름</li>
+</ul>
+<p>3️⃣ <strong>NP-Hard</strong>:</p>
+<ul>
+<li>P 문제와 NP 문제를 모두 포함하는 더 어려운 문제</li>
+<li>어떤 알고리즘을 사용하더라도 일반적으로 빠른 해결책을 찾기 어렵</li>
+<li>NP-Hard 문제를 해결할 수 있는 알고리즘이 있다면, 모든 NP 문제를 해결 가능</li>
+</ul>
+<hr>
+<h3 id="tsp가-np-hard인-이유">TSP가 NP-Hard인 이유</h3>
+<p>TSP의 핵심은 모든 도시를 한 번씩 방문하고 다시 출발점으로 돌아오는 최소 경로를 찾는 문제이다.<br>
+그러므로 도시 수가 증가할수록 가능한 경로 수가 기하급수적으로 증가하게 된다.</p>
+<h4 id="가능한-경로-수">가능한 경로 수:</h4>
+<ul>
+<li>도시가 ( n )개일 때, 가능한 경로 수는 ((n-1)!)
+즉, 시간복잡도가 n! 이 된다.</li>
+</ul>
+<p>예시로 도시 수를 증가시켜 보면:</p>
+<table>
+<thead>
+<tr>
+<th>도시 수</th>
+<th>가능한 경로 수</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>( 3! = 6 )</td>
+</tr>
+<tr>
+<td>5</td>
+<td>( 4! = 24 )</td>
+</tr>
+<tr>
+<td>10</td>
+<td>( 9! = 362,880 )</td>
+</tr>
+<tr>
+<td>20</td>
+<td>( 19! \approx 10^{17} )</td>
+</tr>
+</tbody>
+</table>
+<p>이처럼, 도시 수가 많아지면 가능한 경로 수가 기하급수적으로 증가하기 때문에, 현실적으로 모든 경로를 탐색하여 최적 경로를 찾는 것은 힘들어보인다.</p>
+<hr>
+<h3 id="그럼-np-hard-문제는-우찌-해결하나여">그럼 NP-Hard 문제는 우찌 해결하나여</h3>
+<p>NP-Hard 문제를 해결하기 위해 완벽한 최적해를 찾기보다 근사해(Approximate Solution)를 찾는 알고리즘을 사용한다고 한다.</p>
+<p>몇 가지 대표적인 알고리즘:</p>
+<table>
+<thead>
+<tr>
+<th>알고리즘</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Greedy Algorithm</td>
+<td>현재 상황에서 가장 좋은 선택을 반복.</td>
+</tr>
+<tr>
+<td>Dynamic Programming</td>
+<td>문제를 작은 부분 문제로 나눠 해결.</td>
+</tr>
+<tr>
+<td>Genetic Algorithm</td>
+<td>자연 선택을 모방한 최적화 알고리즘.</td>
+</tr>
+<tr>
+<td>Simulated Annealing</td>
+<td>물질이 냉각될 때의 분자 이동을 모방.</td>
+</tr>
+<tr>
+<td>Ant Colony Optimization</td>
+<td>개미의 먹이 탐색을 모방한 알고리즘.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="쉽게-이해하는-tsp와-np-hard">쉽게 이해하는 TSP와 NP-Hard</h3>
+<p>🔧 TSP가 어려운 이유</p>
+<ul>
+<li>도시가 많아질수록 가능한 경로 수가 급격히 증가하기 때문</li>
+<li>단순히 가능한 모든 경로를 탐색하는 것은 현실적으로 불가능</li>
+</ul>
+<p>💡 그래도 해결은 해야지?</p>
+<ul>
+<li>완벽한 최적해를 찾는 대신, 근사 알고리즘을 사용하여 빠르게 좋은 경로를 찾기</li>
+</ul>
+<hr>
+<h3 id="일상적인-np-hard-문제-예시">일상적인 NP-Hard 문제 예시</h3>
+<table>
+<thead>
+<tr>
+<th>문제 유형</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TSP</td>
+<td>모든 도시를 한 번씩 방문하고 최소 경로를 찾기.</td>
+</tr>
+<tr>
+<td>Job Scheduling</td>
+<td>작업을 가장 효율적으로 배치하는 문제.</td>
+</tr>
+<tr>
+<td>Knapsack Problem</td>
+<td>제한된 용량 내에서 최대 가치를 얻는 문제.</td>
+</tr>
+<tr>
+<td>Sudoku</td>
+<td>숫자를 채워서 퍼즐을 완성하는 문제.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="결론">결론</h2>
+<p>그니까, 원래 알던 코드로 돌리면 한세월 걸릴테니
+시간복잡도와 정답 모두 챙긴 코드가 필요하다는 뜻 같다.<br>
+어렵겠지만 그만큼 재밌을 것 같당.</p>
+
+    </section> 
+
+    
+    
+
+    
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+      
+      
+      <a
+        class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="//localhost:1313/post/devlog/eventletmonkey/"
+        ><span>Eventlet과 Monkey Patch</span><span class="ml-1.5">→</span></a
+      >
+      
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+
+    
+
+
+    
+  </article>
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+<div class="mr-auto">
+  &copy; 2025
+  <a class="link" href="//localhost:1313/">漸入佳境</a>
+</div>
+<a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+>Powered by Hugo️️</a
+>️
+<a
+class="link"
+href="https://github.com/nanxiaobei/hugo-paper"
+rel="noopener"
+target="_blank"
+>✎ Paper</a
+>
+<div id="back-to-top" style="display: none;">
+    <a href="#top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 10.5a.5.5 0 0 0 .5-.5V4.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3.5-3.5a.5.5 0 0 0-.708 0l-3.5 3.5a.5.5 0 1 0 .708.708L7.5 4.707V10a.5.5 0 0 0 .5.5z"/>
+      </svg>
+    </a>
+  </div>
+  
+
+</footer>
+<script src="/js/back-to-top.js"></script>
+
+<script src="/js/highlight.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    document.querySelectorAll("pre code").forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+    
+
+     
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var tocLinks = document.querySelectorAll('.toc a');
+            var sections = [];
+
+            
+            var options = {
+                root: null, 
+                rootMargin: '0px 0px -50% 0px', 
+                threshold: 0 
+            };
+
+            
+            tocLinks.forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href && href.startsWith("#")) {
+                    var targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        sections.push({ link: link, section: targetSection });
+                    }
+                }
+            });
+
+            
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    var targetSection = entry.target;
+                    var link = sections.find(function(s) {
+                        return s.section === targetSection;
+                    }).link;
+
+                    if (entry.isIntersecting) {
+                        
+                        tocLinks.forEach(function(link) {
+                            link.classList.remove('toc-active');
+                        });
+                        link.classList.add('toc-active');
+                    }
+                });
+            }, options);
+
+            
+            sections.forEach(function(section) {
+                observer.observe(section.section);
+            });
+
+            
+            tocLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    
+                    tocLinks.forEach(function(link) {
+                        link.classList.remove('toc-active');
+                    });
+                    
+                    link.classList.add('toc-active');
+                });
+            });
+        });
+
+
+  </script>
+  
+
+  </body>
+</html>

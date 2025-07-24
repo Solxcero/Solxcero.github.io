@@ -39,7 +39,7 @@
   style="--bg: #fff"
   lang="en-us"
 >
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   
   <link rel="stylesheet" href="/css/custom.css">
   
@@ -100,14 +100,14 @@ Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 �
   
   
   
-  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
 
   
   
   
   
   
-  <link rel="preload" as="image" href="/theme.png" />
+  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
 
   
   
@@ -119,7 +119,7 @@ Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 �
 
   
   
-  <link rel="preload" as="image" href="/github.svg" />
+  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
   
   
 
@@ -127,7 +127,7 @@ Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 �
   
   <script
     defer
-    src="/highlight.min.js"
+    src="//localhost:1313/highlight.min.js"
     onload="hljs.initHighlightingOnLoad();"
   ></script>
   
@@ -157,50 +157,13 @@ Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 �
   
 
   
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" href="//localhost:1313/favicon.ico" />
+  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.124.0">
 
   
-  
-  
-  
-  
-  <meta itemprop="name" content="CallBack">
-<meta itemprop="description" content="흐어 요새 연구과제 때매 정신이 없다&hellip; 퇴근하면 방전된 상태로 집에 온다 ㅠㅠ 빨리 끝내버리고 싶다 흐규 넘 힘들어 ㅠ
-CallBack 이 필요했던 이유 현재 개발하고 있는 시스템의 구성을 간략히 말하면,
-외부 서버와 통신하는 Socket 인터페이스와 DB 인터페이스가 있다.
-DB 인터페이스의 경우 실시간으로 1분 마다 데이터를 조회 후 연산 결과를 다시 DB에 저장한다.
-Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 메세지가 날라오면 해당 메세지를 처리하여 별도의 연산 프로세스를 수행한 후 결과를 DB에 저장함과 동시에 다시 상대 서버에 메세지를 보낸다."><meta itemprop="datePublished" content="2024-11-09T00:17:43+09:00" />
-<meta itemprop="dateModified" content="2024-11-09T00:17:43+09:00" />
-<meta itemprop="wordCount" content="326">
-<meta itemprop="keywords" content="" />
-  
-  <meta property="og:title" content="CallBack" />
-<meta property="og:description" content="흐어 요새 연구과제 때매 정신이 없다&hellip; 퇴근하면 방전된 상태로 집에 온다 ㅠㅠ 빨리 끝내버리고 싶다 흐규 넘 힘들어 ㅠ
-CallBack 이 필요했던 이유 현재 개발하고 있는 시스템의 구성을 간략히 말하면,
-외부 서버와 통신하는 Socket 인터페이스와 DB 인터페이스가 있다.
-DB 인터페이스의 경우 실시간으로 1분 마다 데이터를 조회 후 연산 결과를 다시 DB에 저장한다.
-Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 메세지가 날라오면 해당 메세지를 처리하여 별도의 연산 프로세스를 수행한 후 결과를 DB에 저장함과 동시에 다시 상대 서버에 메세지를 보낸다." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/post/callback/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2024-11-09T00:17:43+09:00" />
-<meta property="article:modified_time" content="2024-11-09T00:17:43+09:00" />
-
-  
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="CallBack"/>
-<meta name="twitter:description" content="흐어 요새 연구과제 때매 정신이 없다&hellip; 퇴근하면 방전된 상태로 집에 온다 ㅠㅠ 빨리 끝내버리고 싶다 흐규 넘 힘들어 ㅠ
-CallBack 이 필요했던 이유 현재 개발하고 있는 시스템의 구성을 간략히 말하면,
-외부 서버와 통신하는 Socket 인터페이스와 DB 인터페이스가 있다.
-DB 인터페이스의 경우 실시간으로 1분 마다 데이터를 조회 후 연산 결과를 다시 DB에 저장한다.
-Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 메세지가 날라오면 해당 메세지를 처리하여 별도의 연산 프로세스를 수행한 후 결과를 DB에 저장함과 동시에 다시 상대 서버에 메세지를 보낸다."/>
-
-  
-  
-  
-  <link rel="canonical" href="/post/callback/" />
   
   
   <link rel="stylesheet" href="/css/highlight.css">
@@ -212,7 +175,7 @@ Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 �
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
-      href="/"
+      href="//localhost:1313/"
       >漸入佳境</a
     >
     <div
@@ -284,6 +247,12 @@ Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 �
         class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
         href="/categories/"
         >Categories</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/projects/"
+        >Projects</a
       >
       
     </nav>
@@ -426,14 +395,14 @@ input 데이터 받아오기, output 데이터 저장하기, 외부 서버로 �
       
       <a
         class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-        href="/post/linearmodelandscale/"
+        href="//localhost:1313/post/linearmodelandscale/"
         ><span class="mr-1.5">←</span><span>선형회귀와 스케일링</span></a
       >
       
       
       <a
         class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-        href="/post/classmethod/"
+        href="//localhost:1313/post/classmethod/"
         ><span>드디어 @classmethod를 써본다</span><span class="ml-1.5">→</span></a
       >
       
@@ -460,7 +429,7 @@ input 데이터 받아오기, output 데이터 저장하기, 외부 서버로 �
 >
 <div class="mr-auto">
   &copy; 2025
-  <a class="link" href="/">漸入佳境</a>
+  <a class="link" href="//localhost:1313/">漸入佳境</a>
 </div>
 <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
 >Powered by Hugo️️</a

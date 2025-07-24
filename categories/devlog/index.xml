@@ -6,62 +6,55 @@
     <description>Recent content in DevLog on 漸入佳境</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Jan 2025 11:26:51 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 12 Dec 2024 21:20:49 +0900</lastBuildDate>
     <atom:link href="/categories/devlog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>NP Hard</title>
-      <link>/post/np-hard/</link>
-      <pubDate>Sun, 05 Jan 2025 11:26:51 +0900</pubDate>
-      <guid>/post/np-hard/</guid>
-      <description>🎅흥미로운 주제 발견 Dacon에서 흥미로운 주제로 대회를 열었길래, 이번에 참여해보기로 했다.&#xA;대회링크&#xA;대회 이름은 산타 배송 경로 최적화&#xA;내용을 간단히 설명하자면&#xA;(0,0) 에 위치한 산타가 (100,100) 좌표 위의 모든 마을에 선물을 전달할 수 있는 최단경로 마을 방문순서 구하기!&#xA;⚠️ 🦌가 힘들기 때문에 한번에 선물 25개만 실을 수 있고, 한번 방문한 마을은 다시 방문할 수 없음.&#xA;⚠️ 점수는 참가자가 도출한 배달 순서를 기반으로 유클리드 거리를 계산하여 산정&#xA;TSP 알고리즘이 카테고리로 설정되어 있었다.</description>
-    </item>
-    <item>
       <title>Eventlet과 Monkey Patch</title>
-      <link>/post/eventletmonkey/</link>
+      <link>/post/devlog/eventletmonkey/</link>
       <pubDate>Thu, 12 Dec 2024 21:20:49 +0900</pubDate>
-      <guid>/post/eventletmonkey/</guid>
+      <guid>/post/devlog/eventletmonkey/</guid>
       <description>출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&amp;hellip;&#xA;import 에러, 모듈 경로 에러, eventlet 에러&amp;hellip; 를 해치우고 빌드를 했더니,&#xA;알고보니 설치하는 서버는 리눅스였단 사실&amp;hellip;&#xA;Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서&#xA;결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말&#xA;암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.&#xA;eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.&#xA;근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데,</description>
     </item>
     <item>
       <title>왜 is None인가</title>
-      <link>/post/isnone/</link>
+      <link>/post/devlog/isnone/</link>
       <pubDate>Sat, 07 Dec 2024 18:12:53 +0900</pubDate>
-      <guid>/post/isnone/</guid>
+      <guid>/post/devlog/isnone/</guid>
       <description>당연하게 쓰던 코드들이 갑자기 궁금해질 때가 있다.&#xA;동료에게 계산 결과가 None인 경우를 처리해 달라고 부탁한 적이 있다.&#xA;그러고 얼마 후 디버깅을 위해 코드를 살펴보던 중 특이한 점을 발견했다.&#xA;if x == None : 이렇게 == 비교 연산자로 조건문이 작성되어 있었다.&#xA;보통 is None 쓰지 않나?&#xA;비교 연산자는 두 변수의 값을 비교하기 위한 건데, None은 값이라 할 수 있나?&#xA;라는 의문이 들었다.&#xA;None 은 무엇인가 파이썬에서 None은 단일객체 즉, 싱글톤이다.&#xA;None 이라는 것은 말그대로 &amp;lsquo;값이 없다&amp;rsquo; 라는 뜻인데, 각 객체 마다 None이라는 값이 각자의 메모리를 갖는 것은 비효율적이다.</description>
     </item>
     <item>
       <title>My Longest Query So Far</title>
-      <link>/post/longquery/</link>
+      <link>/post/devlog/longquery/</link>
       <pubDate>Mon, 02 Dec 2024 18:48:04 +0900</pubDate>
-      <guid>/post/longquery/</guid>
+      <guid>/post/devlog/longquery/</guid>
       <description>DB 인터페이스 개발할 때 사용하는 쿼리문들은 간단한 조회, 삽입 수준이라 평소에 쿼리문을 짜기 위해 깊은 고민을 했던 적이 없었다.&#xA;하지만, 이번에 데이터분석을 하면서 긴 쿼리를 작성해보게 되었다.&#xA;이 글은 그저 그 뿌듯함에 취해 작성하는 글임을 밝힌다. 누군가에게 도움이 될 수준은 아닌듯&#xA;어떤 결과를 원했나 테이블이 두 개가 있다.&#xA;collect_data : 1분 단위로 실시간 데이터가 쌓이는 테이블. data_set_id로 어떤 부류의 데이터 묶음인지 판단함. change_history : 특정 설비에 알람이 발생할 경우 저장됨. change_history 의 알람 이력을 뽑은 후 collect_data에서 해당 알람이 저장됐을 때의 실시간 데이터 -30분에서 +340분까지 조회.</description>
     </item>
     <item>
       <title>선형회귀와 스케일링</title>
-      <link>/post/linearmodelandscale/</link>
+      <link>/post/devlog/linearmodelandscale/</link>
       <pubDate>Wed, 20 Nov 2024 11:11:47 +0900</pubDate>
-      <guid>/post/linearmodelandscale/</guid>
+      <guid>/post/devlog/linearmodelandscale/</guid>
       <description>업무 외 지시는 부당지시 아닌가여? 근데 흥미로워 바빠 죽겠던 어느날, 상사가 코드를 좀 봐줄 수 있냐고 부탁을해서 당연히 업무와 관련된 건줄 알고 그러겠다 했다. 근데 내용을 받아보니, 업무가 아닌 본인이 수강하고 있는 강의의 과제였던 것이다&amp;hellip;&#xA;상사의 궁금사항은 이러했다.&#xA;선형회귀모델을 만들었는데, 로우데이터, 정규화 데이터, 표준화 데이터의 MSE 값이 모두 동일하게(완벽히 동일은 아니고 소수점 7자리 까지 동일함) 나온다는 것이었다. 데이터 스케일링을 하면 이상치 값들이 정제되면서 모델의 성능이 개선되어야 하는것이 아니냐? 라는게 상사의 질문.</description>
     </item>
     <item>
       <title>CallBack</title>
-      <link>/post/callback/</link>
+      <link>/post/devlog/callback/</link>
       <pubDate>Sat, 09 Nov 2024 00:17:43 +0900</pubDate>
-      <guid>/post/callback/</guid>
+      <guid>/post/devlog/callback/</guid>
       <description>흐어 요새 연구과제 때매 정신이 없다&amp;hellip; 퇴근하면 방전된 상태로 집에 온다 ㅠㅠ 빨리 끝내버리고 싶다 흐규 넘 힘들어 ㅠ&#xA;CallBack 이 필요했던 이유 현재 개발하고 있는 시스템의 구성을 간략히 말하면,&#xA;외부 서버와 통신하는 Socket 인터페이스와 DB 인터페이스가 있다.&#xA;DB 인터페이스의 경우 실시간으로 1분 마다 데이터를 조회 후 연산 결과를 다시 DB에 저장한다.&#xA;Socket 인터페이스는 1초 마다 요청을 보내고 상대 서버에서 메세지가 날라오면 해당 메세지를 처리하여 별도의 연산 프로세스를 수행한 후 결과를 DB에 저장함과 동시에 다시 상대 서버에 메세지를 보낸다.</description>
     </item>
     <item>
       <title>드디어 @classmethod를 써본다</title>
-      <link>/post/classmethod/</link>
+      <link>/post/devlog/classmethod/</link>
       <pubDate>Fri, 01 Nov 2024 10:45:44 +0900</pubDate>
-      <guid>/post/classmethod/</guid>
+      <guid>/post/devlog/classmethod/</guid>
       <description>배운 것을 실제로 내가 하고자하는 일에 적용했을 때의 쾌감이란&#xA;@classmethod는 하나의 객체 내에서만 사용되는 것이 아니라 해당 클래스로 생성된 인스턴스 전체가 공유하는 함수라고 배웠었다.&#xA;물론 간단한 실습은 했었지만 실제로 언제 사용하게 될지 궁금했었는데, 이번에 연구과제 프로젝트를 수행하면서 드디어 써봤다 우히히힣ㅎㅎ&#xA;왜 쓰게 됐냐면,&#xA;화력발전소에는 A~F 까지 총 6대의 미분기가 존재한다.&#xA;그래서 당연히 미분기 Class를 만들고, 6개의 객체를 생성해서 각 미분기에 부여된 id 값으로 테이블에서 조회 후 계산 결과를 다시 테이블에 저장하고 있었다.</description>
     </item>
     <item>
       <title>IF문의 오버헤드</title>
-      <link>/post/ifoverhead/</link>
+      <link>/post/devlog/ifoverhead/</link>
       <pubDate>Sat, 06 Jul 2024 22:00:55 +0900</pubDate>
-      <guid>/post/ifoverhead/</guid>
+      <guid>/post/devlog/ifoverhead/</guid>
       <description>백준 BOJ거리 문제를 풀다가 BOJ 거리 문제는 DP 알고리즘 문제로 B,O,J 블록을 순서대로 점프하면서 최소한의 에너지로 종료지점에 도착해야하는 문제이다. 문제링크&#xA;아래는 내가 짠 코드이다.&#xA;import sys input = sys.stdin.readline N = int(input()) blocks = str(input().strip()) jump_order = {&amp;#39;B&amp;#39;:&amp;#39;O&amp;#39;,&amp;#39;O&amp;#39;:&amp;#39;J&amp;#39;,&amp;#39;J&amp;#39;:&amp;#39;B&amp;#39;} max_energy = 999*999 + 1 # 소요된 에너지를 저장 -&amp;gt; 최솟값 업데이트를 위해 최댓값으로 저장 dp = [max_energy] * N dp[0] = 0 # 처음 위치에서 에너지 0 -&amp;gt; 즉, dp[i] 는 i칸에 가기 위한 에너지의 최솟값 for i in range(N): if dp[i] == max_energy: continue for j in range(i+1,N): if blocks[j] == jump_order[blocks[i]]: dp[j] = min(dp[j],(j-i)*(j-i)+dp[i]) # print(dp) print(dp[-1] if dp[-1] !</description>
     </item>
   </channel>

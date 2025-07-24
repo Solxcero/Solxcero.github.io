@@ -1,0 +1,607 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #fff"
+  lang="en-us"
+>
+<head>
+  
+  <link rel="stylesheet" href="/css/custom.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+    
+
+
+</head>
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+  
+  <title>Eventlet과 Monkey Patch - 漸入佳境</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  
+  <meta name="description" content="출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&hellip;
+import 에러, 모듈 경로 에러, eventlet 에러&hellip; 를 해치우고 빌드를 했더니,
+알고보니 설치하는 서버는 리눅스였단 사실&hellip;
+Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서
+결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말
+암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.
+eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.
+근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데," />
+  <meta name="author" content="덕후의 즐거운 인생" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+
+  
+  
+  
+  
+  
+  <link rel="preload" as="image" href="/theme.png" />
+
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://github.com/Solxcero/Solxcero.github.io/assets/99321739/4ccb5f75-725b-4360-b1d6-6b1c99072d56" />
+  
+  
+
+  
+  
+  <link rel="preload" as="image" href="/github.svg" />
+  
+  
+
+  
+  
+  <script
+    defer
+    src="/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+  
+  
+  
+
+  
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.124.0">
+
+  
+  
+  
+  
+  
+  <meta itemprop="name" content="Eventlet과 Monkey Patch">
+<meta itemprop="description" content="출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&hellip;
+import 에러, 모듈 경로 에러, eventlet 에러&hellip; 를 해치우고 빌드를 했더니,
+알고보니 설치하는 서버는 리눅스였단 사실&hellip;
+Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서
+결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말
+암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.
+eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.
+근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데,"><meta itemprop="datePublished" content="2024-12-12T21:20:49+09:00" />
+<meta itemprop="dateModified" content="2024-12-12T21:20:49+09:00" />
+<meta itemprop="wordCount" content="406">
+<meta itemprop="keywords" content="" />
+  
+  <meta property="og:title" content="Eventlet과 Monkey Patch" />
+<meta property="og:description" content="출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&hellip;
+import 에러, 모듈 경로 에러, eventlet 에러&hellip; 를 해치우고 빌드를 했더니,
+알고보니 설치하는 서버는 리눅스였단 사실&hellip;
+Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서
+결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말
+암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.
+eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.
+근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데," />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/devlog/eventletmonkey/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-12-12T21:20:49+09:00" />
+<meta property="article:modified_time" content="2024-12-12T21:20:49+09:00" />
+
+  
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Eventlet과 Monkey Patch"/>
+<meta name="twitter:description" content="출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&hellip;
+import 에러, 모듈 경로 에러, eventlet 에러&hellip; 를 해치우고 빌드를 했더니,
+알고보니 설치하는 서버는 리눅스였단 사실&hellip;
+Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서
+결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말
+암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.
+eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.
+근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데,"/>
+
+  
+  
+  
+  <link rel="canonical" href="/post/devlog/eventletmonkey/" />
+  
+  
+  <link rel="stylesheet" href="/css/highlight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="/"
+      >漸入佳境</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#fff'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/categories/"
+        >Categories</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/projects/"
+        >Projects</a
+      >
+      
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/Solxcero"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-7 pb-16 pt-12 dark:prose-invert"
+    >
+      
+<link rel="stylesheet" href="/assets/css/custom.css">
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#eventlet">eventlet</a></li>
+    <li><a href="#monkey-patch">Monkey Patch</a></li>
+    <li><a href="#그럼-왜-소스-상단으로">그럼 왜 소스 상단으로?</a></li>
+    <li><a href="#하지만-개발환경에서는-없어도-됐잖아">하지만 개발환경에서는 없어도 됐잖아?</a></li>
+    <li><a href="#또-급하게-마무리">또 급하게 마무리</a></li>
+  </ul>
+</nav>
+  </aside>
+</div>
+
+  <article>
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">Eventlet과 Monkey Patch</h1>
+
+          
+          <div class="post-categories">
+            
+              <a href="/categories/devlog" class="category-box">DevLog</a>
+            
+          </div>
+            
+    
+      
+      <div class="text-sm antialiased opacity-60">
+        
+        <time>Dec 12, 2024</time>
+        
+        
+        
+        
+      </div>
+      
+    </header>
+    
+    
+    <section>
+      <p>출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&hellip;<br>
+import 에러, 모듈 경로 에러, eventlet 에러&hellip; 를 해치우고 빌드를 했더니,<br>
+알고보니 설치하는 서버는 리눅스였단 사실&hellip;<br>
+Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서<br>
+결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말</p>
+<p>암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.</p>
+<h2 id="eventlet">eventlet</h2>
+<p>비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.<br>
+근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데,<br>
+빌드하고 실행파일을 실행하면 꼭 <code>ValueError: Invalid async_mode specified</code> 에러가 나더라고.<br>
+아래는 내가 해결할 떄 쓴 세가지 방법 (세 개다 해야함.)</p>
+<ol>
+<li>SocketIO 초기화할 때 async_mode 지정</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>socketio <span style="color:#f92672">=</span> SocketIO(app, cors_allowed_origins<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;*&#34;</span>, async_mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;eventlet&#39;</span>)
+</span></span></code></pre></div><ol start="2">
+<li>eventlet 관련 라이브러리 spec 파일에 포함시키기</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>hiddenimports <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;greenlet&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;dns&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.support&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.hubs&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.hubs.epolls&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green.ssl&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green.socket&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green.select&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;eventlet.green.threading&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;socketio.async_drivers.eventlet&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>상황에 따라 저거보다 더 필요할 수도있음.</p>
+<ol start="3">
+<li>monkey_patch 를 소스 가장 상단에!</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> eventlet
+</span></span><span style="display:flex;"><span>eventlet<span style="color:#f92672">.</span>monkey_patch()
+</span></span></code></pre></div><p>monkey_patch() ? 상당히 큐티한 이름이다 ㅋㅎ<br>
+이게 뭘까?<br>
+왜 소스 가장 상단에 입력해야할까?<br>
+개발 환경에서는 해당 코드가 없어도 잘 작동하는데, 왜 빌드된 파일은 저 코드가 없으면 에러가 날까?</p>
+<p>자~ 알아봅시당</p>
+<h2 id="monkey-patch">Monkey Patch</h2>
+<p>기본적으로 Python 표준 라이브러리는 동기적(Blocking)으로 동작한다고 한다.<br>
+개발하려는 환경은 비동기 동작이 구현되어야 하므로, eventlet 라이브러를 사용한다.<br>
+이때 <code>monkey_patch()</code> 는 Python의 표준 라이브러리들이 비동기 I/O를 지원하도록 패치하는 함수이다.<br>
+즉, I/O와 관련된 함수와 스레드 등을 비동기적으로 실행할 수 있도록 도와준다.<br>
+이와 관련하여 <code>Green Threads</code> 라는 개념이 있는데, 아래 블로그 내용으로 이해했다.<br>
+<a href="https://spoqa.github.io/2012/02/13/concurrency-and-eventlet.html">https://spoqa.github.io/2012/02/13/concurrency-and-eventlet.html</a></p>
+<h2 id="그럼-왜-소스-상단으로">그럼 왜 소스 상단으로?</h2>
+<p><strong>표준 라이브러리 교체</strong><br>
+해당 코드는 패치 코드이다.<br>
+따라서 다른 라이브러리들이 import 되기 전에 비동기 패치가 완료 되어야 한다.<br>
+만약 패치 코드 이전에 라이브러리를 import 하면 해당 모듈은 기존의 Blocking 버전의 객체로 로드되게 된다.</p>
+<p>비동기 I/O나 네트워크 처리를 위해 Eventlet의 그린 스레드를 사용하려면, 모든 관련 모듈이 비동기 버전을 참고해야 한다.</p>
+<h2 id="하지만-개발환경에서는-없어도-됐잖아">하지만 개발환경에서는 없어도 됐잖아?</h2>
+<p>개발환경과 빌드환경의 차이를 이해해야 한다.<br>
+개발환경에서는 표준 라이브러리와 Eventlet 라이브러리가 자연스럽게 공존한다고 한다.<br>
+socket, threading, time 과 같은 모듈이 동기 버전으로 작동해도 동작하는 데 큰 문제가 없을 수 있다.<br>
+Flask 나 Flask-SocketIO 같은 프레임워크는 개발환경에서는 종종 동기 모드를 허용하거나 기본적으로 동기방식으로 동작하기 때문이라고 한다.</p>
+<p>반면에 Pyinstaller 로 빌드한 실행 파일은 모든 Python 코드와 라이브러리를 하나의 실행 파일에 포함시키는데 이 과정에서 모듈의 로딩 순서와 라이브러리의 의존성이 변경될 수 있다.<br>
+즉, Eventlet의 비동기 기능을 기대하는 부분이 Blocking 버전의 라이브러리를 사용할 수도 있다는 거다.</p>
+<p>또한, Flask-SocketIO는 비동기 처리를 위해 Eventlet이나 gevent 같은 비동기 드라이버를 사용한다.<br>
+개발환경에서는 기본적으로 동기 모드로 동작하지만, 빌드된 실행 파일에서는 비동기 드라이버의 명확한 설정이 필요하다.</p>
+<h2 id="또-급하게-마무리">또 급하게 마무리</h2>
+<p>야근까지하면서 에러잡고 결국은 대상 서버에 설치 완료된거까지 확인하고 집에 갔다는 이야기.<br>
+그 과정에서 마주쳤던 Monkey patch는 한동안 계속 기억날 것 같다.</p>
+
+    </section> 
+
+    
+    
+
+    
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+      
+      
+      <a
+        class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="/post/devlog/isnone/"
+        ><span>왜 is None인가</span><span class="ml-1.5">→</span></a
+      >
+      
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+
+    
+
+
+    
+  </article>
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+<div class="mr-auto">
+  &copy; 2025
+  <a class="link" href="/">漸入佳境</a>
+</div>
+<a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+>Powered by Hugo️️</a
+>️
+<a
+class="link"
+href="https://github.com/nanxiaobei/hugo-paper"
+rel="noopener"
+target="_blank"
+>✎ Paper</a
+>
+<div id="back-to-top" style="display: none;">
+    <a href="#top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 10.5a.5.5 0 0 0 .5-.5V4.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3.5-3.5a.5.5 0 0 0-.708 0l-3.5 3.5a.5.5 0 1 0 .708.708L7.5 4.707V10a.5.5 0 0 0 .5.5z"/>
+      </svg>
+    </a>
+  </div>
+  
+
+</footer>
+<script src="/js/back-to-top.js"></script>
+
+<script src="/js/highlight.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    document.querySelectorAll("pre code").forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+    
+
+     
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var tocLinks = document.querySelectorAll('.toc a');
+            var sections = [];
+
+            
+            var options = {
+                root: null, 
+                rootMargin: '0px 0px -50% 0px', 
+                threshold: 0 
+            };
+
+            
+            tocLinks.forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href && href.startsWith("#")) {
+                    var targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        sections.push({ link: link, section: targetSection });
+                    }
+                }
+            });
+
+            
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    var targetSection = entry.target;
+                    var link = sections.find(function(s) {
+                        return s.section === targetSection;
+                    }).link;
+
+                    if (entry.isIntersecting) {
+                        
+                        tocLinks.forEach(function(link) {
+                            link.classList.remove('toc-active');
+                        });
+                        link.classList.add('toc-active');
+                    }
+                });
+            }, options);
+
+            
+            sections.forEach(function(section) {
+                observer.observe(section.section);
+            });
+
+            
+            tocLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    
+                    tocLinks.forEach(function(link) {
+                        link.classList.remove('toc-active');
+                    });
+                    
+                    link.classList.add('toc-active');
+                });
+            });
+        });
+
+
+  </script>
+  
+
+  </body>
+</html>

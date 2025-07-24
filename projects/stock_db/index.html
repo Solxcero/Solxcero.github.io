@@ -1,0 +1,542 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #fff"
+  lang="en-us"
+>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+  <link rel="stylesheet" href="/css/custom.css">
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+    
+
+
+</head>
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+  
+  <title>[토이]증권 거래 시스템 DB 설계 및 운영 - 漸入佳境</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  
+  <meta name="description" content="직접 수행한 사이드 프로젝트입니다.
+기획 배경 및 목적 DB 운영팀 실무에 직접 연관되는 데이터베이스 구축, 설계, 운영 자동화, 성능 모니터링 등의 경험을 빠르게 축적. 금융권 DB 운영 환경에서의 핵심 이슈(안정성, 보안, 실시간성, 장애 대응 등)를 체험할 수 있도록 설계. DBA 직무에서 우대하는 요소들(모델링, 튜닝, 백업, 모니터링, 스크립트 등)을 프로젝트 안에 통합. 항목 설명 주요 기술 MariaDB/PostgreSQL, Python, Shell, SQL, ERDCloud(DB 모델링), Grafana or Prometheus(모니터링), Linux(Ubuntu VM) 목표 주식 주문 처리/조회 시스템의 데이터베이스를 직접 설계하고 운영환경을 구성, 자동화, 성능 분석 형태 개인 프로젝트 (가능하면 GitHub 공개 및 블로그 정리 병행) 기능 구성 기초 설계 및 구축 거래 관련 테이블(계좌, 종목, 주문, 체결, 잔고 등) ERD 설계" />
+  <meta name="author" content="덕후의 즐거운 인생" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
+
+  
+  
+  
+  
+  
+  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
+
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://github.com/Solxcero/Solxcero.github.io/assets/99321739/4ccb5f75-725b-4360-b1d6-6b1c99072d56" />
+  
+  
+
+  
+  
+  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
+  
+  
+
+  
+  
+  <script
+    defer
+    src="//localhost:1313/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+  
+  
+  
+
+  
+  <link rel="icon" href="//localhost:1313/favicon.ico" />
+  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.124.0">
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/highlight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="//localhost:1313/"
+      >漸入佳境</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#fff'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/categories/"
+        >Categories</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/projects/"
+        >Projects</a
+      >
+      
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/Solxcero"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-7 pb-16 pt-12 dark:prose-invert"
+    >
+      
+<link rel="stylesheet" href="/assets/css/custom.css">
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#기획-배경-및-목적">기획 배경 및 목적</a></li>
+    <li><a href="#기능-구성">기능 구성</a></li>
+    <li><a href="#db-설계">DB 설계</a></li>
+  </ul>
+</nav>
+  </aside>
+</div>
+
+  <article>
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">[토이]증권 거래 시스템 DB 설계 및 운영</h1>
+
+          
+          <div class="post-categories">
+            
+              <a href="/categories/projcets" class="category-box">projcets</a>
+            
+          </div>
+            
+    
+      
+      <div class="text-sm antialiased opacity-60">
+        
+        <time>Jul 24, 2025</time>
+        
+        
+        
+        
+      </div>
+      
+    </header>
+    
+    
+    <section>
+      <p>직접 수행한 사이드 프로젝트입니다.</p>
+<h2 id="기획-배경-및-목적">기획 배경 및 목적</h2>
+<ul>
+<li>DB 운영팀 실무에 직접 연관되는 데이터베이스 구축, 설계, 운영 자동화, 성능 모니터링 등의 경험을 빠르게 축적.</li>
+<li>금융권 DB 운영 환경에서의 핵심 이슈(안정성, 보안, 실시간성, 장애 대응 등)를 체험할 수 있도록 설계.</li>
+<li>DBA 직무에서 우대하는 요소들(모델링, 튜닝, 백업, 모니터링, 스크립트 등)을 프로젝트 안에 통합.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주요 기술</td>
+<td>MariaDB/PostgreSQL, Python, Shell, SQL, ERDCloud(DB 모델링), Grafana or Prometheus(모니터링), Linux(Ubuntu VM)</td>
+</tr>
+<tr>
+<td>목표</td>
+<td>주식 주문 처리/조회 시스템의 데이터베이스를 직접 설계하고 운영환경을 구성, 자동화, 성능 분석</td>
+</tr>
+<tr>
+<td>형태        </td>
+<td>개인 프로젝트 (가능하면 GitHub 공개 및 블로그 정리 병행)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="기능-구성">기능 구성</h2>
+<ol>
+<li>
+<p>기초 설계 및 구축
+거래 관련 테이블(계좌, 종목, 주문, 체결, 잔고 등) ERD 설계<br>
+PostgreSQL 또는 MariaDB에 테이블 생성 및 제약조건 설정<br>
+테스트 데이터 자동 삽입 스크립트(Python or Shell)</p>
+</li>
+<li>
+<p>운영 자동화
+Shell 스크립트 또는 Python으로 다음 작업 자동화:
+매일 새벽 백업 및 로그 저장<br>
+에러 발생 시 알림 로그 작성
+성능 상태 점검(커넥션 수, slow query 등)</p>
+</li>
+<li>
+<p>성능 분석 및 튜닝
+쿼리 로그 분석을 통한 SQL 튜닝<br>
+DB 파라미터 조정 예시 제시 (예: innodb_buffer_pool_size)<br>
+인덱스 적용 전후 속도 비교</p>
+</li>
+<li>
+<p>모니터링
+Grafana + Prometheus 또는 MySQL Workbench Performance Dashboard로:<br>
+DB CPU, 커넥션 수, 쿼리 응답시간, 에러 등 시각화</p>
+</li>
+<li>
+<p>장애 시나리오 및 복구
+의도적으로 서비스 장애 발생 (쿼리 폭주, 디스크 용량 초과 등)<br>
+복구 절차 수행: 백업 복원, slow query kill, 트랜잭션 롤백</p>
+</li>
+</ol>
+<h2 id="db-설계">DB 설계</h2>
+<p>증권거래 시스템에서 필요할 것으로 생각되는 정보들을 취합하여 스키마를 제작했다.</p>
+<p align="center">
+  <a href="/images/projects/stock_db/ERD.png" data-lightbox="image-set">
+    <img src="/images/projects/stock_db/ERD.png" alt="Your Alt Text" >
+  </a>
+</p>
+    </section> 
+
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+
+
+    
+  </article>
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+<div class="mr-auto">
+  &copy; 2025
+  <a class="link" href="//localhost:1313/">漸入佳境</a>
+</div>
+<a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+>Powered by Hugo️️</a
+>️
+<a
+class="link"
+href="https://github.com/nanxiaobei/hugo-paper"
+rel="noopener"
+target="_blank"
+>✎ Paper</a
+>
+<div id="back-to-top" style="display: none;">
+    <a href="#top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 10.5a.5.5 0 0 0 .5-.5V4.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3.5-3.5a.5.5 0 0 0-.708 0l-3.5 3.5a.5.5 0 1 0 .708.708L7.5 4.707V10a.5.5 0 0 0 .5.5z"/>
+      </svg>
+    </a>
+  </div>
+  
+
+</footer>
+<script src="/js/back-to-top.js"></script>
+
+<script src="/js/highlight.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    document.querySelectorAll("pre code").forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true}, 
+              {left: '$', right: '$', display: false},  
+              {left: '\\(', right: '\\)', display: false} 
+          ],
+          throwOnError: false,
+          ignoreTags: ["script", "noscript", "style", "textarea", "pre", "code"] 
+        });
+    });
+</script>
+
+    
+
+     
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            var tocLinks = document.querySelectorAll('.toc a');
+            var sections = [];
+
+            
+            var options = {
+                root: null, 
+                rootMargin: '0px 0px -50% 0px', 
+                threshold: 0 
+            };
+
+            
+            tocLinks.forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href && href.startsWith("#")) {
+                    var targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        sections.push({ link: link, section: targetSection });
+                    }
+                }
+            });
+
+            
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    var targetSection = entry.target;
+                    var link = sections.find(function(s) {
+                        return s.section === targetSection;
+                    }).link;
+
+                    if (entry.isIntersecting) {
+                        
+                        tocLinks.forEach(function(link) {
+                            link.classList.remove('toc-active');
+                        });
+                        link.classList.add('toc-active');
+                    }
+                });
+            }, options);
+
+            
+            sections.forEach(function(section) {
+                observer.observe(section.section);
+            });
+
+            
+            tocLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    
+                    tocLinks.forEach(function(link) {
+                        link.classList.remove('toc-active');
+                    });
+                    
+                    link.classList.add('toc-active');
+                });
+            });
+        });
+
+
+  </script>
+  
+
+  </body>
+</html>
