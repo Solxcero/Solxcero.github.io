@@ -88,9 +88,7 @@
   
   <meta name="description" content="예전 프로젝트에서 DB의 데이터들을 모니터링하는 대시보드는 제작해봤었지만, DB 성능을 모니터링 대시보는 제작한 경험이 없어 이 참에 한번 도전해봤다.
 환경 OS : Windows 11 HOME (WSL 설치) 시스템 구성도 MySQL ➡️ MySQL Exporter ➡️ Prometheus ➡️ Grafana
-그라파나로 MySQL의 성능을 모니터링하려면 MySQL Exporter 를 사용해 메트릭을 수집한 다음,
-Prometheus로 저장한 뒤, 이를 Grafana 대시보드로 시각화하는 방식이 일반적이다.
-환경 세팅 1. MySQL Exporter` 설치 및 설정 Exporter의 경우 Windows 사용자는 WSL, Docker, Go 세 가지 환경 중 하나를 골라서 Exporter를 설치하면 된다." />
+구성요소 역할 MySQL 실제 데이터베이스 Exporter MySQL에서 성능 정보 추출 &#43; HTTP 형식으로 노출 Prometheus Exporter로부터 데이터를 주기적으로 수집 &#43; 저장 Grafana Prometheus에서 데이터를 읽어와서 시각화 (Dashboard 형태) 그라파나로 MySQL의 성능을 모니터링하려면 MySQL Exporter 를 사용해 메트릭을 수집한 다음," />
   <meta name="author" content="덕후의 즐거운 인생" />
   
 
@@ -338,8 +336,37 @@ Prometheus로 저장한 뒤, 이를 Grafana 대시보드로 시각화하는 방�
 <blockquote>
 <p>MySQL ➡️ MySQL Exporter ➡️ Prometheus ➡️ Grafana</p>
 </blockquote>
+<table>
+<thead>
+<tr>
+<th>구성요소</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MySQL</strong></td>
+<td>실제 데이터베이스</td>
+</tr>
+<tr>
+<td><strong>Exporter</strong></td>
+<td>MySQL에서 성능 정보 추출 + HTTP 형식으로 노출</td>
+</tr>
+<tr>
+<td><strong>Prometheus</strong></td>
+<td>Exporter로부터 데이터를 주기적으로 수집 + 저장</td>
+</tr>
+<tr>
+<td><strong>Grafana</strong></td>
+<td>Prometheus에서 데이터를 읽어와서 시각화 (Dashboard 형태)</td>
+</tr>
+</tbody>
+</table>
 <p>그라파나로 MySQL의 성능을 모니터링하려면 <code>MySQL Exporter</code> 를 사용해 메트릭을 수집한 다음,<br>
 <code>Prometheus</code>로 저장한 뒤, 이를 <code>Grafana</code> 대시보드로 시각화하는 방식이 일반적이다.</p>
+<p>MySQL은 자체적으로 성능을 확인할 수 있도록 <code>show status</code> 나 <code>information_schema</code> 를 제공하지만, 외부 모니터링 시스템이 직접 접근해서 수집하기 어렵다.<br>
+따라서 MySQL에서 쿼리를 실행 후 메트릭 데이터를 HTTP로 노출해주는 exporter 를 사용한다.<br>
+프로메테우스는 이 HTTP 엔드포인트(<code>localhost:9104/metrics</code>)에 정기적으로 접근해서 데이터를 수집하는 기능을 한다.</p>
 <h2 id="환경-세팅">환경 세팅</h2>
 <h3 id="1-mysql-exporter-설치-및-설정">1. MySQL Exporter` 설치 및 설정</h3>
 <p>Exporter의 경우 Windows 사용자는 WSL, Docker, Go 세 가지 환경 중 하나를 골라서 Exporter를 설치하면 된다. 나는 이전에 설치해둔 WSL에 Exporter를 설치했다.  (대부분 Docker를 쓰는듯 하다.)</p>
