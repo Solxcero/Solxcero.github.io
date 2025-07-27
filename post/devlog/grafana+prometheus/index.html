@@ -422,8 +422,8 @@ C:\ProgramData\MySQL\MySQL Server 8.0\my.ini   경로에서 [mysqld] 부분을 �
 <blockquote>
 <p>exporter 계정은 모니터링 목적이므로 <code>INSERT</code>, <code>DELETE</code>, <code>DROP</code> 등의 권한은 절대 주지 않는다.</p>
 </blockquote>
-<p>가장 먼저 .my.cnf 파일을 생성한다.<br>
-이 파일은 MySQL 클라이언트 설정 파일이며, Exporter 가 MySQL에 자동 로그인할 수 있도록 사용자 계정 정보를 저장하고 있다.<br>
+<p>가장 먼저 .my.cnf 파일을 생성한다.</p>
+<p>이 파일은 MySQL 클라이언트 설정 파일이며, Exporter 가 MySQL에 자동 로그인할 수 있도록 사용자 계정 정보를 저장하고 있다.<br>
 즉, mysql_exporter는 이 파일을 읽고 MySQL에 로그인할 때, <code>-u exporter -p</code>  입력없이 자동으로 인증되게 해준다.</p>
 <p>파일 내용은 아래와 같으며 exporter 이름과 비밀번호는 개인설정 값으로 바꿔주면 된다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;[client]\nuser=exporter\npassword=yourpassword&#34;</span> &gt; ~/.my.cnf

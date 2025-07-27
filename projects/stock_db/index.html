@@ -289,6 +289,7 @@
     <li><a href="#기획-배경-및-목적">기획 배경 및 목적</a></li>
     <li><a href="#기능-구성">기능 구성</a></li>
     <li><a href="#db-설계">DB 설계</a></li>
+    <li><a href="#dummy-데이터-생성">Dummy 데이터 생성</a></li>
   </ul>
 </nav>
   </aside>
@@ -382,10 +383,10 @@ DB CPU, 커넥션 수, 쿼리 응답시간, 에러 등 시각화</p>
 </li>
 </ol>
 <h2 id="db-설계">DB 설계</h2>
-<p>증권거래 시스템에서 필요할 것으로 생각되는 정보들을 취합한 ERM</p>
+<p>증권거래 시스템에서 필요할 것으로 생각되는 정보들을 취합한 ERD</p>
 <p align="center">
-  <a href="/images/projects/stock_db/ERD.png" data-lightbox="image-set">
-    <img src="/images/projects/stock_db/ERD.png" alt="Your Alt Text" >
+  <a href="/images/projects/stock_db/erd.png" data-lightbox="image-set">
+    <img src="/images/projects/stock_db/erd.png" alt="Your Alt Text" >
   </a>
 </p>
 <table>
@@ -416,9 +417,50 @@ DB CPU, 커넥션 수, 쿼리 응답시간, 에러 등 시각화</p>
 <td><code>stocks</code></td>
 <td>주문, 체결, 포지션에서 공통적으로 참조하는 주식 종목</td>
 </tr>
+<tr>
+<td><code>stocks ↔ stocks_inventory</code></td>
+<td>주문 체결에 따른 종목의 잔여수량</td>
+</tr>
 </tbody>
 </table>
-
+<p>위와 같이 논리적 모델링을 해봤다.<br>
+물론 실제 시스템은 훨씬 크고 복잡한 구조를 가졌을 테지만, 내가 생각했을 때 가장 필요한 개체와 속성들을 위주로 간단하게 만들었다.</p>
+<h2 id="dummy-데이터-생성">Dummy 데이터 생성</h2>
+<p>현재는 아무 데이터가 없는 상태이니 임의로 데이터를 넣어주도록 하겠다.<br>
+users, accounts, stocks 테이블의 데이터는 사전에 만들어진 상태로, 매매 주문 체결 과정만 transaction으로 구현해보려 한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#2025년 1월1일 기준 KOSPI 상장 종목</span>
+</span></span><span style="display:flex;"><span>tock_lst <span style="color:#f92672">=</span> stock<span style="color:#f92672">.</span>get_market_ticker_list(<span style="color:#e6db74">&#39;20250101&#39;</span>,<span style="color:#e6db74">&#39;KOSPI&#39;</span>)
+</span></span><span style="display:flex;"><span>stock_name <span style="color:#f92672">=</span> list(map(stock<span style="color:#f92672">.</span>get_market_ticker_name, stock_lst))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load_config</span>(file_name):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> open(file_name,<span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> json<span style="color:#f92672">.</span>load(f)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>conn <span style="color:#f92672">=</span> pymysql<span style="color:#f92672">.</span>connect(<span style="color:#f92672">**</span>load_config(config))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fake <span style="color:#f92672">=</span> Faker(<span style="color:#e6db74">&#39;ko_KR&#39;</span>)
+</span></span><span style="display:flex;"><span>cursor <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span>cursor()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 사용자 50명 생성</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">50</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>    user_id <span style="color:#f92672">=</span> i
+</span></span><span style="display:flex;"><span>    name <span style="color:#f92672">=</span> fake<span style="color:#f92672">.</span>name()
+</span></span><span style="display:flex;"><span>    email <span style="color:#f92672">=</span> fake<span style="color:#f92672">.</span>email()
+</span></span><span style="display:flex;"><span>    cursor<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;INSERT INTO users (user_id, name, email, created_at) VALUES (</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">, </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">, </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">, NOW())&#34;</span>, (user_id, name, email))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 계좌 100개 생성 (1~50 유저 랜덤 연결)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">100</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>    user_id <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">50</span>)
+</span></span><span style="display:flex;"><span>    acc_no <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;ACC-</span><span style="color:#e6db74">{</span><span style="color:#ae81ff">1000</span><span style="color:#f92672">+</span>i<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    balance <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1000000</span>, <span style="color:#ae81ff">10000000</span>)
+</span></span><span style="display:flex;"><span>    cursor<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;INSERT INTO accounts (account_id, user_id, account_number, balance, created_at) VALUES (</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">,</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">, </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">, </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">, NOW())&#34;</span>, (i, user_id, acc_no, balance))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># KOSPI 961 종목 </span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i, (tick, name) <span style="color:#f92672">in</span> enumerate(zip(stock_lst, stock_name)):
+</span></span><span style="display:flex;"><span>    cursor<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;INSERT INTO stocks (stock_id, symbol, name, market) VALUES (</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">, </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">, </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">, &#39;KOSPI&#39;)&#34;</span>, (i,tick, name))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>conn<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div>
     </section> 
 
     
