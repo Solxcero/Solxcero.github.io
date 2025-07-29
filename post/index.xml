@@ -9,6 +9,13 @@
     <lastBuildDate>Thu, 24 Jul 2025 14:17:38 +0900</lastBuildDate>
     <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Hugo로 GitBlog 만들기</title>
+      <link>/post/blog/blog/</link>
+      <pubDate>Wed, 03 Apr 2024 10:41:44 +0900</pubDate>
+      <guid>/post/blog/blog/</guid>
+      <description>Hugo 블로그. 깃허브 블로그 테마 유목민이던 내가 드디어 맘에 드는 테마를 발견했는데, 기존에 사용하던 Jekyll가 아닌 Hugo 기반이다.&#xA;Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 때 참고하기 위해 포스팅을 하려고 한다. Hugo Documentation&#xA;Hugo 설치 (Windows 기준)&#xA;hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo 프로젝트 파일을 담을 폴더를 생성 (C:/Hugo) C:/Hugo/bin 디렉토리 생성 후 설치 파일 압축 해제 하여 넣기 C:/Hugo/bin 환경변수에 추가 -&amp;gt; cmd에 hugo version 입력하여 Path 추가 되었는지 확인 Hugo Local 실행 1.</description>
+    </item>
+    <item>
       <title>Grafana로 DB 성능 모니터링</title>
       <link>/post/devlog/grafana&#43;prometheus/</link>
       <pubDate>Thu, 24 Jul 2025 14:17:38 +0900</pubDate>
@@ -77,13 +84,6 @@
       <pubDate>Fri, 03 May 2024 10:41:44 +0900</pubDate>
       <guid>/post/blog/imagebox/</guid>
       <description>네이버나 티스토리 블로그의 주요 기능 중에 하나가 이미지를 클릭하면 이미지가 팝업으로 뜨는 효과이다.&#xA;Hugo 의 경우 이미지를 넣을 때 html의 a 태그를 사용하여 새로운 링크로 이미지를 띄울 수 있긴한데, 나는 팝업 효과를 원했다.&#xA;그래서 내가 직접 기능을 추가해보려고 한다.&#xA;사실 아직 Hugo 구조를 잘 몰라서..ㅋㅎㅎㅎ GPT의 도움을 받았다.&#xA;head.html에 Lightbox Library 추가하기 Ligthbox가 이미지를 띄워주는 기능인가 보다.&#xA;작업 파일의 경로는 layouts &amp;gt; partials &amp;gt; head.html의 &amp;lt;head&amp;gt; 태그 안에 아래 코드를 넣어주면 된다.</description>
-    </item>
-    <item>
-      <title>Hugo로 GitBlog 만들기</title>
-      <link>/post/blog/blog/</link>
-      <pubDate>Wed, 03 Apr 2024 10:41:44 +0900</pubDate>
-      <guid>/post/blog/blog/</guid>
-      <description>Hugo 블로그. 깃허브 블로그 테마 유목민이던 내가 드디어 맘에 드는 테마를 발견했는데, 기존에 사용하던 Jekyll가 아닌 Hugo 기반이다.&#xA;Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 때 참고하기 위해 포스팅을 하려고 한다. Hugo Documentation&#xA;Hugo 설치 (Windows 기준)&#xA;hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo 프로젝트 파일을 담을 폴더를 생성 (C:/Hugo) C:/Hugo/bin 디렉토리 생성 후 설치 파일 압축 해제 하여 넣기 C:/Hugo/bin 환경변수에 추가 -&amp;gt; cmd에 hugo version 입력하여 Path 추가 되었는지 확인 Hugo Local 실행 1.</description>
     </item>
   </channel>
 </rss>
