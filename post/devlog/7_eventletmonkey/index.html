@@ -39,7 +39,7 @@
   style="--bg: #fff"
   lang="en-us"
 >
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   
   <link rel="stylesheet" href="/css/custom.css">
   
@@ -103,14 +103,14 @@ eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이
   
   
   
-  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
 
   
   
   
   
   
-  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
+  <link rel="preload" as="image" href="/theme.png" />
 
   
   
@@ -122,7 +122,7 @@ eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이
 
   
   
-  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
+  <link rel="preload" as="image" href="/github.svg" />
   
   
 
@@ -130,7 +130,7 @@ eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이
   
   <script
     defer
-    src="//localhost:1313/highlight.min.js"
+    src="/highlight.min.js"
     onload="hljs.initHighlightingOnLoad();"
   ></script>
   
@@ -160,13 +160,59 @@ eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이
   
 
   
-  <link rel="icon" href="//localhost:1313/favicon.ico" />
-  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.124.0">
 
   
+  
+  
+  
+  
+  <meta itemprop="name" content="Eventlet과 Monkey Patch">
+<meta itemprop="description" content="출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&hellip;
+import 에러, 모듈 경로 에러, eventlet 에러&hellip; 를 해치우고 빌드를 했더니,
+알고보니 설치하는 서버는 리눅스였단 사실&hellip;
+Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서
+결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말
+암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.
+eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.
+근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데,"><meta itemprop="datePublished" content="2024-12-12T21:20:49+09:00" />
+<meta itemprop="dateModified" content="2024-12-12T21:20:49+09:00" />
+<meta itemprop="wordCount" content="406">
+<meta itemprop="keywords" content="" />
+  
+  <meta property="og:title" content="Eventlet과 Monkey Patch" />
+<meta property="og:description" content="출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&hellip;
+import 에러, 모듈 경로 에러, eventlet 에러&hellip; 를 해치우고 빌드를 했더니,
+알고보니 설치하는 서버는 리눅스였단 사실&hellip;
+Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서
+결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말
+암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.
+eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.
+근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데," />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/devlog/7_eventletmonkey/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-12-12T21:20:49+09:00" />
+<meta property="article:modified_time" content="2024-12-12T21:20:49+09:00" />
+
+  
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Eventlet과 Monkey Patch"/>
+<meta name="twitter:description" content="출근하여 퇴근할 때 까지 하루죙일 빌드만 했던 날이 있었다&hellip;
+import 에러, 모듈 경로 에러, eventlet 에러&hellip; 를 해치우고 빌드를 했더니,
+알고보니 설치하는 서버는 리눅스였단 사실&hellip;
+Ubuntu로 다시 환경설정해서 빌드하려는데 현장 gcc, glibc, python 등 버전 이슈가 계속 생기면서
+결국은 현장 리눅스 서버에 원격 접속하여 거기서 빌드했다는 결말
+암튼 그렇게 빌드하면서 흥미로웠던 내용이 있어서 글로 남기려고 한다.
+eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이브러리를 사용하였다.
+근데 이게 개발환경에서는 실행이 아무 문제 없이 되는데,"/>
+
+  
+  
+  
+  <link rel="canonical" href="/post/devlog/7_eventletmonkey/" />
   
   
   <link rel="stylesheet" href="/css/highlight.css">
@@ -178,7 +224,7 @@ eventlet 비동기 방식으로 프로그램을 돌리기 위해 eventlet 라이
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
-      href="//localhost:1313/"
+      href="/"
       >漸入佳境</a
     >
     <div
@@ -409,14 +455,14 @@ Flask 나 Flask-SocketIO 같은 프레임워크는 개발환경에서는 종종 
       
       <a
         class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-        href="//localhost:1313/post/devlog/grafana&#43;prometheus/"
+        href="/post/devlog/8_grafana&#43;prometheus/"
         ><span class="mr-1.5">←</span><span>Grafana로 DB 성능 모니터링</span></a
       >
       
       
       <a
         class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-        href="//localhost:1313/post/devlog/6_isnone/"
+        href="/post/devlog/6_isnone/"
         ><span>왜 is None인가</span><span class="ml-1.5">→</span></a
       >
       
@@ -443,7 +489,7 @@ Flask 나 Flask-SocketIO 같은 프레임워크는 개발환경에서는 종종 
 >
 <div class="mr-auto">
   &copy; 2025
-  <a class="link" href="//localhost:1313/">漸入佳境</a>
+  <a class="link" href="/">漸入佳境</a>
 </div>
 <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
 >Powered by Hugo️️</a

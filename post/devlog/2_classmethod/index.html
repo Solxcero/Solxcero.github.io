@@ -39,7 +39,7 @@
   style="--bg: #fff"
   lang="en-us"
 >
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   
   <link rel="stylesheet" href="/css/custom.css">
   
@@ -101,14 +101,14 @@
   
   
   
-  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="/main.min.css" />
 
   
   
   
   
   
-  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
+  <link rel="preload" as="image" href="/theme.png" />
 
   
   
@@ -120,7 +120,7 @@
 
   
   
-  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
+  <link rel="preload" as="image" href="/github.svg" />
   
   
 
@@ -128,7 +128,7 @@
   
   <script
     defer
-    src="//localhost:1313/highlight.min.js"
+    src="/highlight.min.js"
     onload="hljs.initHighlightingOnLoad();"
   ></script>
   
@@ -158,13 +158,53 @@
   
 
   
-  <link rel="icon" href="//localhost:1313/favicon.ico" />
-  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.124.0">
 
   
+  
+  
+  
+  
+  <meta itemprop="name" content="드디어 @classmethod를 써본다">
+<meta itemprop="description" content="배운 것을 실제로 내가 하고자하는 일에 적용했을 때의 쾌감이란
+@classmethod는 하나의 객체 내에서만 사용되는 것이 아니라 해당 클래스로 생성된 인스턴스 전체가 공유하는 함수라고 배웠었다.
+물론 간단한 실습은 했었지만 실제로 언제 사용하게 될지 궁금했었는데, 이번에 연구과제 프로젝트를 수행하면서 드디어 써봤다 우히히힣ㅎㅎ
+왜 쓰게 됐냐면,
+화력발전소에는 A~F 까지 총 6대의 미분기가 존재한다.
+그래서 당연히 미분기 Class를 만들고, 6개의 객체를 생성해서 각 미분기에 부여된 id 값으로 테이블에서 조회 후 계산 결과를 다시 테이블에 저장하고 있었다."><meta itemprop="datePublished" content="2024-11-01T10:45:44+09:00" />
+<meta itemprop="dateModified" content="2024-11-01T10:45:44+09:00" />
+<meta itemprop="wordCount" content="331">
+<meta itemprop="keywords" content="" />
+  
+  <meta property="og:title" content="드디어 @classmethod를 써본다" />
+<meta property="og:description" content="배운 것을 실제로 내가 하고자하는 일에 적용했을 때의 쾌감이란
+@classmethod는 하나의 객체 내에서만 사용되는 것이 아니라 해당 클래스로 생성된 인스턴스 전체가 공유하는 함수라고 배웠었다.
+물론 간단한 실습은 했었지만 실제로 언제 사용하게 될지 궁금했었는데, 이번에 연구과제 프로젝트를 수행하면서 드디어 써봤다 우히히힣ㅎㅎ
+왜 쓰게 됐냐면,
+화력발전소에는 A~F 까지 총 6대의 미분기가 존재한다.
+그래서 당연히 미분기 Class를 만들고, 6개의 객체를 생성해서 각 미분기에 부여된 id 값으로 테이블에서 조회 후 계산 결과를 다시 테이블에 저장하고 있었다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/devlog/2_classmethod/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-11-01T10:45:44+09:00" />
+<meta property="article:modified_time" content="2024-11-01T10:45:44+09:00" />
+
+  
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="드디어 @classmethod를 써본다"/>
+<meta name="twitter:description" content="배운 것을 실제로 내가 하고자하는 일에 적용했을 때의 쾌감이란
+@classmethod는 하나의 객체 내에서만 사용되는 것이 아니라 해당 클래스로 생성된 인스턴스 전체가 공유하는 함수라고 배웠었다.
+물론 간단한 실습은 했었지만 실제로 언제 사용하게 될지 궁금했었는데, 이번에 연구과제 프로젝트를 수행하면서 드디어 써봤다 우히히힣ㅎㅎ
+왜 쓰게 됐냐면,
+화력발전소에는 A~F 까지 총 6대의 미분기가 존재한다.
+그래서 당연히 미분기 Class를 만들고, 6개의 객체를 생성해서 각 미분기에 부여된 id 값으로 테이블에서 조회 후 계산 결과를 다시 테이블에 저장하고 있었다."/>
+
+  
+  
+  
+  <link rel="canonical" href="/post/devlog/2_classmethod/" />
   
   
   <link rel="stylesheet" href="/css/highlight.css">
@@ -176,7 +216,7 @@
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
-      href="//localhost:1313/"
+      href="/"
       >漸入佳境</a
     >
     <div
@@ -398,14 +438,14 @@ update_bias 함수가 각 객체에서 호출되면 bias_counter는 해당 클�
       
       <a
         class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-        href="//localhost:1313/post/devlog/callback/"
+        href="/post/devlog/3_callback/"
         ><span class="mr-1.5">←</span><span>CallBack</span></a
       >
       
       
       <a
         class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-        href="//localhost:1313/post/investment/styleindex/"
+        href="/post/investment/styleindex/"
         ><span>Style 배분 전략</span><span class="ml-1.5">→</span></a
       >
       
@@ -432,7 +472,7 @@ update_bias 함수가 각 객체에서 호출되면 bias_counter는 해당 클�
 >
 <div class="mr-auto">
   &copy; 2025
-  <a class="link" href="//localhost:1313/">漸入佳境</a>
+  <a class="link" href="/">漸入佳境</a>
 </div>
 <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
 >Powered by Hugo️️</a
