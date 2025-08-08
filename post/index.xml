@@ -6,7 +6,7 @@
     <description>Recent content in Posts on 漸入佳境</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Aug 2025 10:36:04 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 24 Jul 2025 14:17:38 +0900</lastBuildDate>
     <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo로 GitBlog 만들기</title>
@@ -14,13 +14,6 @@
       <pubDate>Wed, 03 Apr 2024 10:41:44 +0900</pubDate>
       <guid>/post/blog/blog/</guid>
       <description>Hugo 블로그. 깃허브 블로그 테마 유목민이던 내가 드디어 맘에 드는 테마를 발견했는데, 기존에 사용하던 Jekyll가 아닌 Hugo 기반이다.&#xA;Hugo는 처음이기 때문에 공부도 하고, 혹시나 복기가 필요할 때 참고하기 위해 포스팅을 하려고 한다. Hugo Documentation&#xA;Hugo 설치 (Windows 기준)&#xA;hugo release 에서 가장 최신 버전을 다운받는다. 로컬PC에 Hugo 프로젝트 파일을 담을 폴더를 생성 (C:/Hugo) C:/Hugo/bin 디렉토리 생성 후 설치 파일 압축 해제 하여 넣기 C:/Hugo/bin 환경변수에 추가 -&amp;gt; cmd에 hugo version 입력하여 Path 추가 되었는지 확인 Hugo Local 실행 1.</description>
-    </item>
-    <item>
-      <title>마음 업로딩에 대한 생각</title>
-      <link>/post/mylog/minduploading/</link>
-      <pubDate>Sat, 02 Aug 2025 10:36:04 +0900</pubDate>
-      <guid>/post/mylog/minduploading/</guid>
-      <description>최근에 레이 커즈와일의 『마침내 특이점이 시작된다』를 읽었다.&#xA;이미 상당히 유명한 책이고, 나는 뒷북치는 중.&#xA;(Singularity : 기술 발전 속도가 인간의 이해를 넘어 가속화되어 사회 전반에 돌이킬 수 없는 변화를 가져오는 시점)&#xA;내가 뽑은 주제 커즈와일은 기하급수적으로 발전하는 기술을 예로 들면서 앞으로 인류의 삶에 AI가 어떤 변화를 줄 것이며 우리는 어떤 준비를 해야할지 말한다.&#xA;이 글에서는 그가 제시한 특이점으로 인해 변화하는 삶의 형태 중 가장 흥미로웠던 주제에 대해서 생각해 보려고 한다.</description>
     </item>
     <item>
       <title>Grafana로 DB 성능 모니터링</title>

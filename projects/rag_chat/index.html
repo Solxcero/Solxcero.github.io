@@ -39,7 +39,7 @@
   style="--bg: #fff"
   lang="en-us"
 >
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   
   <link rel="stylesheet" href="/css/custom.css">
   
@@ -77,7 +77,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
   
-  <title>Categories - 漸入佳境</title>
+  <title>💬streamlit과 RAG를 활용한 챗봇 - 漸入佳境</title>
 
   
   <meta name="theme-color" />
@@ -86,11 +86,10 @@
   
   
   
-  
-  <meta
-    name="description"
-    content="A personal blog"
-  />
+  <meta name="description" content="개요 streamlit을 사용하여 문서기반 질의응답 RAG 시스템.
+사용자가 문서를 업로드하면 내용을 Embedding 한 후 사용자의 질의에 응답하는 챗봇.
+환경: Python 3.12 / FAISS 라이브러리 / Streamlit 라이브러리 모델: gpt-4 과정 Library 사용하는 라이브러리들은 아래과 같다.
+from dotenv import load_dotenv from langchain_community.chat_models import ChatOpenAI from langchain_community.vectorstores import FAISS from langchain_community.embeddings import OpenAIEmbeddings from langchain.text_splitter import CharacterTextSplitter from langchain.schema import ChatMessage, HumanMessage, SystemMessage from langchain.callbacks.base import BaseCallbackHandler from pdfminer.high_level import extract_text import streamlit as st import os 주요 라이브러리 설명" />
   <meta name="author" content="덕후의 즐거운 인생" />
   
 
@@ -100,14 +99,14 @@
   
   
   
-  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
 
   
   
   
   
   
-  <link rel="preload" as="image" href="/theme.png" />
+  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
 
   
   
@@ -119,11 +118,17 @@
 
   
   
-  <link rel="preload" as="image" href="/github.svg" />
+  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
   
   
 
   
+  
+  <script
+    defer
+    src="//localhost:1313/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
   
 
   
@@ -151,40 +156,13 @@
   
 
   
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" href="//localhost:1313/favicon.ico" />
+  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.124.0">
 
   
-  
-  
-  
-  
-  <meta itemprop="name" content="Categories">
-<meta itemprop="description" content="">
-  
-  <meta property="og:title" content="Categories" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/categories/" />
-
-  
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Categories"/>
-<meta name="twitter:description" content=""/>
-
-  
-  
-  <link
-    rel="alternate"
-    type="application/rss&#43;xml"
-    href="/categories/index.xml"
-    title="漸入佳境"
-  />
-  
-  
-  <link rel="canonical" href="/categories/" />
   
   
   <link rel="stylesheet" href="/css/highlight.css">
@@ -196,7 +174,7 @@
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
-      href="/"
+      href="//localhost:1313/"
       >漸入佳境</a
     >
     <div
@@ -304,67 +282,107 @@
       class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-7 pb-16 pt-12 dark:prose-invert"
     >
       
+<link rel="stylesheet" href="/assets/css/custom.css">
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#개요">개요</a></li>
+    <li><a href="#과정">과정</a>
+      <ul>
+        <li><a href="#library">Library</a></li>
+      </ul>
+    </li>
+    <li><a href="#debug-log">Debug Log</a></li>
+  </ul>
+</nav>
+  </aside>
+</div>
+
+  <article>
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">💬streamlit과 RAG를 활용한 챗봇</h1>
+
+              
+    
+      
+      <div class="text-sm antialiased opacity-60">
+        
+        <time>Aug 8, 2025</time>
+        
+        
+        
+        
+      </div>
+      
+    </header>
+    
+    
+    <section>
+      <h2 id="개요">개요</h2>
+<p>streamlit을 사용하여 문서기반 질의응답 RAG 시스템.<br>
+사용자가 문서를 업로드하면 내용을 Embedding 한 후 사용자의 질의에 응답하는 챗봇.</p>
+<ol>
+<li>환경: Python 3.12 / FAISS 라이브러리 / Streamlit 라이브러리</li>
+<li>모델: gpt-4</li>
+</ol>
+<h2 id="과정">과정</h2>
+<h3 id="library">Library</h3>
+<p>사용하는 라이브러리들은 아래과 같다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> dotenv <span style="color:#f92672">import</span> load_dotenv
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.chat_models <span style="color:#f92672">import</span> ChatOpenAI              
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> FAISS
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.embeddings <span style="color:#f92672">import</span> OpenAIEmbeddings
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.text_splitter <span style="color:#f92672">import</span> CharacterTextSplitter
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.schema <span style="color:#f92672">import</span> ChatMessage, HumanMessage, SystemMessage
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.callbacks.base  <span style="color:#f92672">import</span> BaseCallbackHandler
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pdfminer.high_level <span style="color:#f92672">import</span> extract_text
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> streamlit <span style="color:#66d9ef">as</span> st
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span></code></pre></div><p>주요 라이브러리 설명</p>
+<ol>
+<li><code>ChatOpenAI</code> : OpenAI의 GPT 모델을 이요해 대화를 처리하는 라이브러리. 질문에 대한 답변을 생성하기 위해 GPT-4 모델을 호출하는 데 사용.</li>
+<li><code>FAISS</code> :  벡터DB라이브러리. 임베딩된 벡터를 저장하는 DB를 제공해주는 파이썬 자체 라이브러리</li>
+<li><code>OpenAIEmbeddings</code> : OpenAI의 임베딩(벡터화)모델을 사용하는 라이브러리. 문서를 벡터화하여 유사성 검색 지원.</li>
+<li><code>CharacterTextSplitter</code> : 긴 문서를 작은 청크로 나누는 데 사용되는 유틸리티.</li>
+<li><code>ChatMessage</code>, <code>HumanMessage</code>, <code>SystemMessage</code> :  대화형 AI 모델에서 사용할 메시지 유형을 정의하는 스키마. 사용자 질문과 시스템 프롬프트를 GPT 모델로 전달하기 위해 사용.</li>
+<li><code>BaseCallbackHandler</code> :  GPT 모델의 응답을 실시간으로 처리할 수 있도록 지원하는 콜백 핸들러를 정의하는 클래스. GPT 모델에서 생성된 토큰을 실시간으로 web UI에 표시하기 위해 사용.</li>
+<li><code>extract_text</code> : PDF 파일에서 텍스트를 추출하는 데 사용되는 고수준 API.</li>
+</ol>
+<h2 id="debug-log">Debug Log</h2>
+<ol>
+<li>
+<p>Pydantic Error</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>PydanticUserError: <span style="color:#e6db74">`</span>OpenAI<span style="color:#e6db74">`</span> is not fully defined; you should define <span style="color:#e6db74">`</span>BaseCache<span style="color:#e6db74">`</span>, <span style="color:#66d9ef">then</span> call <span style="color:#e6db74">`</span>OpenAI.model_rebuild<span style="color:#f92672">()</span><span style="color:#e6db74">`</span>.
+</span></span></code></pre></div><p>pydantic 버전이 2.11.0 이상이 설치된 경우에 langchain 모듈과 호환이 안되는 문제가 발생할 수 있음.</p>
+<p>해결 : 버전 맞춰주기</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>pip install langchain-core<span style="color:#f92672">==</span>0.3.0 langchain-openai<span style="color:#f92672">==</span>0.2.0 pydantic<span style="color:#f92672">==</span>2.10.6
+</span></span></code></pre></div></li>
+</ol>
+
+    </section> 
+
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
 
 
-
-<h1 class="mb-16">#Categories</h1>
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">DevLog</h2>
-  <time class="post-date"
-    >Jul 24, 2025</time
-  >
-  <a class="absolute inset-0 text-[0]" href="/categories/devlog/">DevLog</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">Investment</h2>
-  <time class="post-date"
-    >Jul 13, 2024</time
-  >
-  <a class="absolute inset-0 text-[0]" href="/categories/investment/">Investment</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">Blog</h2>
-  <time class="post-date"
-    >May 3, 2024</time
-  >
-  <a class="absolute inset-0 text-[0]" href="/categories/blog/">Blog</a>
-</section>
-
-
-
-
-
-
-
+    
+  </article>
 
     </main>
 
@@ -373,7 +391,7 @@
 >
 <div class="mr-auto">
   &copy; 2025
-  <a class="link" href="/">漸入佳境</a>
+  <a class="link" href="//localhost:1313/">漸入佳境</a>
 </div>
 <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
 >Powered by Hugo️️</a
