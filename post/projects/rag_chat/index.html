@@ -39,7 +39,7 @@
   style="--bg: #fff"
   lang="en-us"
 >
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   
   <link rel="stylesheet" href="/css/custom.css">
   
@@ -101,14 +101,14 @@ from dotenv import load_dotenv from langchain_community.chat_models import ChatO
   
   
   
-  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
 
   
   
   
   
   
-  <link rel="preload" as="image" href="/theme.png" />
+  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
 
   
   
@@ -120,7 +120,7 @@ from dotenv import load_dotenv from langchain_community.chat_models import ChatO
 
   
   
-  <link rel="preload" as="image" href="/github.svg" />
+  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
   
   
 
@@ -128,7 +128,7 @@ from dotenv import load_dotenv from langchain_community.chat_models import ChatO
   
   <script
     defer
-    src="/highlight.min.js"
+    src="//localhost:1313/highlight.min.js"
     onload="hljs.initHighlightingOnLoad();"
   ></script>
   
@@ -158,53 +158,13 @@ from dotenv import load_dotenv from langchain_community.chat_models import ChatO
   
 
   
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" href="//localhost:1313/favicon.ico" />
+  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.124.0">
 
   
-  
-  
-  
-  
-  <meta itemprop="name" content="💬streamlit과 RAG를 활용한 챗봇">
-<meta itemprop="description" content="요새 RAG에 빠져서 재밌게 공부 중이다.
-배운 내용을 실습하기 위해 나만의 Agent를 하나 만들어 봤다. (물론 교재 참고해서)
-개요 streamlit을 사용하여 문서기반 질의응답 RAG 시스템.
-사용자가 문서를 업로드하면 내용을 Embedding 한 후 사용자의 질의에 응답하는 챗봇.
-환경: Python 3.12 / FAISS 라이브러리 / Streamlit 라이브러리 모델: gpt-4 GtiHub url : https://github.com/Solxcero/Lang/blob/main/pdfChatApp2.py 과정 Library 사용하는 라이브러리들은 아래과 같다.
-from dotenv import load_dotenv from langchain_community.chat_models import ChatOpenAI from langchain_community.vectorstores import FAISS from langchain_community."><meta itemprop="datePublished" content="2025-08-08T11:00:50+09:00" />
-<meta itemprop="dateModified" content="2025-08-08T11:00:50+09:00" />
-<meta itemprop="wordCount" content="763">
-<meta itemprop="keywords" content="" />
-  
-  <meta property="og:title" content="💬streamlit과 RAG를 활용한 챗봇" />
-<meta property="og:description" content="요새 RAG에 빠져서 재밌게 공부 중이다.
-배운 내용을 실습하기 위해 나만의 Agent를 하나 만들어 봤다. (물론 교재 참고해서)
-개요 streamlit을 사용하여 문서기반 질의응답 RAG 시스템.
-사용자가 문서를 업로드하면 내용을 Embedding 한 후 사용자의 질의에 응답하는 챗봇.
-환경: Python 3.12 / FAISS 라이브러리 / Streamlit 라이브러리 모델: gpt-4 GtiHub url : https://github.com/Solxcero/Lang/blob/main/pdfChatApp2.py 과정 Library 사용하는 라이브러리들은 아래과 같다.
-from dotenv import load_dotenv from langchain_community.chat_models import ChatOpenAI from langchain_community.vectorstores import FAISS from langchain_community." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/projects/rag_chat/" /><meta property="article:section" content="projects" />
-<meta property="article:published_time" content="2025-08-08T11:00:50+09:00" />
-<meta property="article:modified_time" content="2025-08-08T11:00:50+09:00" />
-
-  
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="💬streamlit과 RAG를 활용한 챗봇"/>
-<meta name="twitter:description" content="요새 RAG에 빠져서 재밌게 공부 중이다.
-배운 내용을 실습하기 위해 나만의 Agent를 하나 만들어 봤다. (물론 교재 참고해서)
-개요 streamlit을 사용하여 문서기반 질의응답 RAG 시스템.
-사용자가 문서를 업로드하면 내용을 Embedding 한 후 사용자의 질의에 응답하는 챗봇.
-환경: Python 3.12 / FAISS 라이브러리 / Streamlit 라이브러리 모델: gpt-4 GtiHub url : https://github.com/Solxcero/Lang/blob/main/pdfChatApp2.py 과정 Library 사용하는 라이브러리들은 아래과 같다.
-from dotenv import load_dotenv from langchain_community.chat_models import ChatOpenAI from langchain_community.vectorstores import FAISS from langchain_community."/>
-
-  
-  
-  
-  <link rel="canonical" href="/projects/rag_chat/" />
   
   
   <link rel="stylesheet" href="/css/highlight.css">
@@ -216,7 +176,7 @@ from dotenv import load_dotenv from langchain_community.chat_models import ChatO
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
-      href="/"
+      href="//localhost:1313/"
       >漸入佳境</a
     >
     <div
@@ -567,14 +527,14 @@ OpenAI의 고급 LLM 기술을 빌려쓰는 것이기 때문에 결국 다 비�
       
       <a
         class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-        href="/post/blog/blog/"
+        href="//localhost:1313/post/blog/blog/"
         ><span class="mr-1.5">←</span><span>Hugo로 GitBlog 만들기</span></a
       >
       
       
       <a
         class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-        href="/post/devlog/8_grafana&#43;prometheus/"
+        href="//localhost:1313/post/devlog/8_grafana&#43;prometheus/"
         ><span>Grafana로 DB 성능 모니터링</span><span class="ml-1.5">→</span></a
       >
       
@@ -601,7 +561,7 @@ OpenAI의 고급 LLM 기술을 빌려쓰는 것이기 때문에 결국 다 비�
 >
 <div class="mr-auto">
   &copy; 2025
-  <a class="link" href="/">漸入佳境</a>
+  <a class="link" href="//localhost:1313/">漸入佳境</a>
 </div>
 <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
 >Powered by Hugo️️</a
