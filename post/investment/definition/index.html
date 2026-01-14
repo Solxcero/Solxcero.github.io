@@ -39,7 +39,7 @@
   style="--bg: #fff"
   lang="en-us"
 >
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   
   <link rel="stylesheet" href="/css/custom.css">
   
@@ -77,7 +77,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
   
-  <title>漸入佳境</title>
+  <title>개념 정리 - 漸入佳境</title>
 
   
   <meta name="theme-color" />
@@ -86,11 +86,12 @@
   
   
   
-  
-  <meta
-    name="description"
-    content="A personal blog"
-  />
+  <meta name="description" content="주요 개념 신용평가는 결국 해당 고객에게 대출을 해줄지 말지 즉, 0이냐 1이냐의 분류 문제이다.
+분류 모델을 쓴다고 할 때 수치형 변수들을 처리하는 방법에 WoE와 IV가 있는데 각각 학습해보자
+WoE (Weight of Evidence) 특정 독립 변수의 범주(Bin)가 종속 변수(Good/Bad)를 얼마나 잘 설명하는지를 수치화한 값.
+&ldquo;이 고객이 특정 집단에 속해 있다는 사실이 부도 확률을 높이는가, 낮추는가?&rdquo;
+$$ WoE_{i} = ln(\frac{Distr Good_{i}}{Distr Bad_{i}}) = ln(\frac{G_i / G_{total}}{B_i/B_{total}}) $$
+Gi : i번째 구간의 정상 고객 수" />
   <meta name="author" content="덕후의 즐거운 인생" />
   
 
@@ -100,14 +101,14 @@
   
   
   
-  <link rel="preload stylesheet" as="style" href="/main.min.css" />
+  <link rel="preload stylesheet" as="style" href="//localhost:1313/main.min.css" />
 
   
   
   
   
   
-  <link rel="preload" as="image" href="/theme.png" />
+  <link rel="preload" as="image" href="//localhost:1313/theme.png" />
 
   
   
@@ -119,11 +120,17 @@
 
   
   
-  <link rel="preload" as="image" href="/github.svg" />
+  <link rel="preload" as="image" href="//localhost:1313/github.svg" />
   
   
 
   
+  
+  <script
+    defer
+    src="//localhost:1313/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
   
 
   
@@ -151,40 +158,13 @@
   
 
   
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" href="//localhost:1313/favicon.ico" />
+  <link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png" />
 
   
   <meta name="generator" content="Hugo 0.124.0">
 
   
-  
-  
-  
-  
-  <meta itemprop="name" content="漸入佳境">
-<meta itemprop="description" content="">
-  
-  <meta property="og:title" content="漸入佳境" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/" />
-
-  
-  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="漸入佳境"/>
-<meta name="twitter:description" content=""/>
-
-  
-  
-  <link
-    rel="alternate"
-    type="application/json"
-    href="/index.json"
-    title="漸入佳境"
-  />
-  
-  
-  <link rel="canonical" href="/" />
   
   
   <link rel="stylesheet" href="/css/highlight.css">
@@ -196,7 +176,7 @@
   <div class="relative z-50 mr-auto flex items-center">
     <a
       class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
-      href="/"
+      href="//localhost:1313/"
       >漸入佳境</a
     >
     <div
@@ -310,204 +290,159 @@
       class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-7 pb-16 pt-12 dark:prose-invert"
     >
       
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-<div class="-mt-2 mb-16 flex items-center">
-  
-  <div
-    class="mr-5 shrink-0 rounded-full border-[0.5px] border-black/10 bg-white/50 p-3 shadow dark:bg-white/[15%]"
-  >
-    <img
-      class="my-0 aspect-square w-16 rounded-full !bg-black/5 hover:animate-spin dark:!bg-black/80"
-      src="https://github.com/Solxcero/Solxcero.github.io/blob/main/images/kodama.png?raw=true"
-      alt="덕후의 즐거운 인생"
-    />
-  </div>
-  
-  
-  <div>
-    <h1 class="mb-2 mt-3 text-[1.6rem] font-bold">덕후의 즐거운 인생</h1>
-    <div class="break-words">
-      좋아하는 것만 하고 살면 얼마나 좋게요.
-    </div>
-  </div>
-  
+<link rel="stylesheet" href="/assets/css/custom.css">
+<div class="content-wrapper">
+  <aside class="toc" id="toc">
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#주요-개념">주요 개념</a>
+      <ul>
+        <li><a href="#woe-weight-of-evidence">WoE (Weight of Evidence)</a></li>
+        <li><a href="#iv-information-value">IV (Information Value)</a></li>
+        <li><a href="#optbinning">OptBinning</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
 </div>
 
+  <article>
+    <header class="mb-16">
+      <h1 class="!my-0 pb-2.5">개념 정리</h1>
 
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <span
-    class="mb-2 ml-px inline-block text-[0.8rem] font-medium uppercase tracking-wider text-[#ff3b2d] opacity-70"
-    >Featured</span
-  >
-  
-  <h2 class="post-title">Hugo로 GitBlog 만들기</h2>
-  <time class="post-date"
-    >Apr 3, 2024</time
-  >
+              
     
-  
-    <span class="post-category">  #
       
-      blog
-    
-    </span>
-  
-  <a class="absolute inset-0 text-[0]" href="/post/blog/blog/">Hugo로 GitBlog 만들기</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">💬streamlit과 RAG를 활용한 챗봇</h2>
-  <time class="post-date"
-    >Aug 8, 2025</time
-  >
-    
-  
-  <a class="absolute inset-0 text-[0]" href="/projects/rag_chat/">💬streamlit과 RAG를 활용한 챗봇</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">Grafana로 DB 성능 모니터링</h2>
-  <time class="post-date"
-    >Jul 24, 2025</time
-  >
-    
-  
-    <span class="post-category">  #
+      <div class="text-sm antialiased opacity-60">
+        
+        <time>Jan 4, 2026</time>
+        
+        
+        
+        
+      </div>
       
-      DevLog
+    </header>
     
-    </span>
-  
-  <a class="absolute inset-0 text-[0]" href="/post/devlog/8_grafana&#43;prometheus/">Grafana로 DB 성능 모니터링</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">Eventlet과 Monkey Patch</h2>
-  <time class="post-date"
-    >Dec 12, 2024</time
-  >
     
-  
-    <span class="post-category">  #
+    <section>
+      <h2 id="주요-개념">주요 개념</h2>
+<p>신용평가는 결국 해당 고객에게 대출을 해줄지 말지 즉, 0이냐 1이냐의 분류 문제이다.<br>
+분류 모델을 쓴다고 할 때 수치형 변수들을 처리하는 방법에 WoE와 IV가 있는데 각각 학습해보자</p>
+<h3 id="woe-weight-of-evidence">WoE (Weight of Evidence)</h3>
+<blockquote>
+<p>특정 독립 변수의 범주(Bin)가 종속 변수(Good/Bad)를 얼마나 잘 설명하는지를 수치화한 값.<br>
+&ldquo;이 고객이 특정 집단에 속해 있다는 사실이 부도 확률을 높이는가, 낮추는가?&rdquo;</p>
+</blockquote>
+<p>$$
+WoE_{i} = ln(\frac{Distr Good_{i}}{Distr Bad_{i}}) = ln(\frac{G_i / G_{total}}{B_i/B_{total}})
+$$</p>
+<p>Gi : i번째 구간의 정상 고객 수<br>
+Bi : i번째 구간의 부도(연체 고객 수)</p>
+<p>주요 특징</p>
+<ul>
+<li>비선형성의 선형화 : 비선형적인 관계를 가진 변수도 WoE로 변환하면 로지스틱 회귀 모델에서 선형적인 관계를 갖게 되어 모델 성능이 안정화 됨.</li>
+<li>Outlier 처리 : 변수를 구간화하기 때문에 극단적인 값의 영향력이 줄어듦</li>
+<li>WoE &gt; 0 : 정상 고객 비중이 더 높음 (상대적으로 안전한 집단)</li>
+<li>WoE &lt; 0 : 부도 고객 비중이 더 높음 (상대적으로 위험한 집단)</li>
+</ul>
+<p>여기서 인상 깊은건 첫번째 특징인 비선형성의 선형화이다.<br>
+예를 들어 나이 데이터가 있다고 했을 때 소득이 불안정한 20대와 소득이 없는 60대의 경우 신용점수가 낮고 30~40대의 경우 소득이 안정적이라 신용점수가 높을 것이다.<br>
+이 경우 나이와 신용 점수는 비선형관계가 된다.<br>
+하지만 WoE를 사용하면 위험비중이 높은 구간부터 내림차순으로 구간을 정렬하게 되므로 나이 구간과 신용 점수는 선형관계로 나타낼 수 있다.</p>
+<h3 id="iv-information-value">IV (Information Value)</h3>
+<blockquote>
+<p>해당 독립 변수가 종속 변수를 얼마나 잘 예측(변별)할 수 있는지를 나타내는 지표. 변수 선택 단계에서 핵심적인 기준</p>
+</blockquote>
+<p>$$
+IV = \sum_{i=1}^{n}(DistrGood_i - DistrBad_i) * WoE_i
+$$</p>
+<p>모든 구간(n)의 WoE값을 활용하여 합산함</p>
+<p>주요 특징</p>
+<table>
+<thead>
+<tr>
+<th>IV 값 범위</th>
+<th>변별력 수준 (Predictive Power)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt; 0.02</td>
+<td>거의 없음 (Useless)</td>
+</tr>
+<tr>
+<td>0.02 ~ 0.1</td>
+<td>낮음 (Weak)</td>
+</tr>
+<tr>
+<td>0.1 ~ 0.3</td>
+<td>보통 (Medium)</td>
+</tr>
+<tr>
+<td>0.3 ~ 0.5</td>
+<td>높음 (Strong)</td>
+</tr>
+<tr>
+<td>&gt; 0.5</td>
+<td>매우 높음 (주의 필요)</td>
+</tr>
+</tbody>
+</table>
+<p>IV가 0.5보다 너무 높으면 &lsquo;Target Leakage(미래의 정보가 변수에 포함됨)&lsquo;를 의심해봐야 함. (현재 연체 여부로 미래 부도를 예측하는 격일 수 있음)</p>
+<p>요약하면,<br>
+<strong>WoE</strong>는 &ldquo;특정 구간의 위험도가 어떠한가?&rdquo;<br>
+<strong>IV</strong>는 &ldquo;이 변수 자체가 모델에 쓸모 있는가?&rdquo;<br>
+를 판별해준다고 보면 된다.</p>
+<h3 id="optbinning">OptBinning</h3>
+<p>신용 평가의 경우 다른 도메인메 비해 모델의 성능 만큼이나 <strong>모델의 설명 가능성</strong>이 중요하다.<br>
+신용평가의 모델 설명력을 높여주기 위해 이번 실습에서는 OptBinning 라이브러리를 사용할 예정이다.</p>
+<p>라이브러리 이름대로 최적의 데이터 구간을 찾아주는데, 구체적으로는 IV를 극대화하거나 특정 목적 함수를 최적화하는 구간을 말한다.</p>
+<p>또한 단조성 제약을 통해 변수와 부도율 간의 관계가 상식적인 방향으로 흐르도록 강제할 수 있다는 점에서 유용하다.</p>
+<p>더불어 스코어카드 생성 기능도 내장되어 있어 별도의 기능 구현이 필요가 없다는 점에서 간편하다.</p>
+<p>라이브러리 공식 문서 : <a href="https://gnpalencia.org/optbinning/">https://gnpalencia.org/optbinning/</a></p>
+
+    </section> 
+
+    
+    
+
+    
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
       
-      DevLog
-    
-    </span>
-  
-  <a class="absolute inset-0 text-[0]" href="/post/devlog/7_eventletmonkey/">Eventlet과 Monkey Patch</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">왜 is None인가</h2>
-  <time class="post-date"
-    >Dec 7, 2024</time
-  >
-    
-  
-    <span class="post-category">  #
+      <a
+        class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="//localhost:1313/post/blog/blog/"
+        ><span class="mr-1.5">←</span><span>Hugo로 GitBlog 만들기</span></a
+      >
       
-      DevLog
-    
-    </span>
-  
-  <a class="absolute inset-0 text-[0]" href="/post/devlog/6_isnone/">왜 is None인가</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">My Longest Query So Far</h2>
-  <time class="post-date"
-    >Dec 2, 2024</time
-  >
-    
-  
-    <span class="post-category">  #
       
-      DevLog
-    
-    </span>
-  
-  <a class="absolute inset-0 text-[0]" href="/post/devlog/5_longquery/">My Longest Query So Far</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
-  
-  <h2 class="post-title">선형회귀와 스케일링</h2>
-  <time class="post-date"
-    >Nov 20, 2024</time
-  >
-    
-  
-    <span class="post-category">  #
+      <a
+        class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+        href="//localhost:1313/projects/homecredit_intro/"
+        ><span>🪪 HOME CREDIT #1:Intro</span><span class="ml-1.5">→</span></a
+      >
       
-      DevLog
+    </nav>
     
-    </span>
-  
-  <a class="absolute inset-0 text-[0]" href="/post/devlog/4_linearmodelandscale/">선형회귀와 스케일링</a>
-</section>
+    
+
+    
+    
+
+    
+    
+
+    
 
 
-
-
-<nav class="mt-16 flex">
-  
-  
-  <a class="btn ml-auto" href="/page/2/"
-    >Next Page →</a
-  >
-  
-</nav>
-
-
+    
+  </article>
 
     </main>
 
@@ -516,7 +451,7 @@
 >
 <div class="mr-auto">
   &copy; 2026
-  <a class="link" href="/">漸入佳境</a>
+  <a class="link" href="//localhost:1313/">漸入佳境</a>
 </div>
 <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
 >Powered by Hugo️️</a
