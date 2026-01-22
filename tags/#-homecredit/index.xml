@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title># HomeCredit on 漸入佳境</title>
+    <link>//localhost:1313/tags/</link>
+    <description>Recent content in # HomeCredit on 漸入佳境</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 04 Jan 2026 11:00:50 +0900</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🪪 HOME CREDIT #2:EDA</title>
+      <link>//localhost:1313/projects/homecredit_eda/</link>
+      <pubDate>Sun, 04 Jan 2026 11:00:50 +0900</pubDate>
+      <guid>//localhost:1313/projects/homecredit_eda/</guid>
+      <description>가장 중요한 전처리 단계이다. 데이터의 품질이 모델의 성능을 결정하는 만큼, 그리고 모델의 설명 가능성이 매우 중요한 만큼,&#xA;데이터 전처리 과정에서 두뇌를 가장 많이 사용하였다.&#xA;데이터 확인 데이터 설명 페이지 : https://www.kaggle.com/competitions/home-credit-default-risk/data&#xA;이번 실습에서는 application.csv 만 사용했다. 추후에 SK_ID_CURR을 기준으로 데이터들을 합쳐볼 예정이다.&#xA;TARGET의 부도/정상 비율은&#xA;부도 비율: 8.07% 정상 비율: 91.93%&#xA;역시나 불균형이 심한 것을 알 수 있다.&#xA;분석 제외 변수 122개의 컬럼 중 1차적으로 필요 없는 컬럼들은 제외시켰다.&#xA;결측치 비율로 변수 버리기</description>
+    </item>
+  </channel>
+</rss>

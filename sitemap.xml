@@ -5,10 +5,25 @@
     <loc>/post/blog/blog/</loc>
     <lastmod>2024-04-03T10:41:44+09:00</lastmod>
   </url><url>
+    <loc>/tags/homecredit/</loc>
+    <lastmod>2026-01-04T11:00:50+09:00</lastmod>
+  </url><url>
     <loc>/projects/</loc>
     <lastmod>2026-01-04T11:00:50+09:00</lastmod>
   </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2026-01-04T11:00:50+09:00</lastmod>
+  </url><url>
     <loc>/</loc>
+    <lastmod>2026-01-04T11:00:50+09:00</lastmod>
+  </url><url>
+    <loc>/projects/homecredit_intro/</loc>
+    <lastmod>2026-01-04T11:00:50+09:00</lastmod>
+  </url><url>
+    <loc>/projects/homecredit_eda/</loc>
+    <lastmod>2026-01-04T11:00:50+09:00</lastmod>
+  </url><url>
+    <loc>/projects/homecredit_model_result/</loc>
     <lastmod>2026-01-04T11:00:50+09:00</lastmod>
   </url><url>
     <loc>/projects/rag_chat/</loc>
@@ -64,7 +79,5 @@
   </url><url>
     <loc>/geek/</loc>
     <lastmod>2024-04-03T13:02:33+09:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
   </url>
 </urlset>
