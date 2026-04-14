@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday!</title>
+    <style>
+         
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            background: #fff5f7; 
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif; 
+            color: #444;
+            line-height: 1.6;
+            word-break: keep-all;  
+        }
+
+         
+        #password-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 1000;
+            padding: 20px;
+        }
+        #password-screen h2 { font-size: 1.4rem; margin-bottom: 20px; color: #ff4081; }
+        input { 
+            width: 80%; max-width: 300px; padding: 15px; 
+            font-size: 1rem; border-radius: 12px; border: 2px solid #ffc1d3; 
+            outline: none; text-align: center; transition: border 0.3s;
+        }
+        input:focus { border-color: #ff4081; }
+        button { 
+            width: 80%; max-width: 300px; padding: 15px; margin-top: 15px; 
+            background: #ff4081; color: white; border: none; border-radius: 12px; 
+            font-size: 1.1rem; font-weight: bold; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 64, 129, 0.3);
+        }
+
+         
+        #main-content { 
+            display: none; 
+            padding: 40px 20px; 
+            max-width: 500px; 
+            margin: 0 auto; 
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .birthday-card {
+            background: white; padding: 30px 20px; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #ffebee;
+        }
+        h1 { color: #ff4081; font-size: 1.8rem; margin-bottom: 20px; line-height: 1.3; }
+        .letter-content { font-size: 1.05rem; text-align: left; white-space: pre-line; }
+
+         
+        .emoji-bg { font-size: 2rem; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="password-screen">
+        <h2>🔒 비번입력</h2>
+        <input type="tel" id="pw-input" placeholder="숫자 4자리 입력" pattern="[0-9]*" inputmode="numeric">
+        <button onclick="checkPassword()">편지 읽으러 가기</button>
+    </div>
+
+    <div id="main-content">
+        <div class="birthday-card">
+            <h1>건희 <br> 2026 생축🎉</h1>
+            <div class="letter-content">
+                <h3 id="인건-하이">인건 하이</h3>
+<p>올해도 디지털 편지를 쓰는구나.</p>
+<p>내가 지금 회사도 너무 바쁜데 결혼 준비하면서 이것저것 스트레스 받는게 너무 많다보니 하루하루가 어떻게 흘러가는지 모르겠다 ㅋㅎ ㅠㅠㅠㅠㅠㅠㅠㅠㅠ샤걀샤갈</p>
+<p>암튼 내년에는 더 여유로워진 내가 돼서 손편지 제대로 쓸게 ^0^</p>
+<p>생일 선물도 더 잘 챙겨줄게<br>
+연례행사로 생일 챙기는 친구 너 하난데 이렇게 소홀해서 미안허다 !!!!!!!!!</p>
+<h3 id="암튼-올해는-너도-가고-나도-가고">암튼 올해는 너도 가고 나도 가고</h3>
+<p>생일 편지니까 결혼하는 건 그렇게 크게 축하하진 않을게 (하지만 그래도 축하함)</p>
+
+            </div>
+            <div class="emoji-bg">🎁 🎉 🥳 ✨</div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('pw-input').value;
+            if (password === "0000") {
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                
+                
+                var duration = 3 * 1000;
+                var end = Date.now() + duration;
+
+                (function frame() {
+                  confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ff4081', '#ffbdde']
+                  });
+                  confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ff4081', '#ffbdde']
+                  });
+
+                  if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                  }
+                }());
+            } else {
+                alert("생일도 모른대요");
+            }
+        }
+    </script>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+    
+    window.onload = function() {
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+    };
+</script>
